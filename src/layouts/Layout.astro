@@ -1,0 +1,57 @@
+---
+interface Props { // Typescript
+	title: string
+	description: string
+}
+
+const { title,description } = Astro.props;
+
+import Header from '../components/Header/Header.astro'
+import Footer from '../components/Footer/Footer.astro'
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="author" content="Agustín Narvaez" />
+		<meta name="description" content={description} />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Rubik:wght@700;800&display=swap" rel="stylesheet">
+
+		<title>{title}</title>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>
+<style is:global>
+	:root {
+		--bg-color: #171717;
+		--violet-bapps: #ad60e1;
+		--yellow-bapps: #E7FB79;
+		--white-bapps: #FFFDF9;
+	}
+	html {
+		font-family: 'Dela Gothic One', cursive;
+		font-family: 'Rubik', sans-serif;
+		font-size: 10px;
+		color-scheme: dark light;
+	}
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-size: 1rem;
+	}
+
+</style>
