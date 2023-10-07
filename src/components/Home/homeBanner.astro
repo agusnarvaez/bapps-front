@@ -1,0 +1,132 @@
+---
+
+import astronaut from '../../assets/images/background/astronaut.jpg'
+import bottomArrow from '../../assets/images/icons/bottom-arrow-v.svg'
+// Importar imageCOmponent de astro
+import { Image } from 'astro:assets'
+function scrollDown() {
+        console.log("Click")
+        const vh = window.innerHeight;
+        const distanceToScroll = vh * 0.5;
+        window.scrollBy({
+            top: distanceToScroll,
+            behavior: 'smooth'
+        });
+    }
+
+
+---
+
+
+<section class="home-banner">
+    <h2>SOLUCIONES DIGITALES PERSONALIZADAS</h2>
+    <Image class="home-banner-background" src={astronaut} alt="astronaut" />
+    <div class="gradient-overlay"></div>
+    <bottom-arrow>
+        <Image class="bottom-arrow" src={bottomArrow} alt="bottom-arrow"  />
+    </bottom-arrow>
+</section>
+
+<script>
+class BottomArrow extends HTMLElement {
+    constructor() {
+      super();
+      let count = 0;
+
+
+      const bottomArrow = this.querySelector('.bottom-arrow');
+
+      // Cada vez que el button es clickeado, actualiza el contador.
+      bottomArrow.addEventListener('click', () => {
+       console.log('Click!')
+       const vh = window.innerHeight;
+        const distanceToScroll = vh * 0.5;
+        window.scrollBy({
+            top: distanceToScroll,
+            behavior: 'smooth'
+        });
+      })
+    }
+  }
+  customElements.define('bottom-arrow', BottomArrow)
+</script>
+
+<style>
+    .home-page{
+
+    }
+
+    .home-page section{
+        height: 100vh;
+        width: 100%;
+    }
+    .home-banner{
+        widows: 100%;
+        height: 100vh;
+        /* background: radial-gradient(157.24% 123.22% at 47.19% -0.63%, rgba(255, 255, 255, 0.40) 0%, rgba(255, 255, 255, 0.00) 100%); */
+        /* background-image: url('../assets/images/background/astronaut.jpg');
+        background-size: cover;
+        background-position: center; */
+        /* filter: blur(3px); */
+        z-index: 50;
+        /* background: radial-gradient(157.24% 123.22% at 47.19% -0.63%, rgba(255, 255, 255, 0.40) 0%, rgba(255, 255, 255, 0.00) 100%); */
+        /* backdrop-filter: blur(5px); */
+        position: relative;
+        overflow: hidden;
+    }
+    .home-banner h2{
+        color: var(--white-bapps);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 5;
+        text-align: center;
+        font-size: 3rem;
+        font-weight: bold;
+        font-family: Dela Gothic One;
+    }
+    .bottom-arrow{
+        color: var(--white-bapps);
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 100px;
+        padding: 5%;
+        /* transition: boun; */
+        animation: bounce 2s infinite;
+        z-index: 10000;
+    }
+
+    @keyframes bounce {
+        0% {
+        transform: translate(-50%, 0);
+    }
+    50% {
+        transform: translate(-50%, -20px);
+    }
+    100% {
+        transform: translate(-50%, 0);
+    }
+    }
+    .home-banner .home-banner-background{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: blur(4px);
+        width: 100%;
+        height: 100%;
+    }
+    .gradient-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(157.24% 123.22% at 47.19% -0.63%, rgba(255, 255, 255, 0.40) 0%, rgba(255, 255, 255, 0.00) 100%);
+        opacity: 80%;
+        z-index: 1;
+    }
+</style>

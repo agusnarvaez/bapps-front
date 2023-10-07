@@ -1,0 +1,44 @@
+---
+
+import astronaut from '../../assets/images/background/astronaut.jpg'
+import bottomArrow from '../../assets/images/icons/bottom-arrow-v.svg'
+// Importar imageCOmponent de astro
+import { Image } from 'astro:assets'
+---
+
+
+<section id='home-about' class="home-about">
+    <h2>¿QUIENES SOMOS?</h2>
+
+    <p>
+        Bienvenido a bapps, una startup enérgica especializada en el desarrollo de soluciones digitales. Nos apasiona crear aplicaciones web intuitivas y estamos en la vanguardia de incorporar la gestión de redes sociales para conectar marcas con audiencias de manera significativa.
+    </p>
+    <p>
+        Nuestro equipo, aunque compacto, es una fusión de creatividad y técnica. Encabezado por un desarrollador web full stack con una sólida base en programación informática, junto con un diseñador UX/UI que transforma la funcionalidad en arte visual, y un experto en copywriting que también orquesta nuestra futura expansión hacia la gestión de redes sociales.
+    </p>
+    <p>
+        En bapps, nos esforzamos por ser más que solo un proveedor de soluciones digitales; aspiramos a ser tu socio tecnológico de confianza, acompañándote en cada paso del camino digital. Explora nuestro sitio, descubre lo que podemos hacer juntos y no dudes en contactarnos para tu próximo proyecto digital. ¡Estamos aquí para hacer realidad tu visión digital!
+    </p>
+
+</section>
+
+<style>
+    .home-about{
+        widows: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        color: var(--white-bapps);
+        padding: 0 5%;
+    }
+
+    .home-about h2{
+        font-size: 3rem;
+        font-family: Dela Gothic One;
+    }
+    .home-about p{
+        font-size: 2rem;
+        font-weight: 300;
+        font-family: Commissioner;
+    }
+</style>

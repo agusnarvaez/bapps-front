@@ -23,7 +23,7 @@ import Footer from '../components/Footer/Footer.astro'
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Rubik:wght@700;800&display=swap" rel="stylesheet">
-
+		<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300&family=Dela+Gothic+One&family=Montserrat:wght@100;300&family=Rubik:wght@700;800&display=swap" rel="stylesheet">
 		<title>{title}</title>
 	</head>
 	<body>
@@ -43,15 +43,34 @@ import Footer from '../components/Footer/Footer.astro'
 	}
 	html {
 		font-family: 'Dela Gothic One', cursive;
-		font-family: 'Rubik', sans-serif;
+		/* font-family: 'Rubik', sans-serif; */
 		font-size: 10px;
 		color-scheme: dark light;
+		background-color: var(--bg-color);
+		width: 100vw;
+		overflow-x: hidden;
+		scroll-behavior: smooth;
+
 	}
 	* {
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
 		font-size: 1rem;
+	}
+	body{
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+		width: 100%;
+		overflow-x: hidden;
+		position: relative;
+	}
+	main{
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		min-height: 100vh;
 	}
 
 </style>

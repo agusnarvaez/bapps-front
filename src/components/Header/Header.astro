@@ -1,18 +1,39 @@
 ---
-import HeaderNav from './HeaderNav.astro'
+import { Image } from 'astro:assets'
 
+import bappsLogo from '../../assets/images/logos/bapps-logo.svg'
+import arrow from '../../assets/images/icons/top-right-arrow.svg'
 interface Props {
 
 }
 
 ---
 <header>
-	<img src="/images/logos/bapps-logo.svg" alt="bapps logo" />
-	<h1>Bienevenido a BAPPS wacho</h1>
+	<a href="/">
+		<Image src={bappsLogo} alt="bapps logo" />
+	</a>
 	<nav>
 		<ul>
-			<HeaderNav title="Home" href='/' />
-			<HeaderNav title="Contacto" href='/contacto' />
+			<li class="link-card">
+				<a href='/'>
+					<h2>
+						HOME
+					</h2>
+				</a>
+			</li>
+			<li class="link-card">
+				<a href='/contacto'>
+					<h2>
+						CONTACTO
+					</h2>
+					<!-- <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 25 25" fill="none">
+						<path d="M24.2003 2.00678C23.9908 1.52822 23.6001 1.15222 23.1139 0.961118C22.8746 0.8645 22.6187 0.81572 22.3607 0.817537L2.61892 1.19526C2.09534 1.20527 1.59718 1.42287 1.23403 1.80019C0.870888 2.1775 0.672502 2.68362 0.68252 3.2072C0.692537 3.73079 0.910138 4.22894 1.28745 4.59209C1.66476 4.95524 2.17088 5.15362 2.69447 5.1436L17.6785 4.85692L1.60593 21.5363C1.42441 21.7234 1.28172 21.9446 1.18609 22.187C1.09047 22.4295 1.0438 22.6886 1.04879 22.9492C1.05378 23.2098 1.11032 23.4668 1.21514 23.7055C1.31997 23.9441 1.47102 24.1597 1.65957 24.3397C1.84663 24.5212 2.06779 24.6639 2.31028 24.7595C2.55277 24.8551 2.81179 24.9018 3.0724 24.8968C3.33302 24.8918 3.59007 24.8353 3.82872 24.7304C4.06737 24.6256 4.28291 24.4746 4.46289 24.286L20.5153 7.58724L20.802 22.5712C20.812 23.0948 21.0296 23.593 21.4069 23.9561C21.7842 24.3193 22.2903 24.5177 22.8139 24.5076C23.3375 24.4976 23.8357 24.28 24.1988 23.9027C24.562 23.5254 24.7604 23.0193 24.7503 22.4957L24.3726 2.75394C24.3646 2.49602 24.306 2.24218 24.2003 2.00678Z" fill="black"/>
+					</svg> -->
+					<div class="icon-container">
+					<Image src={arrow} alt="arrow" />
+					</div>
+				</a>
+			</li>
 		</ul>
 	</nav>
 </header>
@@ -23,29 +44,76 @@ interface Props {
 		justify-content: space-between;
 		align-items: center;
 		padding: 1rem 2rem;
+		width: 100%;
+		height: 10vh;
+		position: fixed;
+		z-index: 1000;
+	}
+	header img{
+		width: 100px;
+	}
+	header > a{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
 
+	}
+	nav {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		width: 50%;
+	}
+	nav ul{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 100%;
+		width: 100%;
+		gap: 1rem;
+	}
+
+	nav ul .link-card:first-child{
+		display: none;
+	}
+	nav ul .link-card:last-child{
+		border-radius: 50rem;
+		border: 1px solid #FFFDF9;
+		padding: 2% 2% 2% 10%;
+		font-family: Dela Gothic One;
+		background: #171717;
+		width: 100%;
+
+	}
+	.link-card a{
+		display: flex;
+		justify-content: space-between;
+	}
+	/* .link-card svg{
+		background-color: var(--white-bapps);
+		border-radius: 50%;
+		padding: 1%;
+		width: 20px;
+		height: 20px;
+	} */
+	.link-card img{
+		width: 20px;
+		height: 20px;
+		/* filter: contrast(0) brightness(0) invert(1); */
+		background-color: var(--white-bapps);
 	}
 	.link-card {
 		list-style: none;
 		display: flex;
-		padding: 1px;
-		background-color: #23262d;
-		background-image: none;
-		background-size: 400%;
-		border-radius: 7px;
-		background-position: 100%;
-		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 	}
 	.link-card > a {
 		width: 100%;
 		text-decoration: none;
-		line-height: 1.4;
-		padding: calc(1.5rem - 1px);
-		border-radius: 8px;
 		color: white;
-		background-color: #23262d;
-		opacity: 0.8;
+		align-items: center;
+
 	}
 	h2 {
 		margin: 0;
@@ -62,5 +130,26 @@ interface Props {
 	}
 	.link-card:is(:hover, :focus-within) h2 {
 		color: rgb(var(--accent-light));
+	}
+	.icon-container{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		object-fit: contain;
+		width: 35px;
+		height: 35px;
+		background-color: var(--white-bapps);
+		border-radius: 50%;
+		padding: 0;
+	}
+	.icon-container img{
+		width: 50%;
+		height: 50%;
+	}
+
+	@media (min-width: 768px) {
+		nav ul .link-card:first-child{
+			display: flex;
+		}
 	}
 </style>

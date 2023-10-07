@@ -1,11 +1,29 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import astronaut from '../assets/images/background/astronaut.jpg'
+import bottomArrow from '../assets/images/icons/bottom-arrow-v.svg'
+// Importar imageCOmponent de astro
+import { Image } from 'astro:assets'
+import HomeBanner from "../components/Home/homeBanner.astro"
+import HomeAbout from '../components/Home/HomeAbout.astro'
+/* import HomeAbout from "../components/Home/homeAbout.astro" */
 ---
 
 <Layout title="Bienvenido a bapps" description='Bienvenido a la nueva forma de crear soluciones'>
-    Home
+
+    <HomeBanner />
+    <HomeAbout />
+
 </Layout>
 
 <style>
+    .home-page{
+
+    }
+
+    .home-page section{
+        height: 100vh;
+        width: 100%;
+    }
 
 </style>
