@@ -148,8 +148,30 @@ interface Props {
 	}
 
 	@media (min-width: 768px) {
+		nav {
+			width: 40%;
+		}
+		nav ul{
+			justify-content: flex-end;
+		}
 		nav ul .link-card:first-child{
 			display: flex;
+		}
+		nav ul .link-card:last-child{
+			width: 60%;
+			padding-left: 5%;
+		}
+		h2{
+			font-size: 1rem;
+			font-weight: 300;
+		}
+		.icon-container{
+			width: 30px;
+			height: 30px;
+		}
+		.icon-container img{
+			width: 40%;
+			height: 40%;
 		}
 	}
 </style>
