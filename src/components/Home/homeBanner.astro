@@ -4,15 +4,6 @@ import astronaut from '../../assets/images/background/astronaut.jpg'
 import bottomArrow from '../../assets/images/icons/bottom-arrow-v.svg'
 // Importar imageCOmponent de astro
 import { Image } from 'astro:assets'
-function scrollDown() {
-        console.log("Click")
-        const vh = window.innerHeight;
-        const distanceToScroll = vh * 0.5;
-        window.scrollBy({
-            top: distanceToScroll,
-            behavior: 'smooth'
-        });
-    }
 
 
 ---
@@ -25,26 +16,24 @@ function scrollDown() {
     <bottom-arrow>
         <Image class="bottom-arrow" src={bottomArrow} alt="bottom-arrow"  />
     </bottom-arrow>
+    <div class="bottom-deg"></div>
 </section>
 
 <script>
 class BottomArrow extends HTMLElement {
     constructor() {
-      super();
-      let count = 0;
+      super()
 
+      const bottomArrow = this.querySelector('.bottom-arrow')
 
-      const bottomArrow = this.querySelector('.bottom-arrow');
+      bottomArrow?.addEventListener('click', () => {
 
-      // Cada vez que el button es clickeado, actualiza el contador.
-      bottomArrow.addEventListener('click', () => {
-       console.log('Click!')
-       const vh = window.innerHeight;
-        const distanceToScroll = vh * 0.5;
+       const vh = window.innerHeight
+        const distanceToScroll = vh * 0.9
         window.scrollBy({
             top: distanceToScroll,
             behavior: 'smooth'
-        });
+        })
       })
     }
   }
@@ -116,8 +105,6 @@ class BottomArrow extends HTMLElement {
         height: 100%;
         object-fit: cover;
         filter: blur(4px);
-        width: 100%;
-        height: 100%;
     }
     .gradient-overlay {
         position: absolute;
@@ -129,4 +116,46 @@ class BottomArrow extends HTMLElement {
         opacity: 80%;
         z-index: 1;
     }
+    .bottom-deg{
+        position: absolute;
+        bottom: -5%;
+        width: 100%;
+        height: 100px;
+        background: var(--bg-color);
+        filter: blur(15px);
+    }
+
+    @media (min-width: 768px) {
+        .home-banner h2{
+            font-size: 5rem;
+        }
+        .bottom-arrow{
+            width: 150px;
+            height: 150px;
+        }
+        .home-banner .home-banner-background{
+            width: 150%;
+            height: auto;
+            object-fit: cover;
+            position: absolute;
+
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+    }
+
+    @media (min-width: 1000px) {
+        .home-banner h2{
+            font-size: 5rem;
+        }
+        .bottom-arrow{
+            display: none;
+        }
+        .home-banner .home-banner-background{
+            width: 110%;
+        }
+    }
+
+
+
 </style>
