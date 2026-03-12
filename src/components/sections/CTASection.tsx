@@ -61,7 +61,7 @@ export default function CTASection() {
             >
               <MagneticButton
                 href={`/${locale}/contact`}
-                className="inline-flex items-center gap-3 rounded-full bg-bapps-yellow px-10 py-4 text-lg font-bold text-background transition-all duration-300 hover:shadow-2xl hover:shadow-bapps-yellow/30"
+                className="btn-shimmer inline-flex items-center gap-3 rounded-full bg-bapps-yellow px-10 py-4 text-lg font-bold text-background transition-all duration-300 hover:shadow-2xl hover:shadow-bapps-yellow/30"
                 strength={16}
               >
                 {t("button")}

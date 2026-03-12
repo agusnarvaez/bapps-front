@@ -1,9 +1,11 @@
 "use client";
-
+import { useTranslations } from "next-intl"
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function LoadingScreen() {
+    const t = useTranslations("hero")
+    
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -110,7 +112,7 @@ export default function LoadingScreen() {
             transition={{ delay: 1.2, duration: 0.5 }}
             className="mt-2 text-sm text-foreground-muted"
           >
-            Software a medida
+            {t("badge")}
           </motion.p>
 
           {/* Loading bar */}

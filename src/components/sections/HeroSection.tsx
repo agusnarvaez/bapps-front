@@ -50,7 +50,7 @@ export default function HeroSection() {
           >
             <span className="h-2 w-2 rounded-full bg-bapps-yellow animate-pulse" />
             <span className="text-sm font-medium text-bapps-purple-light">
-              Software a medida
+              {t("badge")}
             </span>
           </motion.div>
 
@@ -93,10 +93,9 @@ export default function HeroSection() {
           >
             <MagneticButton
               href={`/${locale}/contact`}
-              className="rounded-full bg-bapps-purple px-8 py-3.5 text-base font-semibold text-white transition-all duration-300 hover:shadow-xl hover:shadow-bapps-purple/30"
+              className="btn-shimmer rounded-full bg-bapps-purple px-8 py-3.5 text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-bapps-purple/30"
             >
               {t("cta")}
-              <span className="absolute inset-0 -translate-x-full bg-bapps-purple-dark transition-transform duration-300 group-hover:translate-x-0" />
             </MagneticButton>
             <MagneticButton
               href={`/${locale}/projects`}
