@@ -5,24 +5,28 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, MeshDistortMaterial } from "@react-three/drei";
 import * as THREE from "three";
 
-/* ── Aerodynamic body profile via LatheGeometry (30% shorter) ── */
+/* ── Bullet / egg-shaped body via LatheGeometry ── */
 function useBodyGeometry() {
   return useMemo(() => {
     const pts: THREE.Vector2[] = [];
-    const steps = 40;
+    const steps = 60;
     for (let i = 0; i <= steps; i++) {
       const t = i / steps; // 0→1 from tip to base
       let r: number;
-      if (t < 0.15) {
-        r = 0.38 * Math.sin((t / 0.15) * Math.PI * 0.5);
-      } else if (t < 0.85) {
-        const bt = (t - 0.15) / 0.7;
-        r = 0.38 + 0.03 * Math.sin(bt * Math.PI);
+
+      // Smooth bullet profile: wide belly, tapered top, narrower bottom
+      // Using an ellipse-like curve that peaks around 55% of the height
+      if (t < 0.55) {
+        // Top half: smooth nose → belly
+        const nt = t / 0.55;
+        r = 0.42 * Math.pow(Math.sin(nt * Math.PI * 0.5), 0.65);
       } else {
-        const bt = (t - 0.85) / 0.15;
-        r = 0.41 * (1 - bt * 0.25);
+        // Bottom half: belly → tapered base
+        const bt = (t - 0.55) / 0.45;
+        r = 0.42 * (1 - bt * bt * 0.35);
       }
-      const y = 1.4 - t * 1.96; // 30% shorter: top 1.4 → bottom -0.56
+
+      const y = 1.3 - t * 2.0; // top 1.3 → bottom -0.7
       pts.push(new THREE.Vector2(r, y));
     }
     return new THREE.LatheGeometry(pts, 48);
@@ -43,7 +47,7 @@ function Fin({ angle }: { angle: number }) {
 
   return (
     <group rotation={[0, angle, 0]}>
-      <mesh position={[0.3, -0.08, -0.015]}>
+      <mesh position={[0.3, -0.22, -0.015]}>
         <extrudeGeometry
           args={[
             shape,
@@ -51,11 +55,11 @@ function Fin({ angle }: { angle: number }) {
           ]}
         />
         <meshStandardMaterial
-          color="#5a5660"
-          metalness={0.6}
-          roughness={0.25}
-          emissive="#504a53"
-          emissiveIntensity={0.15}
+          color="#2a2a30"
+          metalness={0.85}
+          roughness={0.15}
+          emissive="#1a1a20"
+          emissiveIntensity={0.1}
           side={THREE.DoubleSide}
         />
       </mesh>
@@ -98,17 +102,18 @@ function Rocket() {
 
   return (
     <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.5}>
-      <group ref={groupRef} scale={1.1} rotation={[0.25, 0, 0.1]}>
+      <group ref={groupRef} scale={1.1} rotation={[0.25, 0, -0.35]}>
         <group ref={spinRef}>
           {/* ── Body ── */}
           <mesh geometry={bodyGeo}>
             <meshStandardMaterial
-              color="#7a7878"
-              metalness={0.55}
-              roughness={0.28}
-              emissive="#48464a"
-              emissiveIntensity={0.2}
+              color="#5c5c65"
+              metalness={0.9}
+              roughness={0.13}
+              emissive="#2a2a32"
+              emissiveIntensity={0.15}
               side={THREE.DoubleSide}
+              envMapIntensity={1.5}
             />
           </mesh>
 
@@ -117,15 +122,15 @@ function Rocket() {
             <meshStandardMaterial
               color="#AD60E1"
               emissive="#AD60E1"
-              emissiveIntensity={0.8}
+              emissiveIntensity={0.6}
               transparent
-              opacity={0.08}
+              opacity={0.06}
               side={THREE.BackSide}
             />
           </mesh>
 
           {/* ── Window ring (golden bezel) ── */}
-          <mesh position={[0, 0.42, 0.39]}>
+          <mesh position={[0, 0.35, 0.42]}>
             <torusGeometry args={[0.12, 0.022, 16, 48]} />
             <meshStandardMaterial
               color="#E7FB79"
@@ -137,19 +142,19 @@ function Rocket() {
           </mesh>
 
           {/* ── Window glass ── */}
-          <mesh position={[0, 0.42, 0.38]}>
+          <mesh position={[0, 0.35, 0.41]}>
             <circleGeometry args={[0.1, 32]} />
             <meshStandardMaterial
-              color="#1A3A2A"
+              color="#0a2018"
               metalness={0.4}
               roughness={0.1}
-              emissive="#2A5A3A"
+              emissive="#1a4030"
               emissiveIntensity={0.3}
             />
           </mesh>
 
           {/* ── Window inner reflection ── */}
-          <mesh position={[0.025, 0.445, 0.395]}>
+          <mesh position={[0.025, 0.375, 0.425]}>
             <circleGeometry args={[0.025, 16]} />
             <meshStandardMaterial
               color="#ffffff"
@@ -166,8 +171,8 @@ function Rocket() {
           <Fin angle={(Math.PI * 4) / 3} />
 
           {/* ── Body accent stripe ── */}
-          <mesh position={[0, 0.05, 0]} rotation={[Math.PI / 2, 0, 0]}>
-            <torusGeometry args={[0.42, 0.01, 8, 64]} />
+          <mesh position={[0, -0.05, 0]} rotation={[Math.PI / 2, 0, 0]}>
+            <torusGeometry args={[0.43, 0.01, 8, 64]} />
             <meshStandardMaterial
               color="#aca75f"
               emissive="#9c965a"
@@ -178,20 +183,20 @@ function Rocket() {
           </mesh>
 
           {/* ── Engine nozzle ── */}
-          <mesh position={[0, -0.54, 0]} rotation={[Math.PI, 0, 0]}>
-            <cylinderGeometry args={[0.18, 0.25, 0.14, 32]} />
+          <mesh position={[0, -0.68, 0]} rotation={[Math.PI, 0, 0]}>
+            <cylinderGeometry args={[0.2, 0.28, 0.16, 32]} />
             <meshStandardMaterial
-              color="#5a5660"
-              metalness={0.7}
-              roughness={0.2}
-              emissive="#48464a"
-              emissiveIntensity={0.15}
+              color="#2a2a30"
+              metalness={0.85}
+              roughness={0.15}
+              emissive="#1a1a20"
+              emissiveIntensity={0.1}
               side={THREE.DoubleSide}
             />
           </mesh>
 
           {/* ── Exhaust flame (yellow core) ── */}
-          <mesh ref={exhaustRef} position={[0, -0.9, 0]}>
+          <mesh ref={exhaustRef} position={[0, -1.05, 0]}>
             <coneGeometry args={[0.15, 0.7, 24]} />
             <MeshDistortMaterial
               color="#E7FB79"
@@ -205,7 +210,7 @@ function Rocket() {
           </mesh>
 
           {/* ── Exhaust outer glow (purple halo) ── */}
-          <mesh ref={glowRef} position={[0, -0.82, 0]}>
+          <mesh ref={glowRef} position={[0, -0.97, 0]}>
             <coneGeometry args={[0.22, 0.55, 24]} />
             <meshStandardMaterial
               color="#AD60E1"
