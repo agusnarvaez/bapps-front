@@ -130,7 +130,7 @@ export default function ProjectsSection() {
 
         {/* "View all" card */}
         <motion.a
-          href="/projects"
+          href={`/${locale}/projects`}
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.2 + featured.length * 0.1, duration: 0.6 }}

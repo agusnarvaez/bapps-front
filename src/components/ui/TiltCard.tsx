@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useCallback } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 interface TiltCardProps {
@@ -32,6 +32,8 @@ export default function TiltCard({
 
   const springRotateX = useSpring(rotateX, { stiffness: 200, damping: 18 });
   const springRotateY = useSpring(rotateY, { stiffness: 200, damping: 18 });
+
+  const glowBackground = useMotionTemplate`radial-gradient(circle at ${glowX}% ${glowY}%, rgba(173,96,225,0.15) 0%, transparent 60%)`;
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent) => {
@@ -76,7 +78,7 @@ export default function TiltCard({
         <motion.div
           className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           style={{
-            background: `radial-gradient(circle at ${glowX.get()}% ${glowY.get()}%, rgba(173,96,225,0.12) 0%, transparent 60%)`,
+            background: glowBackground,
           }}
           aria-hidden="true"
         />

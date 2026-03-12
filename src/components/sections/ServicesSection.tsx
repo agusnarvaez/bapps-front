@@ -105,8 +105,7 @@ export default function ServicesSection() {
                 className={`group relative h-full overflow-hidden rounded-2xl border border-border bg-background-secondary p-8 transition-all duration-500 hover:border-bapps-purple/30 hover:bg-background-tertiary`}
                 maxTilt={6}
               >
-                {/* Hover gradient */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-bapps-purple/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                {/* Glow follows cursor via TiltCard */}
 
                 <div className="relative">
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-bapps-purple/10 text-bapps-purple transition-all duration-300 group-hover:bg-bapps-purple/20 group-hover:shadow-lg group-hover:shadow-bapps-purple/10">
@@ -121,7 +120,6 @@ export default function ServicesSection() {
                 </div>
 
                 {/* Corner accent */}
-                <div className="absolute -bottom-1 -right-1 h-20 w-20 rounded-tl-3xl bg-gradient-to-tl from-bapps-purple/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </TiltCard>
             </motion.div>
           ))}

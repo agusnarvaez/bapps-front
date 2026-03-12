@@ -58,14 +58,12 @@ function Fin({
           { depth: 0.04, bevelEnabled: true, bevelSize: 0.01, bevelThickness: 0.01 },
         ]}
       />
-      <meshPhysicalMaterial
-        color="#1A1A24"
-        metalness={0.85}
-        roughness={0.15}
-        clearcoat={0.6}
-        clearcoatRoughness={0.1}
-        iridescence={0.8}
-        iridescenceIOR={1.5}
+      <meshStandardMaterial
+        color="#3e3a44"
+        metalness={0.6}
+        roughness={0.25}
+        emissive="#504a53"
+        emissiveIntensity={0.15}
       />
     </mesh>
   );
@@ -102,15 +100,24 @@ function Rocket() {
       <group ref={groupRef} scale={1.1} rotation={[0.25, -0.3, 0.15]}>
         {/* ── Body ── */}
         <mesh geometry={bodyGeo}>
-          <meshPhysicalMaterial
-            color="#0E0E18"
-            metalness={0.9}
-            roughness={0.12}
-            clearcoat={1}
-            clearcoatRoughness={0.05}
-            iridescence={1}
-            iridescenceIOR={1.8}
-            envMapIntensity={1.5}
+          <meshStandardMaterial
+            color="#686666"
+            metalness={0.5}
+            roughness={0.3}
+            emissive="#58565a"
+            emissiveIntensity={0.25}
+          />
+        </mesh>
+
+        {/* ── Rim-light edge glow ── */}
+        <mesh geometry={bodyGeo} scale={[1.04, 1.015, 1.04]}>
+          <meshStandardMaterial
+            color="#AD60E1"
+            emissive="#AD60E1"
+            emissiveIntensity={1.2}
+            transparent
+            opacity={0.15}
+            side={THREE.BackSide}
           />
         </mesh>
 
@@ -129,13 +136,12 @@ function Rocket() {
         {/* ── Window glass ── */}
         <mesh position={[0, 0.6, 0.36]}>
           <circleGeometry args={[0.12, 32]} />
-          <meshPhysicalMaterial
-            color="#0A2A1A"
-            metalness={0.7}
-            roughness={0.05}
-            clearcoat={1}
-            transmission={0.3}
-            ior={1.5}
+          <meshStandardMaterial
+            color="#1A3A2A"
+            metalness={0.4}
+            roughness={0.1}
+            emissive="#2A5A3A"
+            emissiveIntensity={0.3}
           />
         </mesh>
 
@@ -159,7 +165,7 @@ function Rocket() {
         {/* ── Engine nozzle ── */}
         <mesh position={[0, -0.82, 0]} rotation={[Math.PI, 0, 0]}>
           <cylinderGeometry args={[0.2, 0.28, 0.18, 32]} />
-          <meshStandardMaterial color="#1A1A24" metalness={0.9} roughness={0.1} />
+          <meshStandardMaterial color="#2A1F3D" metalness={0.7} roughness={0.15} emissive="#AD60E1" emissiveIntensity={0.2} />
         </mesh>
 
         {/* ── Exhaust flame (yellow core) ── */}
@@ -293,13 +299,14 @@ export default function Rocket3D() {
       dpr={[1, 1.5]}
       gl={{ antialias: true, alpha: true }}
     >
-      {/* Environment lighting for iridescence */}
-      <ambientLight intensity={0.4} />
-      <directionalLight position={[5, 5, 5]} intensity={1.2} color="#ffffff" />
-      <directionalLight position={[-3, -2, 4]} intensity={0.4} color="#AD60E1" />
-      <pointLight position={[-3, 2, 2]} intensity={0.8} color="#AD60E1" />
-      <pointLight position={[3, -2, 2]} intensity={0.6} color="#E7FB79" />
-      <pointLight position={[0, -3, 3]} intensity={0.5} color="#ff6600" />
+      {/* Strong lighting for visibility without environment map */}
+      <ambientLight intensity={0.8} />
+      <directionalLight position={[5, 5, 5]} intensity={2.0} color="#ffffff" />
+      <directionalLight position={[-4, 3, 2]} intensity={1.0} color="#AD60E1" />
+      <directionalLight position={[0, -2, 5]} intensity={0.8} color="#E7FB79" />
+      <pointLight position={[-3, 2, 3]} intensity={1.5} color="#AD60E1" distance={10} />
+      <pointLight position={[3, -1, 3]} intensity={1.2} color="#E7FB79" distance={10} />
+      <pointLight position={[0, -3, 3]} intensity={0.8} color="#ff6600" distance={8} />
       <Rocket />
       <Stars />
       <Orbs />

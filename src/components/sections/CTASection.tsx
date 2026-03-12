@@ -75,7 +75,6 @@ export default function CTASection() {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-                <span className="absolute inset-0 -translate-x-full bg-bapps-yellow-dark transition-transform duration-300 group-hover:translate-x-0" />
               </MagneticButton>
             </motion.div>
           </div>
