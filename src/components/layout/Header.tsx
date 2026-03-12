@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils/cn";
-import LanguageToggle from "./LanguageToggle";
+import LanguageToggle from "@/components/layout/LanguageToggle";
 
 const navLinks = [
   { key: "services", hash: "#servicios", page: null },
