@@ -75,6 +75,8 @@ export default function RootLayout({
           type="font/woff2"
           crossOrigin="anonymous"
         />
+        {/* Agregar favicon */}
+        <link rel="icon" href="/favicon.ico" />
       </head>
       <body className={`${commissioner.variable} antialiased`}>
         {children}
