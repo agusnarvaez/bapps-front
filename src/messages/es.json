@@ -1,0 +1,156 @@
+{
+  "metadata": {
+    "title": "BApps | Desarrollo de aplicaciones a medida",
+    "description": "Desarrollamos aplicaciones web, móviles y landing pages a medida. Transformamos ideas en experiencias digitales excepcionales."
+  },
+  "nav": {
+    "services": "Servicios",
+    "projects": "Proyectos",
+    "team": "Equipo",
+    "contact": "Contacto",
+    "quoteProject": "Cotizar proyecto"
+  },
+  "hero": {
+    "title": "Creamos experiencias digitales",
+    "highlight": "experiencias",
+    "subtitle": "Desarrollo de aplicaciones web, móviles y landing pages a medida.",
+    "cta": "Cotizar proyecto",
+    "ctaSecondary": "Ver proyectos"
+  },
+  "services": {
+    "title": "Nuestros servicios",
+    "subtitle": "Todo lo que necesitás para llevar tu idea al mundo digital.",
+    "items": {
+      "webApps": {
+        "title": "Aplicaciones Web",
+        "description": "Sistemas a medida, dashboards, plataformas SaaS y herramientas internas."
+      },
+      "mobileApps": {
+        "title": "Apps Móviles",
+        "description": "Aplicaciones nativas y multiplataforma para iOS y Android."
+      },
+      "landingPages": {
+        "title": "Landing Pages",
+        "description": "Páginas de alto impacto optimizadas para conversión y SEO."
+      },
+      "ecommerce": {
+        "title": "E-Commerce",
+        "description": "Tiendas online completas con pasarelas de pago y gestión de inventario."
+      },
+      "uiux": {
+        "title": "Diseño UI/UX",
+        "description": "Interfaces intuitivas y atractivas que enamoran a los usuarios."
+      },
+      "consulting": {
+        "title": "Consultoría Tech",
+        "description": "Asesoramiento tecnológico para llevar tu proyecto al siguiente nivel."
+      }
+    }
+  },
+  "projects": {
+    "title": "Proyectos destacados",
+    "subtitle": "Algunas de las experiencias que hemos creado.",
+    "viewAll": "Ver todos los proyectos",
+    "viewProject": "Ver proyecto",
+    "technologies": "Tecnologías"
+  },
+  "projectsPage": {
+    "title": "Nuestros proyectos",
+    "subtitle": "Cada proyecto es una historia de colaboración, innovación y resultados.",
+    "filterAll": "Todos",
+    "categories": {
+      "webapp": "Web Apps",
+      "mobile": "Mobile",
+      "landing": "Landing Pages",
+      "ecommerce": "E-Commerce"
+    },
+    "viewProject": "Ver proyecto",
+    "noResults": "No hay proyectos en esta categoría."
+  },
+  "projectDetail": {
+    "backToProjects": "Volver a proyectos",
+    "technologies": "Tecnologías utilizadas",
+    "visitSite": "Visitar sitio",
+    "aboutProject": "Sobre el proyecto",
+    "clientTestimonial": "Lo que dice el cliente",
+    "nextProject": "Siguiente proyecto",
+    "ctaTitle": "¿Te gustaría algo similar?",
+    "ctaButton": "Cotizar proyecto"
+  },
+  "team": {
+    "title": "Nuestro equipo",
+    "subtitle": "Las personas detrás de cada proyecto."
+  },
+  "testimonials": {
+    "title": "Lo que dicen nuestros clientes",
+    "stats": {
+      "projects": "Proyectos entregados",
+      "clients": "Clientes satisfechos",
+      "years": "Años de experiencia"
+    }
+  },
+  "cta": {
+    "title": "¿Tenés una idea?",
+    "subtitle": "Hagámosla realidad.",
+    "button": "Empezar ahora"
+  },
+  "contact": {
+    "title": "Cotizá tu proyecto",
+    "subtitle": "Contanos sobre tu idea y te respondemos en menos de 24hs.",
+    "steps": {
+      "projectType": "Tipo de proyecto",
+      "details": "Detalles",
+      "timeline": "Timeline y presupuesto",
+      "contactInfo": "Tus datos"
+    },
+    "fields": {
+      "name": "Nombre completo",
+      "email": "Email",
+      "phone": "Teléfono",
+      "company": "Empresa (opcional)",
+      "description": "Descripción del proyecto",
+      "features": "Funcionalidades deseadas",
+      "reference": "Referencia de diseño (URL opcional)",
+      "timeline": "¿Cuándo lo necesitás?",
+      "budget": "Presupuesto estimado"
+    },
+    "projectTypes": {
+      "webapp": "Aplicación Web",
+      "mobile": "App Móvil",
+      "landing": "Landing Page",
+      "ecommerce": "E-Commerce",
+      "other": "Otro"
+    },
+    "timelineOptions": {
+      "urgent": "Lo antes posible",
+      "1month": "1 mes",
+      "3months": "1-3 meses",
+      "flexible": "Sin apuro"
+    },
+    "budgetOptions": {
+      "small": "Hasta $500 USD",
+      "medium": "$500 - $2.000 USD",
+      "large": "$2.000 - $5.000 USD",
+      "enterprise": "Más de $5.000 USD",
+      "unknown": "No estoy seguro"
+    },
+    "submit": "Enviar cotización",
+    "success": "¡Mensaje enviado! Te contactaremos pronto.",
+    "next": "Siguiente",
+    "back": "Anterior"
+  },
+  "footer": {
+    "tagline": "Transformamos ideas en experiencias digitales.",
+    "rights": "Todos los derechos reservados.",
+    "links": {
+      "privacy": "Privacidad",
+      "terms": "Términos"
+    }
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "subtitle": "404",
+    "description": "Parece que este cohete se perdió en el espacio.",
+    "backHome": "Volver al inicio"
+  }
+}

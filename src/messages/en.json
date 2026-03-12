@@ -1,0 +1,156 @@
+{
+  "metadata": {
+    "title": "BApps | Custom Application Development",
+    "description": "We build custom web apps, mobile apps, and landing pages. Turning ideas into exceptional digital experiences."
+  },
+  "nav": {
+    "services": "Services",
+    "projects": "Projects",
+    "team": "Team",
+    "contact": "Contact",
+    "quoteProject": "Get a quote"
+  },
+  "hero": {
+    "title": "We create digital experiences",
+    "highlight": "experiences",
+    "subtitle": "Custom web apps, mobile apps, and landing pages built for you.",
+    "cta": "Get a quote",
+    "ctaSecondary": "View projects"
+  },
+  "services": {
+    "title": "Our services",
+    "subtitle": "Everything you need to bring your idea to the digital world.",
+    "items": {
+      "webApps": {
+        "title": "Web Applications",
+        "description": "Custom systems, dashboards, SaaS platforms, and internal tools."
+      },
+      "mobileApps": {
+        "title": "Mobile Apps",
+        "description": "Native and cross-platform applications for iOS and Android."
+      },
+      "landingPages": {
+        "title": "Landing Pages",
+        "description": "High-impact pages optimized for conversion and SEO."
+      },
+      "ecommerce": {
+        "title": "E-Commerce",
+        "description": "Complete online stores with payment gateways and inventory management."
+      },
+      "uiux": {
+        "title": "UI/UX Design",
+        "description": "Intuitive and stunning interfaces that users love."
+      },
+      "consulting": {
+        "title": "Tech Consulting",
+        "description": "Technology advisory to take your project to the next level."
+      }
+    }
+  },
+  "projects": {
+    "title": "Featured projects",
+    "subtitle": "Some of the experiences we've built.",
+    "viewAll": "View all projects",
+    "viewProject": "View project",
+    "technologies": "Technologies"
+  },
+  "projectsPage": {
+    "title": "Our projects",
+    "subtitle": "Every project is a story of collaboration, innovation, and results.",
+    "filterAll": "All",
+    "categories": {
+      "webapp": "Web Apps",
+      "mobile": "Mobile",
+      "landing": "Landing Pages",
+      "ecommerce": "E-Commerce"
+    },
+    "viewProject": "View project",
+    "noResults": "No projects in this category."
+  },
+  "projectDetail": {
+    "backToProjects": "Back to projects",
+    "technologies": "Technologies used",
+    "visitSite": "Visit site",
+    "aboutProject": "About the project",
+    "clientTestimonial": "What the client says",
+    "nextProject": "Next project",
+    "ctaTitle": "Want something similar?",
+    "ctaButton": "Get a quote"
+  },
+  "team": {
+    "title": "Our team",
+    "subtitle": "The people behind every project."
+  },
+  "testimonials": {
+    "title": "What our clients say",
+    "stats": {
+      "projects": "Projects delivered",
+      "clients": "Happy clients",
+      "years": "Years of experience"
+    }
+  },
+  "cta": {
+    "title": "Got an idea?",
+    "subtitle": "Let's make it happen.",
+    "button": "Start now"
+  },
+  "contact": {
+    "title": "Get a quote",
+    "subtitle": "Tell us about your idea and we'll get back to you within 24h.",
+    "steps": {
+      "projectType": "Project type",
+      "details": "Details",
+      "timeline": "Timeline & budget",
+      "contactInfo": "Your info"
+    },
+    "fields": {
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "company": "Company (optional)",
+      "description": "Project description",
+      "features": "Desired features",
+      "reference": "Design reference (URL optional)",
+      "timeline": "When do you need it?",
+      "budget": "Estimated budget"
+    },
+    "projectTypes": {
+      "webapp": "Web Application",
+      "mobile": "Mobile App",
+      "landing": "Landing Page",
+      "ecommerce": "E-Commerce",
+      "other": "Other"
+    },
+    "timelineOptions": {
+      "urgent": "ASAP",
+      "1month": "1 month",
+      "3months": "1-3 months",
+      "flexible": "No rush"
+    },
+    "budgetOptions": {
+      "small": "Up to $500 USD",
+      "medium": "$500 - $2,000 USD",
+      "large": "$2,000 - $5,000 USD",
+      "enterprise": "Over $5,000 USD",
+      "unknown": "Not sure"
+    },
+    "submit": "Send quote request",
+    "success": "Message sent! We'll reach out soon.",
+    "next": "Next",
+    "back": "Back"
+  },
+  "footer": {
+    "tagline": "Turning ideas into digital experiences.",
+    "rights": "All rights reserved.",
+    "links": {
+      "privacy": "Privacy",
+      "terms": "Terms"
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "subtitle": "404",
+    "description": "Looks like this rocket got lost in space.",
+    "backHome": "Back to home"
+  }
+}
