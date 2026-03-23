@@ -95,25 +95,56 @@ export default function HeroSection() {
               href={`/${locale}/contact`}
               className="btn-shimmer rounded-full bg-bapps-purple px-8 py-3.5 text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-bapps-purple/30"
             >
-              {t("cta")}
+              <span className="inline-flex items-center gap-2.5">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+                  <path d="M9 18h6M10 22h4M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0018 8 6 6 0 006 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 018.91 14" />
+                </svg>
+                {t("cta")}
+              </span>
             </MagneticButton>
             <MagneticButton
               href={`/${locale}/projects`}
-              className="flex items-center gap-2 rounded-full border border-border px-8 py-3.5 text-base font-medium text-foreground-muted transition-all duration-300 hover:border-bapps-purple/50 hover:text-foreground"
+              className="rounded-full border border-border px-8 py-3.5 text-base font-medium text-foreground-muted transition-all duration-300 hover:border-bapps-purple/50 hover:text-foreground"
               ripple={false}
             >
-              {t("ctaSecondary")}
-              <svg
-                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-                aria-hidden="true"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              <span className="inline-flex items-center gap-2">
+                {t("ctaSecondary")}
+                <svg
+                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </span>
             </MagneticButton>
+          </motion.div>
+
+          {/* Section nav pills */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.1, duration: 0.5 }}
+            className="mt-6 flex flex-wrap gap-3"
+          >
+            {([
+              { key: "navServices", hash: "#servicios" },
+              { key: "navProcess", hash: "#proceso" },
+            ] as const).map(({ key, hash }) => (
+              <a
+                key={key}
+                href={hash}
+                className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-sm font-medium text-foreground-muted transition-all duration-200 hover:border-bapps-purple/50 hover:text-foreground"
+              >
+                {t(key)}
+                <svg viewBox="0 0 16 16" fill="none" className="h-3 w-3 text-foreground-subtle">
+                  <path d="M8 3l5 5-5 5M3 8h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            ))}
           </motion.div>
         </div>
       </div>

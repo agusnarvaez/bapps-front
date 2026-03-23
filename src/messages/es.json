@@ -14,10 +14,12 @@
   "hero": {
     "title": "Convertimos ideas en software que vende",
     "highlight": "vende",
-    "subtitle": "Sin plantillas, sin freelancers que desaparecen. Un equipo comprometido que construye exactamente lo que tu negocio necesita.",
+    "subtitle": "Software hecho a tu medida. Un equipo comprometido, un proceso claro, resultados reales.",
     "badge": "Software a medida · Equipo dedicado",
     "cta": "Contanos tu idea",
-    "ctaSecondary": "Ver proyectos"
+    "ctaSecondary": "Ver proyectos",
+    "navServices": "Servicios",
+    "navProcess": "Cómo trabajamos"
   },
   "services": {
     "badge": "Servicios",

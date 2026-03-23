@@ -14,10 +14,12 @@
   "hero": {
     "title": "We turn ideas into software that sells",
     "highlight": "sells",
-    "subtitle": "No templates, no disappearing freelancers. A committed team that builds exactly what your business needs.",
+    "subtitle": "Software built for you. A committed team, a clear process, real results.",
     "badge": "Custom software · Dedicated team",
     "cta": "Tell us your idea",
-    "ctaSecondary": "View projects"
+    "ctaSecondary": "View projects",
+    "navServices": "Our services",
+    "navProcess": "How we work"
   },
   "services": {
     "badge": "Services",
