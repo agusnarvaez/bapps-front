@@ -8,50 +8,52 @@
     "projects": "Proyectos",
     "team": "Equipo",
     "contact": "Contacto",
-    "quoteProject": "Cotizar proyecto"
+    "quoteProject": "Hablemos",
+    "process": "Cómo trabajamos"
   },
   "hero": {
-    "title": "Creamos experiencias digitales",
-    "highlight": "experiencias",
-    "subtitle": "Desarrollo de aplicaciones web, móviles y landing pages a medida.",
-    "badge": "Software a medida",
-    "cta": "Cotizar proyecto",
+    "title": "Convertimos ideas en software que vende",
+    "highlight": "vende",
+    "subtitle": "Sin plantillas, sin freelancers que desaparecen. Un equipo comprometido que construye exactamente lo que tu negocio necesita.",
+    "badge": "Software a medida · Equipo dedicado",
+    "cta": "Contanos tu idea",
     "ctaSecondary": "Ver proyectos"
   },
   "services": {
-    "title": "Nuestros servicios",
-    "subtitle": "Todo lo que necesitás para llevar tu idea al mundo digital.",
+    "badge": "Servicios",
+    "title": "Lo que construimos",
+    "subtitle": "Cada servicio está pensado para resolver un problema real de tu negocio — no para completar un catálogo.",
     "expand": "Ver tecnologías",
     "collapse": "Cerrar",
     "items": {
       "webApps": {
         "title": "Tu sistema a medida",
-        "description": "Convertimos tu idea en una herramienta digital que trabaja para vos, sin depender de plataformas genéricas.",
+        "description": "Tu competencia usa las mismas herramientas genéricas. Vos podés tener algo hecho exactamente para tu negocio — que trabaja cómo vos trabajás, no al revés.",
         "detail": "Aplicación web · Dashboard · Sistema interno"
       },
       "mobileApps": {
         "title": "App para tu celular",
-        "description": "Para que tus clientes te lleven en el bolsillo. Funciona en iPhone y Android desde una sola base de código.",
+        "description": "Tus clientes en iOS y Android desde una sola base de código. Sin pagar el doble por dos proyectos separados, sin sacrificar calidad en ninguno.",
         "detail": "iOS · Android · App móvil"
       },
       "landingPages": {
         "title": "Tu vitrina digital",
-        "description": "Una página diseñada para que quien te encuentre en Google se convierta en cliente.",
+        "description": "Cada visita que rebota es plata que perdés. Diseñamos páginas que convierten visitantes en clientes — optimizadas para Google desde el día uno.",
         "detail": "Página web · SEO · Conversión"
       },
       "ecommerce": {
         "title": "Tienda online",
-        "description": "Vendé las 24 horas sin complicaciones. Integramos pagos, stock y envíos en un solo lugar.",
+        "description": "Tu tienda no cierra a las 18hs. Pagos, stock y envíos en un solo lugar — preparate para vender mientras dormís y escalar cuando estés listo.",
         "detail": "Tienda online · Pagos · Inventario"
       },
       "uiux": {
         "title": "Que sea fácil y bonito",
-        "description": "Diseñamos la experiencia para que tus usuarios encuentren lo que buscan sin frustrarse.",
+        "description": "Un diseño confuso pierde clientes. Diseñamos interfaces que cualquiera entiende en segundos y que dan ganas de volver — no de abandonar.",
         "detail": "Diseño de interfaz · Prototipado · Experiencia de usuario"
       },
       "consulting": {
         "title": "Te ayudamos a decidir",
-        "description": "Sin tecnicismos. Analizamos tu situación y te decimos qué conviene construir, cómo y en qué orden.",
+        "description": "Antes de gastar en desarrollo, confirmamos que lo que querés construir sea lo correcto. Una hora de consultoría puede ahorrarte meses de trabajo mal orientado.",
         "detail": "Consultoría · Arquitectura · Roadmap"
       }
     }
@@ -99,9 +101,72 @@
     }
   },
   "cta": {
-    "title": "¿Tenés una idea?",
-    "subtitle": "Hagámosla realidad.",
-    "button": "Empezar ahora"
+    "title": "¿Listo para arrancar?",
+    "subtitle": "Contanos tu idea. Primera consulta sin costo, sin compromiso.",
+    "button": "Hablemos"
+  },
+  "process": {
+    "badge": "Nuestro proceso",
+    "title": "Cómo trabajamos",
+    "subtitle": "Un proceso claro, sin sorpresas. Sabés exactamente en qué estamos en todo momento.",
+    "steps": {
+      "discovery": {
+        "number": "01",
+        "title": "Entendemos tu idea",
+        "description": "Una llamada para conocer tu negocio, tus usuarios y qué necesitás que el software haga por vos. Sin tecnicismos, sin compromisos.",
+        "timeframe": "1 semana"
+      },
+      "design": {
+        "number": "02",
+        "title": "Diseñamos juntos",
+        "description": "Antes de escribir una línea de código, te mostramos cómo va a funcionar. Un prototipo navegable que podés tocar, probar y aprobar.",
+        "timeframe": "1–2 semanas"
+      },
+      "development": {
+        "number": "03",
+        "title": "Construimos en sprints",
+        "description": "Entregas cada 2 semanas. Ves el avance en vivo, pedís cambios antes de que se consolide. Sin cajas negras, sin sorpresas al final.",
+        "timeframe": "2–12 semanas"
+      },
+      "launch": {
+        "number": "04",
+        "title": "Lanzamos y acompañamos",
+        "description": "Lo ponemos en producción, te capacitamos y quedamos disponibles. No desaparecemos cuando el proyecto termina — eso es lo que nos diferencia.",
+        "timeframe": "Siempre"
+      }
+    }
+  },
+  "whyUs": {
+    "badge": "Por qué BApps",
+    "title": "Por qué elegirnos",
+    "subtitle": "No somos la opción más barata. Somos la más confiable.",
+    "disclaimer": "No aceptamos proyectos que no podemos hacer bien. Eso nos permite darte el 100% en todo lo que tomamos.",
+    "reasons": {
+      "dedicated": {
+        "title": "Un equipo, no un freelancer",
+        "description": "Siempre hay alguien disponible. Nunca dependés de una sola persona que puede desaparecer o tener otra prioridad."
+      },
+      "ownCode": {
+        "title": "Código propio, sin subcontratos",
+        "description": "El equipo que cotiza es el que construye. Sin terceros ocultos, sin sorpresas de calidad a mitad de camino."
+      },
+      "response": {
+        "title": "Respuesta en menos de 24hs",
+        "description": "Siempre. Una duda, un bug, un cambio urgente — alguien del equipo te responde ese mismo día."
+      },
+      "transparent": {
+        "title": "Precios sin letra chica",
+        "description": "Presupuesto claro desde el día 1. Si algo cambia, te avisamos antes — nunca después de haberlo hecho."
+      },
+      "selective": {
+        "title": "Elegimos bien lo que tomamos",
+        "description": "No aceptamos todo. Si un proyecto no es para nosotros, te lo decimos con honestidad y te orientamos."
+      },
+      "partnership": {
+        "title": "Tu éxito es nuestro portafolio",
+        "description": "Cada proyecto entregado es nuestra mejor publicidad. Tenemos todos los incentivos para que te vaya bien."
+      }
+    }
   },
   "contact": {
     "title": "Cotizá tu proyecto",

@@ -68,13 +68,13 @@ const serviceIcons: Record<ServiceKey, React.ReactNode> = {
   ),
 };
 
-// Bento layout: first 2 items span more, rest are equal
+// Bento layout: 3-col grid, alternating wide/narrow with no row-span
 const bentoClasses = [
-  "md:col-span-2 md:row-span-2",
   "md:col-span-2",
   "md:col-span-1",
   "md:col-span-1",
   "md:col-span-2",
+  "md:col-span-1",
   "md:col-span-2",
 ];
 
@@ -99,6 +99,10 @@ export default function ServicesSection() {
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
         >
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-bapps-purple/30 bg-bapps-purple/10 px-4 py-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-bapps-yellow" />
+            <span className="text-sm font-medium text-bapps-purple-light">{t("badge")}</span>
+          </div>
           <h2 className="font-[family-name:var(--font-display)] text-4xl tracking-tight sm:text-5xl md:text-6xl">
             {t("title")}
           </h2>
@@ -108,7 +112,7 @@ export default function ServicesSection() {
         </motion.div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {serviceKeys.map((key, i) => {
             const isOpen = openKey === key;
             return (

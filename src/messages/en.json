@@ -8,50 +8,52 @@
     "projects": "Projects",
     "team": "Team",
     "contact": "Contact",
-    "quoteProject": "Get a quote"
+    "quoteProject": "Let's talk",
+    "process": "How we work"
   },
   "hero": {
-    "title": "We create digital experiences",
-    "highlight": "experiences",
-    "subtitle": "Custom web apps, mobile apps, and landing pages built for you.",
-    "badge": "Custom software",
-    "cta": "Get a quote",
+    "title": "We turn ideas into software that sells",
+    "highlight": "sells",
+    "subtitle": "No templates, no disappearing freelancers. A committed team that builds exactly what your business needs.",
+    "badge": "Custom software · Dedicated team",
+    "cta": "Tell us your idea",
     "ctaSecondary": "View projects"
   },
   "services": {
-    "title": "Our services",
-    "subtitle": "Everything you need to bring your idea to the digital world.",
+    "badge": "Services",
+    "title": "What we build",
+    "subtitle": "Each service is designed to solve a real business problem — not to fill a catalog.",
     "expand": "See technologies",
     "collapse": "Close",
     "items": {
       "webApps": {
         "title": "Your custom system",
-        "description": "We turn your idea into a digital tool that works for you, without relying on generic platforms.",
+        "description": "Your competitors use the same generic tools. You can have something built exactly for your business — that works the way you work, not the other way around.",
         "detail": "Web application · Dashboard · Internal tool"
       },
       "mobileApps": {
         "title": "App for your phone",
-        "description": "Keep your customers close. Works on iPhone and Android from a single codebase.",
+        "description": "Your customers on iOS and Android from a single codebase. No paying double for two separate projects, no sacrificing quality on either platform.",
         "detail": "iOS · Android · Mobile app"
       },
       "landingPages": {
         "title": "Your digital storefront",
-        "description": "A page built to turn anyone who finds you on Google into a customer.",
+        "description": "Every visitor who bounces is money lost. We design pages that convert visitors into customers — optimized for Google from day one.",
         "detail": "Website · SEO · Conversion"
       },
       "ecommerce": {
         "title": "Online store",
-        "description": "Sell around the clock without the hassle. Payments, inventory, and shipping in one place.",
+        "description": "Your store never closes. Payments, inventory, and shipping in one place — get ready to sell while you sleep and scale when you're ready.",
         "detail": "Online store · Payments · Inventory"
       },
       "uiux": {
         "title": "Easy and beautiful",
-        "description": "We design the experience so your users find what they need without getting frustrated.",
+        "description": "A confusing design loses customers. We build interfaces anyone understands in seconds and that make people want to come back — not leave.",
         "detail": "Interface design · Prototyping · User experience"
       },
       "consulting": {
         "title": "We help you decide",
-        "description": "No jargon. We analyze your situation and tell you what to build, how, and in what order.",
+        "description": "Before spending on development, we make sure what you want to build is the right call. One hour of consulting can save you months of misdirected work.",
         "detail": "Consulting · Architecture · Roadmap"
       }
     }
@@ -99,9 +101,72 @@
     }
   },
   "cta": {
-    "title": "Got an idea?",
-    "subtitle": "Let's make it happen.",
-    "button": "Start now"
+    "title": "Ready to get started?",
+    "subtitle": "Tell us your idea. First consultation is free, no commitment.",
+    "button": "Let's talk"
+  },
+  "process": {
+    "badge": "Our process",
+    "title": "How we work",
+    "subtitle": "A clear process, no surprises. You know exactly where we are at every moment.",
+    "steps": {
+      "discovery": {
+        "number": "01",
+        "title": "We understand your idea",
+        "description": "A call to learn about your business, your users, and what you need the software to do for you. No jargon, no commitments.",
+        "timeframe": "1 week"
+      },
+      "design": {
+        "number": "02",
+        "title": "We design together",
+        "description": "Before writing a single line of code, we show you exactly how it will work. A clickable prototype you can touch, test, and approve.",
+        "timeframe": "1–2 weeks"
+      },
+      "development": {
+        "number": "03",
+        "title": "We build in sprints",
+        "description": "Deliveries every 2 weeks. You see progress live, request changes before they're locked in. No black boxes, no end-of-project surprises.",
+        "timeframe": "4–12 weeks"
+      },
+      "launch": {
+        "number": "04",
+        "title": "We launch and stay",
+        "description": "We deploy, train you, and stay available. We don't disappear when the project ends — that's what sets us apart.",
+        "timeframe": "Always"
+      }
+    }
+  },
+  "whyUs": {
+    "badge": "Why BApps",
+    "title": "Why choose us",
+    "subtitle": "We're not the cheapest option. We're the most reliable one.",
+    "disclaimer": "We don't take projects we can't do well. That lets us give 100% to everything we take on.",
+    "reasons": {
+      "dedicated": {
+        "title": "A team, not a freelancer",
+        "description": "There's always someone available. You never depend on one person who might disappear or have other priorities."
+      },
+      "ownCode": {
+        "title": "Our own code, no subcontracts",
+        "description": "The team that quotes is the team that builds. No hidden third parties, no quality surprises halfway through."
+      },
+      "response": {
+        "title": "Response within 24 hours",
+        "description": "Always. A question, a bug, an urgent change — someone from the team responds that same day."
+      },
+      "transparent": {
+        "title": "Pricing with no fine print",
+        "description": "Clear budget from day 1. If something changes, we tell you before — never after it's already done."
+      },
+      "selective": {
+        "title": "We choose our projects carefully",
+        "description": "We don't take everything. If a project isn't right for us, we'll say so honestly and point you in the right direction."
+      },
+      "partnership": {
+        "title": "Your success is our portfolio",
+        "description": "Every project we deliver is our best advertising. We have every incentive to make you succeed."
+      }
+    }
   },
   "contact": {
     "title": "Get a quote",

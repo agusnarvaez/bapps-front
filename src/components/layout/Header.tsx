@@ -10,6 +10,7 @@ import LanguageToggle from "@/components/layout/LanguageToggle";
 
 const navLinks = [
   { key: "services", hash: "#servicios", page: null },
+  { key: "process", hash: "#proceso", page: null },
   { key: "projects", hash: "#proyectos", page: "/projects" },
   { key: "team", hash: "#equipo", page: null },
   { key: "contact", hash: "#contacto", page: "/contact" },
