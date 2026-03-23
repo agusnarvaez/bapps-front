@@ -1,21 +1,45 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+
+const HOVER_SELECTOR =
+  "a, button, [role='button'], input, textarea, select, [data-cursor-hover]";
 
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const trailRef = useRef<HTMLDivElement>(null);
   const pos = useRef({ x: 0, y: 0 });
   const trailPos = useRef({ x: 0, y: 0 });
-  const [hovering, setHovering] = useState(false);
-  const [clicking, setClicking] = useState(false);
-  const [visible, setVisible] = useState(false);
+  // All mutable cursor state lives in a single ref — no React re-renders
+  const state = useRef({ hovering: false, clicking: false, visible: false });
   const rafRef = useRef<number>(0);
   const reduced = useReducedMotion();
 
+  // Apply visual state directly to the DOM, bypassing React
+  const applyStyles = useCallback(() => {
+    const { hovering, clicking, visible } = state.current;
+    const cursor = cursorRef.current;
+    const trail = trailRef.current;
+    if (!cursor || !trail) return;
+
+    const dotSize = hovering ? 48 : clicking ? 6 : 10;
+    cursor.style.width = `${dotSize}px`;
+    cursor.style.height = `${dotSize}px`;
+    cursor.style.opacity = visible ? "1" : "0";
+    cursor.style.backgroundColor = hovering ? "var(--bapps-yellow)" : "#fff";
+
+    const ringSize = hovering ? 56 : 36;
+    trail.style.width = `${ringSize}px`;
+    trail.style.height = `${ringSize}px`;
+    trail.style.opacity = visible ? "0.5" : "0";
+    trail.style.borderColor = hovering
+      ? "var(--bapps-yellow)"
+      : "var(--bapps-purple)";
+  }, []);
+
+  // RAF loop only handles transforms — no state reads
   const animate = useCallback(() => {
-    // Smooth trail follow
     trailPos.current.x += (pos.current.x - trailPos.current.x) * 0.15;
     trailPos.current.y += (pos.current.y - trailPos.current.y) * 0.15;
 
@@ -30,37 +54,45 @@ export default function CustomCursor() {
   }, []);
 
   useEffect(() => {
-    // Detect touch device or reduced motion preference
     const isTouchDevice =
       "ontouchstart" in window || navigator.maxTouchPoints > 0;
     if (isTouchDevice || reduced) return;
 
     const onMouseMove = (e: MouseEvent) => {
       pos.current = { x: e.clientX, y: e.clientY };
-      if (!visible) setVisible(true);
-    };
-
-    const onMouseDown = () => setClicking(true);
-    const onMouseUp = () => setClicking(false);
-    const onMouseLeave = () => setVisible(false);
-    const onMouseEnter = () => setVisible(true);
-
-    // Detect hoverable elements
-    const onMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (
-        target.closest("a, button, [role='button'], input, textarea, select, [data-cursor-hover]")
-      ) {
-        setHovering(true);
+      if (!state.current.visible) {
+        state.current.visible = true;
+        applyStyles();
       }
     };
 
+    const onMouseDown = () => {
+      state.current.clicking = true;
+      applyStyles();
+    };
+    const onMouseUp = () => {
+      state.current.clicking = false;
+      applyStyles();
+    };
+    const onMouseLeave = () => {
+      state.current.visible = false;
+      applyStyles();
+    };
+    const onMouseEnter = () => {
+      state.current.visible = true;
+      applyStyles();
+    };
+
+    const onMouseOver = (e: MouseEvent) => {
+      if ((e.target as HTMLElement).closest(HOVER_SELECTOR)) {
+        state.current.hovering = true;
+        applyStyles();
+      }
+    };
     const onMouseOut = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (
-        target.closest("a, button, [role='button'], input, textarea, select, [data-cursor-hover]")
-      ) {
-        setHovering(false);
+      if ((e.target as HTMLElement).closest(HOVER_SELECTOR)) {
+        state.current.hovering = false;
+        applyStyles();
       }
     };
 
@@ -73,8 +105,6 @@ export default function CustomCursor() {
     document.documentElement.addEventListener("mouseenter", onMouseEnter);
 
     rafRef.current = requestAnimationFrame(animate);
-
-    // Hide default cursor
     document.documentElement.style.cursor = "none";
 
     return () => {
@@ -88,9 +118,8 @@ export default function CustomCursor() {
       cancelAnimationFrame(rafRef.current);
       document.documentElement.style.cursor = "";
     };
-  }, [animate, visible, reduced]);
+  }, [animate, applyStyles, reduced]);
 
-  // Don't render on touch devices or when reduced motion is preferred (SSR-safe)
   if (typeof window !== "undefined") {
     const isTouchDevice =
       "ontouchstart" in window || navigator.maxTouchPoints > 0;
@@ -99,17 +128,17 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* Main dot */}
+      {/* Main dot — initial styles, rest applied via applyStyles() */}
       <div
         ref={cursorRef}
         aria-hidden="true"
-        className="pointer-events-none fixed top-0 left-0 z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference transition-[width,height,opacity] duration-200 ease-out"
+        className="pointer-events-none fixed top-0 left-0 z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference rounded-full transition-[width,height,opacity,background-color] duration-200 ease-out"
         style={{
-          width: hovering ? 48 : clicking ? 6 : 10,
-          height: hovering ? 48 : clicking ? 6 : 10,
-          opacity: visible ? 1 : 0,
-          borderRadius: "50%",
-          backgroundColor: hovering ? "var(--bapps-yellow)" : "#fff",
+          width: 10,
+          height: 10,
+          opacity: 0,
+          backgroundColor: "#fff",
+          willChange: "transform",
         }}
       />
       {/* Trail ring */}
@@ -118,12 +147,11 @@ export default function CustomCursor() {
         aria-hidden="true"
         className="pointer-events-none fixed top-0 left-0 z-[9998] -translate-x-1/2 -translate-y-1/2 rounded-full border transition-[width,height,opacity,border-color] duration-300 ease-out"
         style={{
-          width: hovering ? 56 : 36,
-          height: hovering ? 56 : 36,
-          opacity: visible ? 0.5 : 0,
-          borderColor: hovering
-            ? "var(--bapps-yellow)"
-            : "var(--bapps-purple)",
+          width: 36,
+          height: 36,
+          opacity: 0,
+          borderColor: "var(--bapps-purple)",
+          willChange: "transform",
         }}
       />
     </>
