@@ -32,5 +32,5 @@ export default async function ProjectsPage({ params }: Props) {
   // Fetch projects from Sanity (with fallback to local data if not configured)
   const projects: Project[] = await getProjects(locale as "es" | "en");
 
-  return <ProjectsGrid projects={projects} />;
+  return <ProjectsGrid projects={projects} locale={locale as "es" | "en"} />;
 }

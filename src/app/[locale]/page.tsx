@@ -38,7 +38,10 @@ export default async function Home({ params }: Props) {
     <>
       <HeroSection />
       <ServicesSection />
-      <ProjectsSection featuredProjects={featuredProjects} />
+      <ProjectsSection
+        featuredProjects={featuredProjects}
+        locale={locale as "es" | "en"}
+      />
       <TeamSection />
       <TestimonialsSection />
       <CTASection />

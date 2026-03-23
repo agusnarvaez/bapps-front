@@ -27,7 +27,7 @@ export const sanityClient = projectId
       projectId,
       dataset,
       apiVersion,
-      useCdn: true,
+      useCdn: false,
     })
   : // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (null as any); // Fallback: will be caught by isSanityConfigured() before use

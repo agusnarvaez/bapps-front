@@ -137,6 +137,7 @@
     },
     "submit": "Send quote request",
     "success": "Message sent! We'll reach out soon.",
+    "error": "We could not send your message. Please try again in a few minutes.",
     "next": "Next",
     "back": "Back"
   },

@@ -1,20 +1,45 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import type { Project } from "@/lib/data/types";
 import ProjectImage from "@/components/ui/ProjectImage";
+import { getProjectsLive } from "@/lib/sanity/live";
 
 const categories = ["all", "webapp", "mobile", "landing", "ecommerce"] as const;
 
-export default function ProjectsGrid({ projects }: { projects: Project[] }) {
+export default function ProjectsGrid({
+  projects,
+  locale,
+}: {
+  projects: Project[];
+  locale: "es" | "en";
+}) {
   const t = useTranslations("projectsPage");
-  const locale = useLocale();
   const [active, setActive] = useState<string>("all");
+  const [liveProjects, setLiveProjects] = useState<Project[]>(projects ?? []);
 
-  const safeProjects = projects ?? [];
+  useEffect(() => {
+    setLiveProjects(projects ?? []);
+  }, [projects]);
+
+  useEffect(() => {
+    let activeRequest = true;
+
+    void getProjectsLive(locale).then((fetchedProjects) => {
+      if (activeRequest) {
+        setLiveProjects(fetchedProjects);
+      }
+    });
+
+    return () => {
+      activeRequest = false;
+    };
+  }, [locale]);
+
+  const safeProjects = liveProjects ?? [];
 
   const filtered =
     active === "all"

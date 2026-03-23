@@ -61,5 +61,11 @@ export default async function ProjectDetailPage({ params }: Props) {
 
   const nextProject = await getNextProject(slug, locale as "es" | "en");
 
-  return <ProjectDetailContent project={project} nextProject={nextProject || undefined} />;
+  return (
+    <ProjectDetailContent
+      project={project}
+      nextProject={nextProject || undefined}
+      locale={locale as "es" | "en"}
+    />
+  );
 }

@@ -137,6 +137,7 @@
     },
     "submit": "Enviar cotización",
     "success": "¡Mensaje enviado! Te contactaremos pronto.",
+    "error": "No pudimos enviar tu mensaje. Intentá nuevamente en unos minutos.",
     "next": "Siguiente",
     "back": "Anterior"
   },

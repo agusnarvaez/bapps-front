@@ -7,3 +7,4 @@ Este repositorio alberga el codigo fuente del frontend para nuestro negocio de s
 - Valor por defecto: `true` si la variable no esta definida.
 - Ejemplo local: `NEXT_PUBLIC_SHOW_TEAM_PHOTOS=false` en `.env.local`.
 - Ejemplo de produccion: definir `NEXT_PUBLIC_SHOW_TEAM_PHOTOS=false` en el entorno del deploy para ocultar rostros sin tocar codigo.
+- `NEXT_PUBLIC_MAILING_API_URL`: URL base de `mailing-api` para el formulario de contacto (por ejemplo `https://mailing-api.fly.dev`).
