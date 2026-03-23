@@ -5,12 +5,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { projects } from "@/lib/data";
 import type { Project } from "@/lib/data/types";
 
 const categories = ["all", "webapp", "mobile", "landing", "ecommerce"] as const;
 
-export default function ProjectsGrid() {
+export default function ProjectsGrid({ projects }: { projects: Project[] }) {
   const t = useTranslations("projectsPage");
   const locale = useLocale();
   const [active, setActive] = useState<string>("all");

@@ -5,9 +5,13 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { useInView } from "@/hooks/useInView";
-import { projects } from "@/lib/data";
+import type { Project } from "@/lib/data/types";
 
-export default function ProjectsSection() {
+export default function ProjectsSection({
+  featuredProjects = [],
+}: {
+  featuredProjects?: Project[];
+}) {
   const t = useTranslations("projects");
   const locale = useLocale();
   const { ref: headerRef, inView } = useInView({ threshold: 0.2 });
@@ -15,8 +19,6 @@ export default function ProjectsSection() {
 
   const { scrollXProgress } = useScroll({ container: scrollContainerRef });
   const progressWidth = useTransform(scrollXProgress, [0, 1], ["0%", "100%"]);
-
-  const featured = projects.filter((p) => p.featured);
 
   return (
     <section id="proyectos" className="relative py-32">
@@ -65,7 +67,7 @@ export default function ProjectsSection() {
         aria-label="Featured projects carousel"
         tabIndex={0}
       >
-        {featured.map((project, i) => (
+        {featuredProjects.map((project, i) => (
           <motion.article
             key={project.slug}
             initial={{ opacity: 0, y: 40 }}
@@ -133,7 +135,7 @@ export default function ProjectsSection() {
           href={`/${locale}/projects`}
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.2 + featured.length * 0.1, duration: 0.6 }}
+          transition={{ delay: 0.2 + featuredProjects.length * 0.1, duration: 0.6 }}
           className="group flex h-[420px] w-[280px] flex-shrink-0 snap-start items-center justify-center rounded-2xl border border-dashed border-border transition-all duration-500 hover:border-bapps-purple/50 hover:bg-background-secondary"
         >
           <div className="text-center">

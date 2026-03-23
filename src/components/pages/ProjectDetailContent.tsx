@@ -11,7 +11,7 @@ export default function ProjectDetailContent({
   nextProject,
 }: {
   project: Project;
-  nextProject: Project;
+  nextProject?: Project;
 }) {
   const t = useTranslations("projectDetail");
   const locale = useLocale();
@@ -176,19 +176,21 @@ export default function ProjectDetailContent({
           <p className="mb-4 text-sm font-medium uppercase tracking-wider text-foreground-subtle">
             {t("nextProject")}
           </p>
-          <Link
-            href={`/${locale}/projects/${nextProject.slug}`}
-            className="group flex items-center justify-between"
-          >
-            <h3 className="font-[family-name:var(--font-display)] text-3xl tracking-tight transition-colors group-hover:text-bapps-purple-light sm:text-4xl">
-              {nextProject.title}
-            </h3>
-            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-border transition-all duration-300 group-hover:border-bapps-purple group-hover:bg-bapps-purple/10">
-              <svg className="h-5 w-5 text-foreground-muted transition-colors group-hover:text-bapps-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </div>
-          </Link>
+          {nextProject && (
+            <Link
+              href={`/${locale}/projects/${nextProject.slug}`}
+              className="group flex items-center justify-between"
+            >
+              <h3 className="font-[family-name:var(--font-display)] text-3xl tracking-tight transition-colors group-hover:text-bapps-purple-light sm:text-4xl">
+                {nextProject.title}
+              </h3>
+              <div className="flex h-12 w-12 items-center justify-center rounded-full border border-border transition-all duration-300 group-hover:border-bapps-purple group-hover:bg-bapps-purple/10">
+                <svg className="h-5 w-5 text-foreground-muted transition-colors group-hover:text-bapps-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </Link>
+          )}
         </motion.div>
       </div>
     </article>
