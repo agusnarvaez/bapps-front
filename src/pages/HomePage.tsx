@@ -3,7 +3,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import ServicesSection from "@/components/sections/ServicesSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import TeamSection from "@/components/sections/TeamSection";
-import TestimonialsSection from "@/components/sections/TestimonialsSection";
+/* import TestimonialsSection from "@/components/sections/TestimonialsSection"; */
 import CTASection from "@/components/sections/CTASection";
 import { useTranslations } from "next-intl";
 import { updateDocumentMetadata } from "@/lib/seo/metadata";
@@ -45,7 +45,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
       <ServicesSection />
       <ProjectsSection featuredProjects={featuredProjects} locale={locale} />
       <TeamSection />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
       <CTASection />
     </>
   );
