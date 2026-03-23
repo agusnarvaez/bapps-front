@@ -13,7 +13,7 @@ import { projects as fallbackProjects } from "@/lib/data";
 import type { SanityProjectDocument, Project } from "@/lib/data/types";
 
 const PROJECTS_QUERY = `
-  *[_type == "project" && published] | order(order asc, _createdAt desc) {
+  *[_type == "project" && defined(publishedAt)] | order(order asc, _createdAt desc) {
     _id,
     _createdAt,
     _updatedAt,
@@ -34,7 +34,7 @@ const PROJECTS_QUERY = `
 `;
 
 const PROJECT_BY_SLUG_QUERY = `
-  *[_type == "project" && slug.current == $slug && published][0] {
+  *[_type == "project" && slug.current == $slug && defined(publishedAt)][0] {
     _id,
     _createdAt,
     _updatedAt,
@@ -69,7 +69,11 @@ export async function getProjects(locale: "es" | "en"): Promise<Project[]> {
     const docs: SanityProjectDocument[] = await (sanityClient as any).fetch(
       PROJECTS_QUERY
     );
+    if (docs.length === 0) {
+      return fallbackProjects;
+    }
     const projects = mapSanityProjectsToProjects(docs, locale);
+    console.log(projects)
     return sortProjectsByOrder(projects);
   } catch (err) {
     console.error("[Sanity] Failed to fetch projects:", err);
@@ -125,11 +129,13 @@ export async function getProjectSlugs(): Promise<string[]> {
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const docs: SanityProjectDocument[] = await (sanityClient as any).fetch(
-      `*[_type == "project" && published] { slug }`
+      `*[_type == "project" && defined(publishedAt)] { slug }`
     );
-    return docs
+    const slugs = docs
       .map((d) => d.slug?.current)
       .filter((slug): slug is string => !!slug);
+
+    return slugs.length > 0 ? slugs : fallbackProjects.map((p) => p.slug);
   } catch (err) {
     console.error("[Sanity] Failed to fetch project slugs:", err);
     return fallbackProjects.map((p) => p.slug);

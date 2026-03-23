@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import type { Project } from "@/lib/data/types";
+import ProjectImage from "@/components/ui/ProjectImage";
 
 const categories = ["all", "webapp", "mobile", "landing", "ecommerce"] as const;
 
@@ -108,7 +108,7 @@ function ProjectCard({
       >
         {/* Image */}
         <div className="relative aspect-[16/10] overflow-hidden">
-          <Image
+          <ProjectImage
             src={project.image}
             alt={project.title}
             fill

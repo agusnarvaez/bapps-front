@@ -45,8 +45,8 @@ describe("Data integrity", () => {
 
     it("every member has name, role, image", () => {
       team.forEach((m: TeamMember) => {
-        expect(m.name).toBeTruthy();
-        expect(m.role).toBeTruthy();
+        expect(m.name.trim()).toBeTruthy();
+        expect(m.role.trim()).toBeTruthy();
         expect(m.image).toBeTruthy();
       });
     });

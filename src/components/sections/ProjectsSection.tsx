@@ -3,9 +3,9 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
-import Image from "next/image";
 import { useInView } from "@/hooks/useInView";
 import type { Project } from "@/lib/data/types";
+import ProjectImage from "@/components/ui/ProjectImage";
 
 export default function ProjectsSection({
   featuredProjects = [],
@@ -78,7 +78,7 @@ export default function ProjectsSection({
             <div className="relative h-[420px] w-[340px] overflow-hidden rounded-2xl border border-border bg-background-secondary transition-all duration-500 hover:border-bapps-purple/30 sm:w-[400px]">
               {/* Image */}
               <div className="relative h-[55%] overflow-hidden">
-                <Image
+                <ProjectImage
                   src={project.image}
                   alt={project.title}
                   fill

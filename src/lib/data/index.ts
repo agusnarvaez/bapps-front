@@ -60,22 +60,22 @@ export const projects: Project[] = [
 
 export const team: TeamMember[] = [
   {
-    name: "Miembro 1",
-    role: "CEO & Full Stack Developer",
+    name: "Agustín Narvaez",
+    role: "Full Stack Developer",
     image: "/images/team/member-1.jpg",
-    linkedin: "#",
+    linkedin: "https://www.linkedin.com/in/narvaezagustin",
   },
   {
-    name: "Miembro 2",
-    role: "Frontend Developer",
+    name: "Julián Gibelli",
+    role: "Backend Developer",
     image: "/images/team/member-2.jpg",
-    linkedin: "#",
+    linkedin: "https://www.linkedin.com/in/jgibelli/",
   },
   {
-    name: "Miembro 3",
-    role: "UI/UX Designer",
+    name: "Franco Nicotra",
+    role: "Backend Developer",
     image: "/images/team/member-3.jpg",
-    linkedin: "#",
+    linkedin: "https://www.linkedin.com/in/franco-nicotra-a83a84156/",
   },
 ];
 

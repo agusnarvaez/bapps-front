@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import type { Project } from "@/lib/data/types";
+import ProjectImage from "@/components/ui/ProjectImage";
 
 export default function ProjectDetailContent({
   project,
@@ -59,7 +59,7 @@ export default function ProjectDetailContent({
           className="mt-10 overflow-hidden rounded-2xl border border-border"
         >
           <div className="relative aspect-video">
-            <Image
+            <ProjectImage
               src={project.image}
               alt={project.title}
               fill

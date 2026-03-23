@@ -7,6 +7,9 @@
         "/^npx vitest run src/__tests__/components/ProjectsGrid\\.test\\.tsx$/": {
             "approve": true,
             "matchCommandLine": true
-        }
+        },
+        "npm install": true,
+        "npm run build": true,
+        "Test-Path": true
     }
 }

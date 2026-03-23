@@ -4,8 +4,7 @@
  */
 
 import type { SanityProjectDocument, Project } from "@/lib/data/types";
-
-const PROJECT_FALLBACK_IMAGE = "/images/og-default.jpg";
+import { resolveProjectImage } from "./projectImage";
 
 /**
  * Maps a Sanity project document to the frontend Project domain model.
@@ -40,13 +39,14 @@ export function mapSanityProjectToProject(
 
   const description = getLocalizedField(doc.description, "");
   const shortDescription = getLocalizedField(doc.shortDescription, "");
+  const image = resolveProjectImage(doc.image);
 
   return {
     slug: doc.slug.current,
     title,
     description: description || title, // Fallback to title if description empty
     shortDescription: shortDescription || title.substring(0, 80),
-    image: PROJECT_FALLBACK_IMAGE, // Always resolved; real image URL or fallback
+    image,
     technologies: doc.technologies || [],
     category: doc.category || "webapp",
     url: doc.url,
