@@ -2,11 +2,12 @@ import { describe, it, expect, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "./mocks";
+import { projects } from "@/lib/data";
 import ProjectsGrid from "@/components/pages/ProjectsGrid";
 
 describe("ProjectsGrid", () => {
   beforeEach(() => {
-    render(<ProjectsGrid />);
+    render(<ProjectsGrid projects={projects} />);
   });
 
   it("renders the title", () => {

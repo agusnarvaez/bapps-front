@@ -1,0 +1,12 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^npx vitest run$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^npx vitest run src/__tests__/components/ProjectsGrid\\.test\\.tsx$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

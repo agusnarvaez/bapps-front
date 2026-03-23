@@ -14,10 +14,12 @@ export default function ProjectsGrid({ projects }: { projects: Project[] }) {
   const locale = useLocale();
   const [active, setActive] = useState<string>("all");
 
+  const safeProjects = projects ?? [];
+
   const filtered =
     active === "all"
-      ? projects
-      : projects.filter((p) => p.category === active);
+      ? safeProjects
+      : safeProjects.filter((p) => p.category === active);
 
   return (
     <section className="min-h-screen pt-32 pb-24">
