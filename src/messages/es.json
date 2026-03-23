@@ -21,30 +21,38 @@
   "services": {
     "title": "Nuestros servicios",
     "subtitle": "Todo lo que necesitás para llevar tu idea al mundo digital.",
+    "expand": "Ver tecnologías",
+    "collapse": "Cerrar",
     "items": {
       "webApps": {
-        "title": "Aplicaciones Web",
-        "description": "Sistemas a medida, dashboards, plataformas SaaS y herramientas internas."
+        "title": "Tu sistema a medida",
+        "description": "Convertimos tu idea en una herramienta digital que trabaja para vos, sin depender de plataformas genéricas.",
+        "detail": "Aplicación web · Dashboard · Sistema interno"
       },
       "mobileApps": {
-        "title": "Apps Móviles",
-        "description": "Aplicaciones nativas y multiplataforma para iOS y Android."
+        "title": "App para tu celular",
+        "description": "Para que tus clientes te lleven en el bolsillo. Funciona en iPhone y Android desde una sola base de código.",
+        "detail": "iOS · Android · App móvil"
       },
       "landingPages": {
-        "title": "Landing Pages",
-        "description": "Páginas de alto impacto optimizadas para conversión y SEO."
+        "title": "Tu vitrina digital",
+        "description": "Una página diseñada para que quien te encuentre en Google se convierta en cliente.",
+        "detail": "Página web · SEO · Conversión"
       },
       "ecommerce": {
-        "title": "E-Commerce",
-        "description": "Tiendas online completas con pasarelas de pago y gestión de inventario."
+        "title": "Tienda online",
+        "description": "Vendé las 24 horas sin complicaciones. Integramos pagos, stock y envíos en un solo lugar.",
+        "detail": "Tienda online · Pagos · Inventario"
       },
       "uiux": {
-        "title": "Diseño UI/UX",
-        "description": "Interfaces intuitivas y atractivas que enamoran a los usuarios."
+        "title": "Que sea fácil y bonito",
+        "description": "Diseñamos la experiencia para que tus usuarios encuentren lo que buscan sin frustrarse.",
+        "detail": "Diseño de interfaz · Prototipado · Experiencia de usuario"
       },
       "consulting": {
-        "title": "Consultoría Tech",
-        "description": "Asesoramiento tecnológico para llevar tu proyecto al siguiente nivel."
+        "title": "Te ayudamos a decidir",
+        "description": "Sin tecnicismos. Analizamos tu situación y te decimos qué conviene construir, cómo y en qué orden.",
+        "detail": "Consultoría · Arquitectura · Roadmap"
       }
     }
   },

@@ -21,30 +21,38 @@
   "services": {
     "title": "Our services",
     "subtitle": "Everything you need to bring your idea to the digital world.",
+    "expand": "See technologies",
+    "collapse": "Close",
     "items": {
       "webApps": {
-        "title": "Web Applications",
-        "description": "Custom systems, dashboards, SaaS platforms, and internal tools."
+        "title": "Your custom system",
+        "description": "We turn your idea into a digital tool that works for you, without relying on generic platforms.",
+        "detail": "Web application · Dashboard · Internal tool"
       },
       "mobileApps": {
-        "title": "Mobile Apps",
-        "description": "Native and cross-platform applications for iOS and Android."
+        "title": "App for your phone",
+        "description": "Keep your customers close. Works on iPhone and Android from a single codebase.",
+        "detail": "iOS · Android · Mobile app"
       },
       "landingPages": {
-        "title": "Landing Pages",
-        "description": "High-impact pages optimized for conversion and SEO."
+        "title": "Your digital storefront",
+        "description": "A page built to turn anyone who finds you on Google into a customer.",
+        "detail": "Website · SEO · Conversion"
       },
       "ecommerce": {
-        "title": "E-Commerce",
-        "description": "Complete online stores with payment gateways and inventory management."
+        "title": "Online store",
+        "description": "Sell around the clock without the hassle. Payments, inventory, and shipping in one place.",
+        "detail": "Online store · Payments · Inventory"
       },
       "uiux": {
-        "title": "UI/UX Design",
-        "description": "Intuitive and stunning interfaces that users love."
+        "title": "Easy and beautiful",
+        "description": "We design the experience so your users find what they need without getting frustrated.",
+        "detail": "Interface design · Prototyping · User experience"
       },
       "consulting": {
-        "title": "Tech Consulting",
-        "description": "Technology advisory to take your project to the next level."
+        "title": "We help you decide",
+        "description": "No jargon. We analyze your situation and tell you what to build, how, and in what order.",
+        "detail": "Consulting · Architecture · Roadmap"
       }
     }
   },
