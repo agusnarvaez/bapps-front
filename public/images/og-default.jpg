@@ -1,0 +1,8 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect fill="#0A0A0F" width="1200" height="630"/>
+  <rect fill="#AD60E1" x="0" y="0" width="1200" height="4"/>
+  <text fill="#EDEDED" font-family="sans-serif" font-size="72" font-weight="bold" x="600" y="260" text-anchor="middle">BApps</text>
+  <text fill="#E7FB79" font-family="sans-serif" font-size="28" x="600" y="320" text-anchor="middle">Desarrollo de aplicaciones a medida</text>
+  <text fill="#6A6A7A" font-family="sans-serif" font-size="20" x="600" y="380" text-anchor="middle">bapps.com.ar</text>
+  <rect fill="#AD60E1" x="0" y="626" width="1200" height="4"/>
+</svg>
