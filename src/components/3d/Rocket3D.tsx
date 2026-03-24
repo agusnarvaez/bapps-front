@@ -3,12 +3,23 @@
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, MeshDistortMaterial } from "@react-three/drei";
-import * as THREE from "three";
+import {
+  BackSide,
+  DoubleSide,
+  Group,
+  InstancedMesh,
+  LatheGeometry,
+  Mesh,
+  MeshStandardMaterial,
+  Object3D,
+  Shape,
+  Vector2,
+} from "three";
 
 /* ── Bullet / egg-shaped body via LatheGeometry ── */
 function useBodyGeometry() {
   return useMemo(() => {
-    const pts: THREE.Vector2[] = [];
+    const pts: Vector2[] = [];
     const steps = 60;
     for (let i = 0; i <= steps; i++) {
       const t = i / steps; // 0→1 from tip to base
@@ -27,16 +38,16 @@ function useBodyGeometry() {
       }
 
       const y = 1.3 - t * 2.0; // top 1.3 → bottom -0.7
-      pts.push(new THREE.Vector2(r, y));
+      pts.push(new Vector2(r, y));
     }
-    return new THREE.LatheGeometry(pts, 48);
+    return new LatheGeometry(pts, 48);
   }, []);
 }
 
 /* ── Single fin extending radially outward (triangular swept) ── */
 function Fin({ angle }: { angle: number }) {
   const shape = useMemo(() => {
-    const s = new THREE.Shape();
+    const s = new Shape();
     s.moveTo(0, 0.1);          // top, at body surface
     s.lineTo(0.3, -0.02);      // tip sweeps outward
     s.lineTo(0.12, -0.44);     // bottom outer
@@ -60,7 +71,7 @@ function Fin({ angle }: { angle: number }) {
           roughness={0.15}
           emissive="#1a1a20"
           emissiveIntensity={0.1}
-          side={THREE.DoubleSide}
+          side={DoubleSide}
         />
       </mesh>
     </group>
@@ -69,10 +80,10 @@ function Fin({ angle }: { angle: number }) {
 
 /* ── Main rocket group ── */
 function Rocket() {
-  const groupRef = useRef<THREE.Group>(null);
-  const spinRef = useRef<THREE.Group>(null);
-  const exhaustRef = useRef<THREE.Mesh>(null);
-  const glowRef = useRef<THREE.Mesh>(null);
+  const groupRef = useRef<Group>(null);
+  const spinRef = useRef<Group>(null);
+  const exhaustRef = useRef<Mesh>(null);
+  const glowRef = useRef<Mesh>(null);
   const bodyGeo = useBodyGeometry();
 
   useFrame(({ clock }) => {
@@ -96,7 +107,7 @@ function Rocket() {
     }
     if (glowRef.current) {
       const opacity = 0.5 + Math.sin(t * 8) * 0.2;
-      (glowRef.current.material as THREE.MeshStandardMaterial).opacity = opacity;
+      (glowRef.current.material as MeshStandardMaterial).opacity = opacity;
     }
   });
 
@@ -112,7 +123,7 @@ function Rocket() {
               roughness={0.13}
               emissive="#2a2a32"
               emissiveIntensity={0.15}
-              side={THREE.DoubleSide}
+              side={DoubleSide}
               envMapIntensity={1.5}
             />
           </mesh>
@@ -125,7 +136,7 @@ function Rocket() {
               emissiveIntensity={0.6}
               transparent
               opacity={0.06}
-              side={THREE.BackSide}
+              side={BackSide}
             />
           </mesh>
 
@@ -191,7 +202,7 @@ function Rocket() {
               roughness={0.15}
               emissive="#1a1a20"
               emissiveIntensity={0.1}
-              side={THREE.DoubleSide}
+              side={DoubleSide}
             />
           </mesh>
 
@@ -218,7 +229,7 @@ function Rocket() {
               emissiveIntensity={1.5}
               transparent
               opacity={0.3}
-              side={THREE.DoubleSide}
+              side={DoubleSide}
             />
           </mesh>
         </group>
@@ -230,7 +241,7 @@ function Rocket() {
 /* ── Floating star particles ── */
 function Stars() {
   const count = 30;
-  const meshRef = useRef<THREE.InstancedMesh>(null);
+  const meshRef = useRef<InstancedMesh>(null);
 
   const positions = useMemo(() => {
     const arr: [number, number, number][] = [];
@@ -247,7 +258,7 @@ function Stars() {
   useFrame(({ clock }) => {
     if (!meshRef.current) return;
     const t = clock.getElapsedTime();
-    const dummy = new THREE.Object3D();
+    const dummy = new Object3D();
 
     for (let i = 0; i < count; i++) {
       const [bx, by, bz] = positions[i];

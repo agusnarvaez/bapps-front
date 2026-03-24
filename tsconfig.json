@@ -21,6 +21,6 @@
       "next/dynamic": ["./src/shims/next-dynamic.tsx"]
     }
   },
-  "include": ["src", "vite.config.ts", "vitest.config.ts"],
+  "include": ["src", "vite.config.mts", "vitest.config.mts"],
   "exclude": ["node_modules"]
 }
