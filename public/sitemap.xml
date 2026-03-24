@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Home ES -->
+  <url>
+    <loc>https://bapps.com.ar/es/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- Home EN -->
+  <url>
+    <loc>https://bapps.com.ar/en/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- Projects ES -->
+  <url>
+    <loc>https://bapps.com.ar/es/projects/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Projects EN -->
+  <url>
+    <loc>https://bapps.com.ar/en/projects/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Contact ES -->
+  <url>
+    <loc>https://bapps.com.ar/es/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/contact/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/contact/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- Contact EN -->
+  <url>
+    <loc>https://bapps.com.ar/en/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/contact/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/contact/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- Project Detail: proyecto-ejemplo-1 -->
+  <url>
+    <loc>https://bapps.com.ar/es/projects/proyecto-ejemplo-1/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-1/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-1/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://bapps.com.ar/en/projects/proyecto-ejemplo-1/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-1/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-1/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <!-- Project Detail: proyecto-ejemplo-2 -->
+  <url>
+    <loc>https://bapps.com.ar/es/projects/proyecto-ejemplo-2/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-2/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-2/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://bapps.com.ar/en/projects/proyecto-ejemplo-2/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-2/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-2/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <!-- Project Detail: proyecto-ejemplo-3 -->
+  <url>
+    <loc>https://bapps.com.ar/es/projects/proyecto-ejemplo-3/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-3/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-3/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://bapps.com.ar/en/projects/proyecto-ejemplo-3/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-3/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-3/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <!-- Project Detail: proyecto-ejemplo-4 -->
+  <url>
+    <loc>https://bapps.com.ar/es/projects/proyecto-ejemplo-4/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-4/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-4/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://bapps.com.ar/en/projects/proyecto-ejemplo-4/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-4/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-4/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <!-- Project Detail: proyecto-ejemplo-5 -->
+  <url>
+    <loc>https://bapps.com.ar/es/projects/proyecto-ejemplo-5/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-5/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-5/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://bapps.com.ar/en/projects/proyecto-ejemplo-5/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-5/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-5/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>

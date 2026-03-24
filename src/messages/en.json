@@ -1,0 +1,233 @@
+{
+  "metadata": {
+    "title": "BApps | Custom Application Development",
+    "description": "We build custom web apps, mobile apps, and landing pages. Turning ideas into exceptional digital experiences."
+  },
+  "nav": {
+    "services": "Services",
+    "projects": "Projects",
+    "team": "Team",
+    "contact": "Contact",
+    "quoteProject": "Let's talk",
+    "process": "How we work"
+  },
+  "hero": {
+    "title": "We turn ideas into software that sells",
+    "highlight": "sells",
+    "subtitle": "Software built for you. A committed team, a clear process, real results.",
+    "badge": "Custom software · Dedicated team",
+    "cta": "Tell us your idea",
+    "ctaSecondary": "View projects",
+    "navServices": "Our services",
+    "navProcess": "How we work"
+  },
+  "services": {
+    "badge": "Services",
+    "title": "What we build",
+    "subtitle": "Each service is designed to solve a real business problem — not to fill a catalog.",
+    "expand": "See technologies",
+    "collapse": "Close",
+    "items": {
+      "webApps": {
+        "title": "Your custom system",
+        "description": "Your competitors use the same generic tools. You can have something built exactly for your business — that works the way you work, not the other way around.",
+        "detail": "Web application · Dashboard · Internal tool"
+      },
+      "mobileApps": {
+        "title": "App for your phone",
+        "description": "Your customers on iOS and Android from a single codebase. No paying double for two separate projects, no sacrificing quality on either platform.",
+        "detail": "iOS · Android · Mobile app"
+      },
+      "landingPages": {
+        "title": "Your digital storefront",
+        "description": "Every visitor who bounces is money lost. We design pages that convert visitors into customers — optimized for Google from day one.",
+        "detail": "Website · SEO · Conversion"
+      },
+      "ecommerce": {
+        "title": "Online store",
+        "description": "Your store never closes. Payments, inventory, and shipping in one place — get ready to sell while you sleep and scale when you're ready.",
+        "detail": "Online store · Payments · Inventory"
+      },
+      "uiux": {
+        "title": "Easy and beautiful",
+        "description": "A confusing design loses customers. We build interfaces anyone understands in seconds and that make people want to come back — not leave.",
+        "detail": "Interface design · Prototyping · User experience"
+      },
+      "consulting": {
+        "title": "We help you decide",
+        "description": "Before spending on development, we make sure what you want to build is the right call. One hour of consulting can save you months of misdirected work.",
+        "detail": "Consulting · Architecture · Roadmap"
+      }
+    }
+  },
+  "projects": {
+    "title": "Featured projects",
+    "subtitle": "Some of the experiences we've built.",
+    "viewAll": "View all projects",
+    "viewProject": "View project",
+    "technologies": "Technologies"
+  },
+  "projectsPage": {
+    "title": "Our projects",
+    "subtitle": "Every project is a story of collaboration, innovation, and results.",
+    "filterAll": "All",
+    "categories": {
+      "webapp": "Web Apps",
+      "mobile": "Mobile",
+      "landing": "Landing Pages",
+      "ecommerce": "E-Commerce"
+    },
+    "viewProject": "View project",
+    "noResults": "No projects in this category."
+  },
+  "projectDetail": {
+    "backToProjects": "Back to projects",
+    "technologies": "Technologies used",
+    "visitSite": "Visit site",
+    "aboutProject": "About the project",
+    "clientTestimonial": "What the client says",
+    "nextProject": "Next project",
+    "ctaTitle": "Want something similar?",
+    "ctaButton": "Get a quote"
+  },
+  "team": {
+    "title": "Our team",
+    "subtitle": "The people behind every project."
+  },
+  "testimonials": {
+    "title": "What our clients say",
+    "stats": {
+      "projects": "Projects delivered",
+      "clients": "Happy clients",
+      "years": "Years of experience"
+    }
+  },
+  "cta": {
+    "title": "Ready to get started?",
+    "subtitle": "Tell us your idea. First consultation is free, no commitment.",
+    "button": "Let's talk"
+  },
+  "process": {
+    "badge": "Our process",
+    "title": "How we work",
+    "subtitle": "A clear process, no surprises. You know exactly where we are at every moment.",
+    "steps": {
+      "discovery": {
+        "number": "01",
+        "title": "We understand your idea",
+        "description": "A call to learn about your business, your users, and what you need the software to do for you. No jargon, no commitments.",
+        "timeframe": "1 week"
+      },
+      "design": {
+        "number": "02",
+        "title": "We design together",
+        "description": "Before writing a single line of code, we show you exactly how it will work. A clickable prototype you can touch, test, and approve.",
+        "timeframe": "1–2 weeks"
+      },
+      "development": {
+        "number": "03",
+        "title": "We build in sprints",
+        "description": "Deliveries every 2 weeks. You see progress live, request changes before they're locked in. No black boxes, no end-of-project surprises.",
+        "timeframe": "4–12 weeks"
+      },
+      "launch": {
+        "number": "04",
+        "title": "We launch and stay",
+        "description": "We deploy, train you, and stay available. We don't disappear when the project ends — that's what sets us apart.",
+        "timeframe": "Always"
+      }
+    }
+  },
+  "whyUs": {
+    "badge": "Why BApps",
+    "title": "Why choose us",
+    "subtitle": "We're not the cheapest option. We're the most reliable one.",
+    "disclaimer": "Every project we take on has the full commitment of the team, from start to finish.",
+    "reasons": {
+      "dedicated": {
+        "title": "A team, not a freelancer",
+        "description": "There's always someone available. You never depend on one person who might disappear or have other priorities."
+      },
+      "ownCode": {
+        "title": "Our own code, no subcontracts",
+        "description": "The team that quotes is the team that builds. No hidden third parties, no quality surprises halfway through."
+      },
+      "response": {
+        "title": "Response within 24 hours",
+        "description": "Always. A question, a bug, an urgent change — someone from the team responds that same day."
+      },
+      "transparent": {
+        "title": "Pricing with no fine print",
+        "description": "Clear budget from day 1. If something changes, we tell you before — never after it's already done."
+      },
+      "selective": {
+        "title": "We choose our projects carefully",
+        "description": "We don't take everything. If a project isn't right for us, we'll say so honestly and point you in the right direction."
+      },
+      "partnership": {
+        "title": "Your success is our portfolio",
+        "description": "Every project we deliver is our best advertising. We have every incentive to make you succeed."
+      }
+    }
+  },
+  "contact": {
+    "title": "Get a quote",
+    "subtitle": "Tell us about your idea and we'll get back to you within 24h.",
+    "steps": {
+      "projectType": "Project type",
+      "details": "Details",
+      "timeline": "Timeline & budget",
+      "contactInfo": "Your info"
+    },
+    "fields": {
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "company": "Company (optional)",
+      "description": "Project description",
+      "features": "Desired features",
+      "reference": "Design reference (URL optional)",
+      "timeline": "When do you need it?",
+      "budget": "Estimated budget"
+    },
+    "projectTypes": {
+      "webapp": "Web Application",
+      "mobile": "Mobile App",
+      "landing": "Landing Page",
+      "ecommerce": "E-Commerce",
+      "other": "Other"
+    },
+    "timelineOptions": {
+      "urgent": "ASAP",
+      "1month": "1 month",
+      "3months": "1-3 months",
+      "flexible": "No rush"
+    },
+    "budgetOptions": {
+      "small": "Up to $500 USD",
+      "medium": "$500 - $2,000 USD",
+      "large": "$2,000 - $5,000 USD",
+      "enterprise": "Over $5,000 USD",
+      "unknown": "Not sure"
+    },
+    "submit": "Send quote request",
+    "success": "Message sent! We'll reach out soon.",
+    "error": "We could not send your message. Please try again in a few minutes.",
+    "next": "Next",
+    "back": "Back"
+  },
+  "footer": {
+    "tagline": "Turning ideas into digital experiences.",
+    "rights": "All rights reserved.",
+    "links": {
+      "privacy": "Privacy",
+      "terms": "Terms"
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "subtitle": "404",
+    "description": "Looks like this rocket got lost in space.",
+    "backHome": "Back to home"
+  }
+}

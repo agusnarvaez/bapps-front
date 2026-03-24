@@ -1,60 +1,91 @@
 # bapps-front
-Este repositorio alberga el código fuente del frontend para nuestro negocio de servicios de páginas web. Nuestra misión es crear experiencias web excepcionales que cautiven a nuestros clientes y optimicen su presencia en línea.
 
+Este repositorio alberga el codigo fuente del frontend para nuestro negocio de servicios de paginas web. Nuestra mision es crear experiencias web excepcionales que cautiven a nuestros clientes y optimicen su presencia en linea.
 
+## Scripts
 
+- `npm run dev`: levanta la app en modo desarrollo con Vite.
+- `npm run build`: genera build estatico en `dist/`.
+- `npm run preview`: previsualiza localmente el build generado.
 
-# Astro Starter Kit: Basics
+## Variables de entorno publicas
 
-```sh
-npm create astro@latest -- --template basics
+- `NEXT_PUBLIC_SHOW_TEAM_PHOTOS`: controla si la seccion de equipo muestra fotos reales (`true`) o placeholders con iniciales (`false`).
+- Valor por defecto: `true` si la variable no esta definida.
+- Ejemplo local: `NEXT_PUBLIC_SHOW_TEAM_PHOTOS=false` en `.env.local`.
+- Ejemplo de produccion: definir `NEXT_PUBLIC_SHOW_TEAM_PHOTOS=false` en el entorno del deploy para ocultar rostros sin tocar codigo.
+
+[![Build](https://github.com/agusnarvaez/bapps-front/actions/workflows/build.yml/badge.svg)](https://github.com/agusnarvaez/bapps-front/actions/workflows/build.yml)
+[![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Astro](https://img.shields.io/badge/Astro-3.x-FF5D01?logo=astro&logoColor=white)](https://astro.build/)
+[![Coverage](https://img.shields.io/badge/Coverage-pending-lightgrey)](#quality)
+
+Marketing website for Bapps, focused on presenting web development services with a simple routing structure.
+
+Sitio institucional de Bapps, orientado a presentar servicios de desarrollo web con una estructura de rutas simple.
+
+## Overview
+
+### ES
+
+Este proyecto contiene el frontend del sitio de Bapps. Hoy incluye una home principal y una pagina de contacto, con componentes Astro reutilizables y assets estaticos.
+
+### EN
+
+This project contains the frontend for the Bapps website. It currently includes a main landing page and a contact page, with reusable Astro components and static assets.
+
+## Stack
+
+- Astro 3
+- TypeScript
+- Static assets served from `public/` and `src/assets/`
+- GitHub Actions for build validation
+
+## Getting Started
+
+```bash
+npm install
+npm run dev
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+The local development server runs on Astro's default port and supports live reload.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Available Scripts
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+```bash
+npm run dev
+npm run start
+npm run build
+npm run preview
+```
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Project Structure
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+  assets/
+  components/
+    Footer/
+    Header/
+    Home/
+  layouts/
+  pages/
+    index.astro
+    contacto.astro
+public/
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Quality
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- GitHub Actions validates the production build on every push to `main`, `dev`, and every pull request.
+- A case-sensitive import mismatch was corrected so the project can build reliably on Linux runners.
+- Coverage is still pending and should be added when the project gets its first automated test suite.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Notes
 
-## 🧞 Commands
+- Keep component imports aligned with the real file casing. Linux-based CI is stricter than the local Windows environment.
+- Prefer keeping this repo focused on static marketing content, leaving application logic outside of the Astro frontend.
 
-All commands are run from the root of the project, from a terminal:
+## License
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+MIT. See [LICENSE](./LICENSE).

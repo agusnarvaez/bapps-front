@@ -1,0 +1,233 @@
+{
+  "metadata": {
+    "title": "BApps | Desarrollo de aplicaciones a medida",
+    "description": "Desarrollamos aplicaciones web, móviles y landing pages a medida. Transformamos ideas en experiencias digitales excepcionales."
+  },
+  "nav": {
+    "services": "Servicios",
+    "projects": "Proyectos",
+    "team": "Equipo",
+    "contact": "Contacto",
+    "quoteProject": "Hablemos",
+    "process": "Cómo trabajamos"
+  },
+  "hero": {
+    "title": "Convertimos ideas en software que vende",
+    "highlight": "vende",
+    "subtitle": "Software hecho a tu medida. Un equipo comprometido, un proceso claro, resultados reales.",
+    "badge": "Software a medida · Equipo dedicado",
+    "cta": "Contanos tu idea",
+    "ctaSecondary": "Ver proyectos",
+    "navServices": "Servicios",
+    "navProcess": "Cómo trabajamos"
+  },
+  "services": {
+    "badge": "Servicios",
+    "title": "Lo que construimos",
+    "subtitle": "Cada servicio está pensado para resolver un problema real de tu negocio — no para completar un catálogo.",
+    "expand": "Ver tecnologías",
+    "collapse": "Cerrar",
+    "items": {
+      "webApps": {
+        "title": "Tu sistema a medida",
+        "description": "Tu competencia usa las mismas herramientas genéricas. Vos podés tener algo hecho exactamente para tu negocio — que trabaja cómo vos trabajás, no al revés.",
+        "detail": "Aplicación web · Dashboard · Sistema interno"
+      },
+      "mobileApps": {
+        "title": "App para tu celular",
+        "description": "Tus clientes en iOS y Android desde una sola base de código. Sin pagar el doble por dos proyectos separados, sin sacrificar calidad en ninguno.",
+        "detail": "iOS · Android · App móvil"
+      },
+      "landingPages": {
+        "title": "Tu vitrina digital",
+        "description": "Cada visita que rebota es plata que perdés. Diseñamos páginas que convierten visitantes en clientes — optimizadas para Google desde el día uno.",
+        "detail": "Página web · SEO · Conversión"
+      },
+      "ecommerce": {
+        "title": "Tienda online",
+        "description": "Tu tienda no cierra a las 18hs. Pagos, stock y envíos en un solo lugar — preparate para vender mientras dormís y escalar cuando estés listo.",
+        "detail": "Tienda online · Pagos · Inventario"
+      },
+      "uiux": {
+        "title": "Que sea fácil y bonito",
+        "description": "Un diseño confuso pierde clientes. Diseñamos interfaces que cualquiera entiende en segundos y que dan ganas de volver — no de abandonar.",
+        "detail": "Diseño de interfaz · Prototipado · Experiencia de usuario"
+      },
+      "consulting": {
+        "title": "Te ayudamos a decidir",
+        "description": "Antes de gastar en desarrollo, confirmamos que lo que querés construir sea lo correcto. Una hora de consultoría puede ahorrarte meses de trabajo mal orientado.",
+        "detail": "Consultoría · Arquitectura · Roadmap"
+      }
+    }
+  },
+  "projects": {
+    "title": "Proyectos destacados",
+    "subtitle": "Algunas de las experiencias que hemos creado.",
+    "viewAll": "Ver todos los proyectos",
+    "viewProject": "Ver proyecto",
+    "technologies": "Tecnologías"
+  },
+  "projectsPage": {
+    "title": "Nuestros proyectos",
+    "subtitle": "Cada proyecto es una historia de colaboración, innovación y resultados.",
+    "filterAll": "Todos",
+    "categories": {
+      "webapp": "Web Apps",
+      "mobile": "Mobile",
+      "landing": "Landing Pages",
+      "ecommerce": "E-Commerce"
+    },
+    "viewProject": "Ver proyecto",
+    "noResults": "No hay proyectos en esta categoría."
+  },
+  "projectDetail": {
+    "backToProjects": "Volver a proyectos",
+    "technologies": "Tecnologías utilizadas",
+    "visitSite": "Visitar sitio",
+    "aboutProject": "Sobre el proyecto",
+    "clientTestimonial": "Lo que dice el cliente",
+    "nextProject": "Siguiente proyecto",
+    "ctaTitle": "¿Te gustaría algo similar?",
+    "ctaButton": "Cotizar proyecto"
+  },
+  "team": {
+    "title": "Nuestro equipo",
+    "subtitle": "Las personas detrás de cada proyecto."
+  },
+  "testimonials": {
+    "title": "Lo que dicen nuestros clientes",
+    "stats": {
+      "projects": "Proyectos entregados",
+      "clients": "Clientes satisfechos",
+      "years": "Años de experiencia"
+    }
+  },
+  "cta": {
+    "title": "¿Listo para arrancar?",
+    "subtitle": "Contanos tu idea. Primera consulta sin costo, sin compromiso.",
+    "button": "Hablemos"
+  },
+  "process": {
+    "badge": "Nuestro proceso",
+    "title": "Cómo trabajamos",
+    "subtitle": "Un proceso claro, sin sorpresas. Sabés exactamente en qué estamos en todo momento.",
+    "steps": {
+      "discovery": {
+        "number": "01",
+        "title": "Entendemos tu idea",
+        "description": "Una llamada para conocer tu negocio, tus usuarios y qué necesitás que el software haga por vos. Sin tecnicismos, sin compromisos.",
+        "timeframe": "1 semana"
+      },
+      "design": {
+        "number": "02",
+        "title": "Diseñamos juntos",
+        "description": "Antes de escribir una línea de código, te mostramos cómo va a funcionar. Un prototipo navegable que podés tocar, probar y aprobar.",
+        "timeframe": "1–2 semanas"
+      },
+      "development": {
+        "number": "03",
+        "title": "Construimos en sprints",
+        "description": "Entregas cada 2 semanas. Ves el avance en vivo, pedís cambios antes de que se consolide. Sin cajas negras, sin sorpresas al final.",
+        "timeframe": "2–12 semanas"
+      },
+      "launch": {
+        "number": "04",
+        "title": "Lanzamos y acompañamos",
+        "description": "Lo ponemos en producción, te capacitamos y quedamos disponibles. No desaparecemos cuando el proyecto termina — eso es lo que nos diferencia.",
+        "timeframe": "Siempre"
+      }
+    }
+  },
+  "whyUs": {
+    "badge": "Por qué BApps",
+    "title": "Por qué elegirnos",
+    "subtitle": "No somos la opción más barata. Somos la más confiable.",
+    "disclaimer": "Cada proyecto que tomamos tiene el compromiso total del equipo, de principio a fin.",
+    "reasons": {
+      "dedicated": {
+        "title": "Un equipo, no un freelancer",
+        "description": "Siempre hay alguien disponible. Nunca dependés de una sola persona que puede desaparecer o tener otra prioridad."
+      },
+      "ownCode": {
+        "title": "Código propio, sin subcontratos",
+        "description": "El equipo que cotiza es el que construye. Sin terceros ocultos, sin sorpresas de calidad a mitad de camino."
+      },
+      "response": {
+        "title": "Respuesta en menos de 24hs",
+        "description": "Siempre. Una duda, un bug, un cambio urgente — alguien del equipo te responde ese mismo día."
+      },
+      "transparent": {
+        "title": "Precios sin letra chica",
+        "description": "Presupuesto claro desde el día 1. Si algo cambia, te avisamos antes — nunca después de haberlo hecho."
+      },
+      "selective": {
+        "title": "Elegimos bien lo que tomamos",
+        "description": "No aceptamos todo. Si un proyecto no es para nosotros, te lo decimos con honestidad y te orientamos."
+      },
+      "partnership": {
+        "title": "Tu éxito es nuestro portafolio",
+        "description": "Cada proyecto entregado es nuestra mejor publicidad. Tenemos todos los incentivos para que te vaya bien."
+      }
+    }
+  },
+  "contact": {
+    "title": "Cotizá tu proyecto",
+    "subtitle": "Contanos sobre tu idea y te respondemos en menos de 24hs.",
+    "steps": {
+      "projectType": "Tipo de proyecto",
+      "details": "Detalles",
+      "timeline": "Timeline y presupuesto",
+      "contactInfo": "Tus datos"
+    },
+    "fields": {
+      "name": "Nombre completo",
+      "email": "Email",
+      "phone": "Teléfono",
+      "company": "Empresa (opcional)",
+      "description": "Descripción del proyecto",
+      "features": "Funcionalidades deseadas",
+      "reference": "Referencia de diseño (URL opcional)",
+      "timeline": "¿Cuándo lo necesitás?",
+      "budget": "Presupuesto estimado"
+    },
+    "projectTypes": {
+      "webapp": "Aplicación Web",
+      "mobile": "App Móvil",
+      "landing": "Landing Page",
+      "ecommerce": "E-Commerce",
+      "other": "Otro"
+    },
+    "timelineOptions": {
+      "urgent": "Lo antes posible",
+      "1month": "1 mes",
+      "3months": "1-3 meses",
+      "flexible": "Sin apuro"
+    },
+    "budgetOptions": {
+      "small": "Hasta $500 USD",
+      "medium": "$500 - $2.000 USD",
+      "large": "$2.000 - $5.000 USD",
+      "enterprise": "Más de $5.000 USD",
+      "unknown": "No estoy seguro"
+    },
+    "submit": "Enviar cotización",
+    "success": "¡Mensaje enviado! Te contactaremos pronto.",
+    "error": "No pudimos enviar tu mensaje. Intentá nuevamente en unos minutos.",
+    "next": "Siguiente",
+    "back": "Anterior"
+  },
+  "footer": {
+    "tagline": "Transformamos ideas en experiencias digitales.",
+    "rights": "Todos los derechos reservados.",
+    "links": {
+      "privacy": "Privacidad",
+      "terms": "Términos"
+    }
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "subtitle": "404",
+    "description": "Parece que este cohete se perdió en el espacio.",
+    "backHome": "Volver al inicio"
+  }
+}
