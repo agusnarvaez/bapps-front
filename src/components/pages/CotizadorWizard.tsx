@@ -216,10 +216,10 @@ export default function CotizadorWizard() {
 
   return (
     <section className="relative min-h-screen pt-32 pb-24">
-      {/* Background astronaut */}
+      {/* Background hero image */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <Image
-          src="/images/home-background-astronaut.jpg"
+          src="/images/home-background-hero.jpg"
           alt=""
           fill
           className="object-cover opacity-[0.03]"

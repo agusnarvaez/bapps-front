@@ -1,22 +1,31 @@
 # CLAUDE.md
 
-## Project Snapshot
+## Snapshot
 
-`bapps-front` is a small Astro marketing site for Bapps. It currently exposes a home page and a contact page and relies on Astro components plus static assets.
+`bapps-front` es el frontend principal de Bapps y hoy corre sobre React + TypeScript + Vite.
 
 ## Stack
 
-- React.ts
+- React 19
 - TypeScript
-- Static-site build
+- Vite
+- Tailwind CSS 4
+- Framer Motion
+- next-intl con adaptaciones locales
+- Sanity
+- Vitest
 
-## Important Paths
+## Paths importantes
 
-- `src/pages/` routes and page entrypoints
-- `src/components/Home/` home-specific sections
-- `src/components/Header/` and `src/components/Footer/` layout-level UI
-- `src/layouts/Layout.astro` shared page shell
-- `public/` static public assets
+- `src/App.tsx`: shell principal y resolucion de rutas
+- `src/main.tsx`: bootstrap de la aplicacion
+- `src/pages/`: paginas React por vista
+- `src/components/layout/`: header, footer y selector de idioma
+- `src/components/pages/`: flujos de pagina complejos como el cotizador
+- `src/components/sections/`: bloques de la home
+- `src/lib/i18n/`: configuracion y mensajes
+- `src/lib/sanity/`: cliente, queries y mapeos de contenido
+- `src/__tests__/`: tests unitarios e integraciones
 
 ## Commands
 
@@ -24,18 +33,18 @@
 npm install
 npm run dev
 npm run build
-npm run preview
+npm run test
 ```
 
-## Working Rules
+## Reglas de trabajo
 
-- Preserve the current route structure unless there is a clear product reason to change it.
-- Keep imports case-accurate with the actual filenames so CI works on Linux.
-- Favor simple Astro components over introducing unnecessary client-side complexity.
-- Treat this repo as a marketing frontend, not as a place for business workflows or API logic.
+- No reintroducir archivos, dependencias ni documentacion del stack anterior.
+- Mantener las rutas localizadas consistentes con `src/App.tsx` y `src/lib/router.ts`.
+- Si cambia el modelo de contenido, actualizar queries, mapeos y tests relacionados.
+- Si se toca el cotizador, validar el contrato con la mailing API.
 
-## Suggested Next Improvements
+## Mejoras sugeridas
 
-1. Add automated tests for the main routes and critical content blocks.
-2. Add a content checklist for copy, SEO metadata, and accessibility.
-3. Introduce a design token layer if the marketing site grows beyond its current scope.
+1. Agregar cobertura para las rutas completas con locales.
+2. Revisar el tamano del bundle de produccion y dividir modulos pesados si hace falta.
+3. Consolidar la documentacion de variables publicas con ejemplos de `.env`.

@@ -1,91 +1,93 @@
 # bapps-front
 
-Este repositorio alberga el codigo fuente del frontend para nuestro negocio de servicios de paginas web. Nuestra mision es crear experiencias web excepcionales que cautiven a nuestros clientes y optimicen su presencia en linea.
-
-## Scripts
-
-- `npm run dev`: levanta la app en modo desarrollo con Vite.
-- `npm run build`: genera build estatico en `dist/`.
-- `npm run preview`: previsualiza localmente el build generado.
-
-## Variables de entorno publicas
-
-- `NEXT_PUBLIC_SHOW_TEAM_PHOTOS`: controla si la seccion de equipo muestra fotos reales (`true`) o placeholders con iniciales (`false`).
-- Valor por defecto: `true` si la variable no esta definida.
-- Ejemplo local: `NEXT_PUBLIC_SHOW_TEAM_PHOTOS=false` en `.env.local`.
-- Ejemplo de produccion: definir `NEXT_PUBLIC_SHOW_TEAM_PHOTOS=false` en el entorno del deploy para ocultar rostros sin tocar codigo.
+Frontend institucional de Bapps construido con React, TypeScript y Vite.
 
 [![Build](https://github.com/agusnarvaez/bapps-front/actions/workflows/build.yml/badge.svg)](https://github.com/agusnarvaez/bapps-front/actions/workflows/build.yml)
 [![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
-[![Astro](https://img.shields.io/badge/Astro-3.x-FF5D01?logo=astro&logoColor=white)](https://astro.build/)
-[![Coverage](https://img.shields.io/badge/Coverage-pending-lightgrey)](#quality)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
 
-Marketing website for Bapps, focused on presenting web development services with a simple routing structure.
+## Resumen
 
-Sitio institucional de Bapps, orientado a presentar servicios de desarrollo web con una estructura de rutas simple.
-
-## Overview
-
-### ES
-
-Este proyecto contiene el frontend del sitio de Bapps. Hoy incluye una home principal y una pagina de contacto, con componentes Astro reutilizables y assets estaticos.
-
-### EN
-
-This project contains the frontend for the Bapps website. It currently includes a main landing page and a contact page, with reusable Astro components and static assets.
+La app resuelve el sitio principal de Bapps con soporte multi-idioma, secciones de presentacion, proyectos, detalle de proyecto y un flujo de contacto con cotizador.
 
 ## Stack
 
-- Astro 3
+- React 19
 - TypeScript
-- Static assets served from `public/` and `src/assets/`
-- GitHub Actions for build validation
+- Vite
+- Tailwind CSS 4
+- Framer Motion
+- next-intl con shims de cliente
+- Sanity para contenido
+- Vitest para testing
 
-## Getting Started
-
-```bash
-npm install
-npm run dev
-```
-
-The local development server runs on Astro's default port and supports live reload.
-
-## Available Scripts
+## Scripts
 
 ```bash
 npm run dev
-npm run start
 npm run build
 npm run preview
+npm run lint
+npm run test
+npm run test:watch
 ```
 
-## Project Structure
+## Rutas principales
+
+- `/:locale/`
+- `/:locale/projects`
+- `/:locale/projects/:slug`
+- `/:locale/contact`
+
+Locales soportados:
+
+- `es`
+- `en`
+
+## Variables publicas
+
+- `NEXT_PUBLIC_SHOW_TEAM_PHOTOS`
+- `NEXT_PUBLIC_MAILING_API_URL`
+- `NEXT_PUBLIC_SANITY_PROJECT_ID`
+- `NEXT_PUBLIC_SANITY_DATASET`
+- `NEXT_PUBLIC_SANITY_API_VERSION`
+- `NEXT_PUBLIC_SANITY_USE_CDN`
+
+## Estructura
 
 ```text
 src/
-  assets/
   components/
-    Footer/
-    Header/
-    Home/
-  layouts/
+    animations/
+    layout/
+    pages/
+    sections/
+    seo/
+    ui/
+  lib/
+    config/
+    data/
+    i18n/
+    sanity/
+    seo/
+  messages/
   pages/
-    index.astro
-    contacto.astro
-public/
+  shims/
 ```
 
-## Quality
+## Calidad
 
-- GitHub Actions validates the production build on every push to `main`, `dev`, and every pull request.
-- A case-sensitive import mismatch was corrected so the project can build reliably on Linux runners.
-- Coverage is still pending and should be added when the project gets its first automated test suite.
+- El workflow de GitHub Actions ejecuta instalacion y build.
+- El repo ya no depende del stack anterior y no conserva archivos legacy de ese setup.
+- Hay cobertura unitaria e integraciones con Vitest en `src/__tests__/`.
 
-## Notes
+## Notas
 
-- Keep component imports aligned with the real file casing. Linux-based CI is stricter than the local Windows environment.
-- Prefer keeping this repo focused on static marketing content, leaving application logic outside of the Astro frontend.
+- El enrutado se resuelve desde `src/App.tsx`.
+- La app usa componentes y utilidades compatibles con un runtime cliente basado en Vite.
+- Si se cambia contenido o estructura de proyectos, revisar tambien `src/lib/data/` y `src/lib/sanity/`.
 
-## License
+## Licencia
 
-MIT. See [LICENSE](./LICENSE).
+MIT. Ver [LICENSE](./LICENSE).
