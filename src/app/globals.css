@@ -1,7 +1,10 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&display=swap");
 
 /* ===== BApps Design Tokens ===== */
 :root {
+  --font-commissioner: "Commissioner";
+
   /* Brand Colors */
   --bapps-purple: #AD60E1;
   --bapps-purple-light: #C98DF0;

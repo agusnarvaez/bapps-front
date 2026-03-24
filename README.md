@@ -2,6 +2,12 @@
 
 Este repositorio alberga el codigo fuente del frontend para nuestro negocio de servicios de paginas web. Nuestra mision es crear experiencias web excepcionales que cautiven a nuestros clientes y optimicen su presencia en linea.
 
+## Scripts
+
+- `npm run dev`: levanta la app en modo desarrollo con Vite.
+- `npm run build`: genera build estatico en `dist/`.
+- `npm run preview`: previsualiza localmente el build generado.
+
 ## Variables de entorno publicas
 
 - `NEXT_PUBLIC_SHOW_TEAM_PHOTOS`: controla si la seccion de equipo muestra fotos reales (`true`) o placeholders con iniciales (`false`).

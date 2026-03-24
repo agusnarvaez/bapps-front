@@ -1,24 +1,45 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useInView } from "@/hooks/useInView";
 import type { Project } from "@/lib/data/types";
 import ProjectImage from "@/components/ui/ProjectImage";
+import { getFeaturedProjectsLive } from "@/lib/sanity/live";
 
 export default function ProjectsSection({
   featuredProjects = [],
+  locale,
 }: {
   featuredProjects?: Project[];
+  locale: "es" | "en";
 }) {
   const t = useTranslations("projects");
-  const locale = useLocale();
   const { ref: headerRef, inView } = useInView({ threshold: 0.2 });
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [projects, setProjects] = useState(featuredProjects);
 
   const { scrollXProgress } = useScroll({ container: scrollContainerRef });
   const progressWidth = useTransform(scrollXProgress, [0, 1], ["0%", "100%"]);
+
+  useEffect(() => {
+    setProjects(featuredProjects);
+  }, [featuredProjects]);
+
+  useEffect(() => {
+    let active = true;
+
+    void getFeaturedProjectsLive(locale).then((liveProjects) => {
+      if (active) {
+        setProjects(liveProjects);
+      }
+    });
+
+    return () => {
+      active = false;
+    };
+  }, [locale]);
 
   return (
     <section id="proyectos" className="relative py-32">
@@ -67,7 +88,7 @@ export default function ProjectsSection({
         aria-label="Featured projects carousel"
         tabIndex={0}
       >
-        {featuredProjects.map((project, i) => (
+        {projects.map((project, i) => (
           <motion.article
             key={project.slug}
             initial={{ opacity: 0, y: 40 }}
@@ -135,7 +156,7 @@ export default function ProjectsSection({
           href={`/${locale}/projects`}
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.2 + featuredProjects.length * 0.1, duration: 0.6 }}
+          transition={{ delay: 0.2 + projects.length * 0.1, duration: 0.6 }}
           className="group flex h-[420px] w-[280px] flex-shrink-0 snap-start items-center justify-center rounded-2xl border border-dashed border-border transition-all duration-500 hover:border-bapps-purple/50 hover:bg-background-secondary"
         >
           <div className="text-center">

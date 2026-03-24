@@ -2,7 +2,7 @@
  * Sanity client configuration.
  * Configure when connecting to Sanity.
  *
- * Install: npm install @sanity/client next-sanity @sanity/image-url
+ * Install: npm install @sanity/client @sanity/image-url
  *
  * Required environment variables:
  *   - NEXT_PUBLIC_SANITY_PROJECT_ID
@@ -14,9 +14,10 @@ import { createClient } from "@sanity/client";
 import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
-const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2024-01-01";
+const PUBLIC_ENV = import.meta.env as Record<string, string | undefined>;
+const projectId = PUBLIC_ENV.NEXT_PUBLIC_SANITY_PROJECT_ID;
+const dataset = PUBLIC_ENV.NEXT_PUBLIC_SANITY_DATASET || "production";
+const apiVersion = PUBLIC_ENV.NEXT_PUBLIC_SANITY_API_VERSION || "2024-01-01";
 
 /**
  * Sanity client - only initialized if projectId is configured.
@@ -27,7 +28,7 @@ export const sanityClient = projectId
       projectId,
       dataset,
       apiVersion,
-      useCdn: true,
+      useCdn: false,
     })
   : // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (null as any); // Fallback: will be caught by isSanityConfigured() before use

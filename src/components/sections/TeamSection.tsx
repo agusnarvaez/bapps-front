@@ -54,7 +54,7 @@ export default function TeamSection() {
               className="group relative overflow-hidden rounded-2xl border border-border bg-background-secondary"
             >
               {/* Image */}
-              <div className="relative aspect-[4/5] overflow-hidden">
+              <div className="relative aspect-[4/3] overflow-hidden">
                 {clientConfig.showTeamPhotos && member.image ? (
                   <Image
                     src={member.image}
@@ -83,7 +83,7 @@ export default function TeamSection() {
                     />
                     <div className="absolute inset-0 flex items-center justify-center p-8">
                       <div className="flex h-full w-full items-center justify-center rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-sm">
-                        <span className="font-[family-name:var(--font-display)] text-6xl tracking-[0.2em] text-white sm:text-7xl">
+                        <span className="font-[family-name:var(--font-display)] text-4xl tracking-[0.2em] text-white sm:text-5xl">
                           {getMemberInitials(member.name)}
                         </span>
                       </div>

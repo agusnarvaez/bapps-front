@@ -7,7 +7,7 @@ import ProjectsGrid from "@/components/pages/ProjectsGrid";
 
 describe("ProjectsGrid", () => {
   beforeEach(() => {
-    render(<ProjectsGrid projects={projects} />);
+    render(<ProjectsGrid projects={projects} locale="es" />);
   });
 
   it("renders the title", () => {

@@ -7,6 +7,7 @@ import { z } from "zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { clientConfig } from "@/lib/config/client";
 
 const formSchema = z.object({
   projectType: z.string().min(1),
@@ -24,6 +25,29 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 const TOTAL_STEPS = 4;
+const CONTACT_EMAIL_FROM = "no_reply@bapps.com.ar";
+const CONTACT_EMAIL_TO = "agus.narvaez@outlook.com";
+
+const HTML_ESCAPE_MAP: Record<string, string> = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  "\"": "&quot;",
+  "'": "&#39;",
+};
+
+function escapeHtml(value: string) {
+  return value.replace(/[&<>"']/g, (character) => HTML_ESCAPE_MAP[character]);
+}
+
+function formatOptionalField(value: string | undefined) {
+  const normalizedValue = value?.trim();
+  if (!normalizedValue) {
+    return "-";
+  }
+
+  return normalizedValue;
+}
 
 const projectTypeIcons: Record<string, React.ReactNode> = {
   webapp: (
@@ -58,6 +82,7 @@ export default function CotizadorWizard() {
   const [step, setStep] = useState(1);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const {
     register,
@@ -108,30 +133,80 @@ export default function CotizadorWizard() {
 
   async function onSubmit(data: FormData) {
     setSending(true);
+    setSubmitError(null);
+
     try {
-      // Dynamic import to avoid bundling EmailJS when not needed
-      const emailjs = await import("@emailjs/browser");
-      await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID",
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID",
-        {
-          project_type: data.projectType,
-          description: data.description,
-          features: data.features,
-          reference: data.reference,
-          timeline: data.timeline,
-          budget: data.budget,
-          from_name: data.name,
-          reply_to: data.email,
-          phone: data.phone,
-          company: data.company,
-        },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY"
+      const mailingApiBaseUrl = clientConfig.mailingApiUrl.replace(/\/$/, "");
+      const projectTypeLabel = t(
+        `projectTypes.${data.projectType}` as Parameters<typeof t>[0]
       );
+      const timelineLabel = t(
+        `timelineOptions.${data.timeline}` as Parameters<typeof t>[0]
+      );
+      const budgetLabel = t(
+        `budgetOptions.${data.budget}` as Parameters<typeof t>[0]
+      );
+
+      const normalizedName = data.name.trim();
+      const normalizedEmail = data.email.trim();
+      const normalizedDescription = data.description.trim();
+      const normalizedFeatures = formatOptionalField(data.features);
+      const normalizedReference = formatOptionalField(data.reference);
+      const normalizedPhone = formatOptionalField(data.phone);
+      const normalizedCompany = formatOptionalField(data.company);
+
+      const message = [
+        "Nuevo contacto desde bapps-front",
+        `Nombre: ${normalizedName}`,
+        `Email: ${normalizedEmail}`,
+        `Telefono: ${normalizedPhone}`,
+        `Empresa: ${normalizedCompany}`,
+        `Tipo de proyecto: ${projectTypeLabel}`,
+        `Descripcion: ${normalizedDescription}`,
+        `Funcionalidades deseadas: ${normalizedFeatures}`,
+        `Referencia: ${normalizedReference}`,
+        `Timeline: ${timelineLabel}`,
+        `Presupuesto: ${budgetLabel}`,
+      ].join("\n");
+
+      const html = `
+        <p><strong>Nuevo contacto desde bapps-front</strong></p>
+        <ul>
+          <li><strong>Nombre:</strong> ${escapeHtml(normalizedName)}</li>
+          <li><strong>Email:</strong> ${escapeHtml(normalizedEmail)}</li>
+          <li><strong>Telefono:</strong> ${escapeHtml(normalizedPhone)}</li>
+          <li><strong>Empresa:</strong> ${escapeHtml(normalizedCompany)}</li>
+          <li><strong>Tipo de proyecto:</strong> ${escapeHtml(projectTypeLabel)}</li>
+          <li><strong>Descripcion:</strong> ${escapeHtml(normalizedDescription)}</li>
+          <li><strong>Funcionalidades deseadas:</strong> ${escapeHtml(normalizedFeatures)}</li>
+          <li><strong>Referencia:</strong> ${escapeHtml(normalizedReference)}</li>
+          <li><strong>Timeline:</strong> ${escapeHtml(timelineLabel)}</li>
+          <li><strong>Presupuesto:</strong> ${escapeHtml(budgetLabel)}</li>
+        </ul>
+      `;
+
+      const response = await fetch(`${mailingApiBaseUrl}/mail/send`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: CONTACT_EMAIL_FROM,
+          to: CONTACT_EMAIL_TO,
+          subject: `Nuevo contacto web - ${normalizedName}`,
+          message,
+          html,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Mailing API responded with status ${response.status}`);
+      }
+
       setSent(true);
-    } catch {
-      // Fallback: still show success for demo/MVP
-      setSent(true);
+    } catch (error) {
+      console.error("Contact form send failed", error);
+      setSubmitError(t("error"));
     } finally {
       setSending(false);
     }
@@ -508,6 +583,12 @@ export default function CotizadorWizard() {
                   </button>
                 )}
               </div>
+
+              {submitError ? (
+                <p role="alert" className="mt-4 text-sm font-medium text-red-400">
+                  {submitError}
+                </p>
+              ) : null}
             </div>
           </form>
         )}

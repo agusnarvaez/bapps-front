@@ -36,7 +36,7 @@ describe("TeamSection", () => {
     team.forEach((member) => {
       expect(screen.getByAltText(member.name)).toBeInTheDocument();
       expect(screen.getByText(member.name)).toBeInTheDocument();
-      expect(screen.getByText(member.role)).toBeInTheDocument();
+      expect(screen.getAllByText(member.role).length).toBeGreaterThan(0);
       expect(
         screen.getByRole("link", { name: `${member.name} LinkedIn` })
       ).toBeInTheDocument();
@@ -48,14 +48,20 @@ describe("TeamSection", () => {
     const { container } = render(<TeamSection />);
 
     expect(container.querySelectorAll("img")).toHaveLength(0);
-    expect(screen.getByText("M1")).toBeInTheDocument();
-    expect(screen.getByText("M2")).toBeInTheDocument();
-    expect(screen.getByText("M3")).toBeInTheDocument();
 
     team.forEach((member) => {
+      const initials = member.name
+        .split(/\s+/)
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((part) => part[0])
+        .join("")
+        .toUpperCase();
+
       expect(screen.getByRole("img", { name: member.name })).toBeInTheDocument();
+      expect(screen.getByText(initials)).toBeInTheDocument();
       expect(screen.getByText(member.name)).toBeInTheDocument();
-      expect(screen.getByText(member.role)).toBeInTheDocument();
+      expect(screen.getAllByText(member.role).length).toBeGreaterThan(0);
       expect(
         screen.getByRole("link", { name: `${member.name} LinkedIn` })
       ).toBeInTheDocument();

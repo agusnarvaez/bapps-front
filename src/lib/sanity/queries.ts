@@ -1,6 +1,6 @@
 /**
  * Sanity query functions for projects.
- * Used during build time (generateStaticParams, etc.) and server-side rendering.
+ * Used at build time for static export and metadata generation.
  */
 
 import { sanityClient, isSanityConfigured } from "./client";
@@ -9,50 +9,13 @@ import {
   mapSanityProjectsToProjects,
   sortProjectsByOrder,
 } from "./mappers";
+import {
+  PROJECTS_QUERY,
+  PROJECT_BY_SLUG_QUERY,
+  PROJECT_SLUGS_QUERY,
+} from "./projectQueries";
 import { projects as fallbackProjects } from "@/lib/data";
 import type { SanityProjectDocument, Project } from "@/lib/data/types";
-
-const PROJECTS_QUERY = `
-  *[_type == "project" && defined(publishedAt)] | order(order asc, _createdAt desc) {
-    _id,
-    _createdAt,
-    _updatedAt,
-    _rev,
-    slug,
-    title,
-    description,
-    shortDescription,
-    image,
-    technologies,
-    category,
-    url,
-    testimonial,
-    featured,
-    order,
-    publishedAt,
-  }
-`;
-
-const PROJECT_BY_SLUG_QUERY = `
-  *[_type == "project" && slug.current == $slug && defined(publishedAt)][0] {
-    _id,
-    _createdAt,
-    _updatedAt,
-    _rev,
-    slug,
-    title,
-    description,
-    shortDescription,
-    image,
-    technologies,
-    category,
-    url,
-    testimonial,
-    featured,
-    order,
-    publishedAt,
-  }
-`;
 
 /**
  * Fetch all published projects from Sanity.
@@ -73,7 +36,6 @@ export async function getProjects(locale: "es" | "en"): Promise<Project[]> {
       return fallbackProjects;
     }
     const projects = mapSanityProjectsToProjects(docs, locale);
-    console.log(projects)
     return sortProjectsByOrder(projects);
   } catch (err) {
     console.error("[Sanity] Failed to fetch projects:", err);
@@ -118,8 +80,7 @@ export async function getProjectBySlug(
 }
 
 /**
- * Get all project slugs for generateStaticParams.
- * Used during build to pre-render all project detail pages.
+ * Get all project slugs from Sanity for static export.
  */
 export async function getProjectSlugs(): Promise<string[]> {
   if (!isSanityConfigured()) {
@@ -128,9 +89,7 @@ export async function getProjectSlugs(): Promise<string[]> {
 
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const docs: SanityProjectDocument[] = await (sanityClient as any).fetch(
-      `*[_type == "project" && defined(publishedAt)] { slug }`
-    );
+    const docs: SanityProjectDocument[] = await (sanityClient as any).fetch(PROJECT_SLUGS_QUERY);
     const slugs = docs
       .map((d) => d.slug?.current)
       .filter((slug): slug is string => !!slug);

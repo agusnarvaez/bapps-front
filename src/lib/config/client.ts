@@ -1,5 +1,23 @@
 const TRUTHY_ENV_VALUES = new Set(["1", "true", "yes", "on"]);
 const FALSY_ENV_VALUES = new Set(["0", "false", "no", "off"]);
+const PUBLIC_ENV = import.meta.env as Record<string, string | undefined>;
+
+function readPublicStringEnv(
+  value: string | undefined,
+  defaultValue: string
+) {
+  if (!value) {
+    return defaultValue;
+  }
+
+  const normalizedValue = value.trim();
+
+  if (!normalizedValue) {
+    return defaultValue;
+  }
+
+  return normalizedValue;
+}
 
 function readPublicBooleanEnv(
   value: string | undefined,
@@ -23,8 +41,9 @@ function readPublicBooleanEnv(
 }
 
 export const clientConfig = {
-  showTeamPhotos: readPublicBooleanEnv(
-    process.env.NEXT_PUBLIC_SHOW_TEAM_PHOTOS,
-    false
+  showTeamPhotos: readPublicBooleanEnv(PUBLIC_ENV.NEXT_PUBLIC_SHOW_TEAM_PHOTOS, false),
+  mailingApiUrl: readPublicStringEnv(
+    PUBLIC_ENV.NEXT_PUBLIC_MAILING_API_URL,
+    "https://mailing-api.fly.dev"
   ),
 } as const;
