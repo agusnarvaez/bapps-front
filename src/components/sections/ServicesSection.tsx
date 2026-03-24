@@ -68,15 +68,6 @@ const serviceIcons: Record<ServiceKey, React.ReactNode> = {
   ),
 };
 
-// Bento layout: 3-col grid, alternating wide/narrow with no row-span
-const bentoClasses = [
-  "md:col-span-2",
-  "md:col-span-1",
-  "md:col-span-1",
-  "md:col-span-2",
-  "md:col-span-1",
-  "md:col-span-2",
-];
 
 export default function ServicesSection() {
   const t = useTranslations("services");
@@ -112,7 +103,7 @@ export default function ServicesSection() {
         </motion.div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {serviceKeys.map((key, i) => {
             const isOpen = openKey === key;
             return (
@@ -121,7 +112,6 @@ export default function ServicesSection() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.1 + i * 0.08, duration: 0.5 }}
-                className={bentoClasses[i]}
               >
                 <TiltCard
                   className={`group relative h-full overflow-hidden rounded-2xl border bg-background-secondary p-8 transition-all duration-500 ${
