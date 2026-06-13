@@ -8,7 +8,9 @@
     "preview": "vite preview",
     "lint": "eslint",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "postbuild": "node scripts/post-build-index.mjs",
+    "index-url": "node scripts/index-url.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -39,12 +41,14 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/three": "^0.183.1",
-    "@vitejs/plugin-react": "^5.1.4",
+    "@vitejs/plugin-react": "^5.2.0",
     "eslint": "^9",
     "eslint-config-next": "15.5.12",
+    "google-auth-library": "^10.7.0",
     "jsdom": "^28.1.0",
     "tailwindcss": "^4",
     "typescript": "^5",
+    "vite": "^6.3.5",
     "vitest": "^4.0.18"
   }
 }

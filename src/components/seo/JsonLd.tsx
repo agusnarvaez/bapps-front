@@ -6,7 +6,7 @@ export default function JsonLd() {
     url: "https://bapps.com.ar",
     logo: "https://bapps.com.ar/images/logo-bapps.png",
     description:
-      "Desarrollamos aplicaciones web, móviles y landing pages a medida. Transformamos ideas en experiencias digitales excepcionales.",
+      "Diseño web y aplicaciones a medida para empresas en Argentina. Asesoramiento real, código propio, respuesta en 24hs.",
     sameAs: [
       "https://instagram.com/bapps",
       "https://linkedin.com/company/bapps",

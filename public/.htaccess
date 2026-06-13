@@ -8,11 +8,15 @@ DirectoryIndex index.html
   RewriteCond %{HTTPS} !=on
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # Serve static files as-is
+  # Redirect root to Spanish version
+  RewriteRule ^$ /es/ [R=301,L]
+  RewriteRule ^index\.html$ /es/ [R=301,L]
+
+  # Serve static files and directories as-is
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # SPA fallback
-  RewriteRule ^ index.html [L]
+  # SPA fallback — all routes handled by React Router
+  RewriteRule ^ /index.html [L]
 </IfModule>

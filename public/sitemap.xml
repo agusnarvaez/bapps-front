@@ -4,6 +4,7 @@
   <!-- Home ES -->
   <url>
     <loc>https://bapps.com.ar/es/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/" />
     <changefreq>weekly</changefreq>
@@ -12,14 +13,16 @@
   <!-- Home EN -->
   <url>
     <loc>https://bapps.com.ar/en/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/" />
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.9</priority>
   </url>
   <!-- Projects ES -->
   <url>
     <loc>https://bapps.com.ar/es/projects/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/projects/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/" />
     <changefreq>weekly</changefreq>
@@ -28,14 +31,16 @@
   <!-- Projects EN -->
   <url>
     <loc>https://bapps.com.ar/en/projects/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/projects/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/" />
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <!-- Contact ES -->
   <url>
     <loc>https://bapps.com.ar/es/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/contact/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/contact/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/contact/" />
     <changefreq>monthly</changefreq>
@@ -44,84 +49,90 @@
   <!-- Contact EN -->
   <url>
     <loc>https://bapps.com.ar/en/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/contact/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/contact/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/contact/" />
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <!-- Project Detail: proyecto-ejemplo-1 -->
-  <url>
-    <loc>https://bapps.com.ar/es/projects/proyecto-ejemplo-1/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-1/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-1/" />
-    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <!-- Service: Diseño Web -->
   <url>
-    <loc>https://bapps.com.ar/en/projects/proyecto-ejemplo-1/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-1/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-1/" />
+    <loc>https://bapps.com.ar/es/servicios/diseno-web/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/servicios/diseno-web/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/servicios/diseno-web/" />
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.9</priority>
   </url>
-  <!-- Project Detail: proyecto-ejemplo-2 -->
+  <!-- Service: Landing Pages -->
   <url>
-    <loc>https://bapps.com.ar/es/projects/proyecto-ejemplo-2/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-2/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-2/" />
+    <loc>https://bapps.com.ar/es/servicios/landing-pages/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/servicios/landing-pages/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/servicios/landing-pages/" />
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.9</priority>
   </url>
+  <!-- Service: Aplicaciones a Medida -->
   <url>
-    <loc>https://bapps.com.ar/en/projects/proyecto-ejemplo-2/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-2/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-2/" />
+    <loc>https://bapps.com.ar/es/servicios/aplicaciones-a-medida/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/servicios/aplicaciones-a-medida/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/servicios/aplicaciones-a-medida/" />
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.9</priority>
   </url>
-  <!-- Project Detail: proyecto-ejemplo-3 -->
+  <!-- Service: E-Commerce -->
   <url>
-    <loc>https://bapps.com.ar/es/projects/proyecto-ejemplo-3/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-3/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-3/" />
+    <loc>https://bapps.com.ar/es/servicios/ecommerce/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/servicios/ecommerce/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/servicios/ecommerce/" />
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.9</priority>
   </url>
+  <!-- Service: Apps Móviles -->
   <url>
-    <loc>https://bapps.com.ar/en/projects/proyecto-ejemplo-3/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-3/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-3/" />
+    <loc>https://bapps.com.ar/es/servicios/apps-moviles/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/servicios/apps-moviles/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/servicios/apps-moviles/" />
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.9</priority>
   </url>
-  <!-- Project Detail: proyecto-ejemplo-4 -->
+  <!-- Service: Consultoría -->
   <url>
-    <loc>https://bapps.com.ar/es/projects/proyecto-ejemplo-4/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-4/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-4/" />
+    <loc>https://bapps.com.ar/es/servicios/consultoria/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/servicios/consultoria/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/servicios/consultoria/" />
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
+  <!-- Blog index -->
   <url>
-    <loc>https://bapps.com.ar/en/projects/proyecto-ejemplo-4/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-4/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-4/" />
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://bapps.com.ar/es/blog/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/blog/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/blog/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
-  <!-- Project Detail: proyecto-ejemplo-5 -->
+  <!-- Blog: Cuánto cuesta una página web Argentina 2026 -->
   <url>
-    <loc>https://bapps.com.ar/es/projects/proyecto-ejemplo-5/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-5/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-5/" />
+    <loc>https://bapps.com.ar/es/blog/cuanto-cuesta-pagina-web-argentina-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/blog/cuanto-cuesta-pagina-web-argentina-2026/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/blog/cuanto-cuesta-pagina-web-argentina-2026/" />
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
+  <!-- Blog: Por qué tu negocio pierde clientes mientras dormís -->
   <url>
-    <loc>https://bapps.com.ar/en/projects/proyecto-ejemplo-5/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/projects/proyecto-ejemplo-5/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://bapps.com.ar/en/projects/proyecto-ejemplo-5/" />
+    <loc>https://bapps.com.ar/es/blog/por-que-tu-negocio-pierde-clientes-mientras-dormis/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/blog/por-que-tu-negocio-pierde-clientes-mientras-dormis/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/blog/por-que-tu-negocio-pierde-clientes-mientras-dormis/" />
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
+  </url>
+  <!-- Blog: Cómo saber cuánto vendió tu negocio hoy sin estar presente -->
+  <url>
+    <loc>https://bapps.com.ar/es/blog/como-saber-cuanto-vendio-tu-negocio-hoy-sin-estar-presente/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/blog/como-saber-cuanto-vendio-tu-negocio-hoy-sin-estar-presente/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/blog/como-saber-cuanto-vendio-tu-negocio-hoy-sin-estar-presente/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

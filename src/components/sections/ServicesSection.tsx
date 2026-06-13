@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useInView } from "@/hooks/useInView";
 import TiltCard from "@/components/ui/TiltCard";
+import { navigateTo } from "@/lib/router";
 
 const serviceKeys = [
   "webApps",
@@ -14,6 +15,15 @@ const serviceKeys = [
   "uiux",
   "consulting",
 ] as const;
+
+const servicePageSlugs: Partial<Record<ServiceKey, string>> = {
+  webApps: "aplicaciones-a-medida",
+  mobileApps: "apps-moviles",
+  landingPages: "landing-pages",
+  ecommerce: "ecommerce",
+  uiux: "diseno-web",
+  consulting: "consultoria",
+};
 
 type ServiceKey = (typeof serviceKeys)[number];
 
@@ -71,6 +81,7 @@ const serviceIcons: Record<ServiceKey, React.ReactNode> = {
 
 export default function ServicesSection() {
   const t = useTranslations("services");
+  const locale = useLocale();
   const { ref, inView } = useInView({ threshold: 0.1 });
   const [openKey, setOpenKey] = useState<ServiceKey | null>(null);
 
@@ -165,22 +176,35 @@ export default function ServicesSection() {
                       )}
                     </AnimatePresence>
 
-                    {/* Toggle button */}
-                    <button
-                      onClick={() => toggle(key)}
-                      className="mt-5 flex items-center gap-1.5 self-start text-xs font-medium text-foreground-muted transition-colors hover:text-bapps-purple-light"
-                    >
-                      <motion.span
-                        animate={{ rotate: isOpen ? 180 : 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="inline-block"
+                    {/* Toggle + Ver más */}
+                    <div className="mt-5 flex items-center gap-4">
+                      <button
+                        onClick={() => toggle(key)}
+                        className="flex items-center gap-1.5 text-xs font-medium text-foreground-muted transition-colors hover:text-bapps-purple-light"
                       >
-                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" className="h-3.5 w-3.5">
-                          <path d="M3 6l5 5 5-5" />
-                        </svg>
-                      </motion.span>
-                      {isOpen ? t("collapse") : t("expand")}
-                    </button>
+                        <motion.span
+                          animate={{ rotate: isOpen ? 180 : 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="inline-block"
+                        >
+                          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" className="h-3.5 w-3.5">
+                            <path d="M3 6l5 5 5-5" />
+                          </svg>
+                        </motion.span>
+                        {isOpen ? t("collapse") : t("expand")}
+                      </button>
+                      {servicePageSlugs[key] && (
+                        <button
+                          onClick={() => navigateTo(`/${locale}/servicios/${servicePageSlugs[key]}/`)}
+                          className="flex items-center gap-1 text-xs font-medium text-bapps-purple-light transition-colors hover:text-bapps-purple"
+                        >
+                          Ver más
+                          <svg viewBox="0 0 16 16" fill="none" className="h-3 w-3">
+                            <path d="M8 3l5 5-5 5M3 8h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </TiltCard>
               </motion.div>

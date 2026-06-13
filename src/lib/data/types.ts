@@ -71,3 +71,36 @@ export interface Service {
   key: string;
   icon: string;
 }
+
+export interface BlogPost {
+  _id?: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  content: any[];
+  coverImage?: string;
+  publishedAt: string;
+  readTime?: number;
+  tags?: string[];
+  metaDescription?: string;
+}
+
+export interface SanityBlogDocument {
+  _id: string;
+  _createdAt: string;
+  slug?: { current: string };
+  title?: string;
+  excerpt?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  content?: any[];
+  coverImage?: {
+    asset: { _ref: string; _type: "reference" };
+    crop?: Record<string, unknown>;
+    hotspot?: Record<string, unknown>;
+  };
+  publishedAt?: string;
+  readTime?: number;
+  tags?: string[];
+  metaDescription?: string;
+}

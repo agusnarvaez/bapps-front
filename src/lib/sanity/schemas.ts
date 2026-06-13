@@ -170,4 +170,103 @@ export const testimonialSchema = {
   ],
 };
 
-export const schemas = [projectSchema, teamMemberSchema, testimonialSchema];
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export const blogPostSchema = {
+  name: "blogPost",
+  title: "Blog Post",
+  type: "document",
+  fields: [
+    {
+      name: "title",
+      title: "Título",
+      type: "string",
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: { source: "title", maxLength: 96 },
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: "excerpt",
+      title: "Extracto",
+      type: "text",
+      description: "Resumen breve (150-160 chars). Aparece en listados y como meta description si no se define una específica.",
+      validation: (Rule: any) => Rule.required().max(200),
+    },
+    {
+      name: "metaDescription",
+      title: "Meta Description SEO",
+      type: "string",
+      description: "Opcional. Si se deja vacío, se usa el extracto.",
+      validation: (Rule: any) => Rule.max(160),
+    },
+    {
+      name: "coverImage",
+      title: "Imagen de portada",
+      type: "image",
+      options: { hotspot: true },
+    },
+    {
+      name: "content",
+      title: "Contenido",
+      type: "array",
+      of: [
+        {
+          type: "block",
+          styles: [
+            { title: "Normal", value: "normal" },
+            { title: "H2", value: "h2" },
+            { title: "H3", value: "h3" },
+            { title: "Cita", value: "blockquote" },
+          ],
+          marks: {
+            decorators: [
+              { title: "Negrita", value: "strong" },
+              { title: "Cursiva", value: "em" },
+            ],
+          },
+        },
+        {
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            { name: "alt", title: "Texto alternativo", type: "string" },
+            { name: "caption", title: "Descripción", type: "string" },
+          ],
+        },
+      ],
+    },
+    {
+      name: "publishedAt",
+      title: "Fecha de publicación",
+      type: "datetime",
+      initialValue: () => new Date().toISOString(),
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: "readTime",
+      title: "Tiempo de lectura (min)",
+      type: "number",
+      description: "Minutos estimados. Si se deja vacío se muestra sin tiempo.",
+    },
+    {
+      name: "tags",
+      title: "Tags",
+      type: "array",
+      of: [{ type: "string" }],
+      options: { layout: "tags" },
+    },
+  ],
+  preview: {
+    select: {
+      title: "title",
+      subtitle: "publishedAt",
+      media: "coverImage",
+    },
+  },
+};
+
+export const schemas = [projectSchema, teamMemberSchema, testimonialSchema, blogPostSchema];

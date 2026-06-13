@@ -3,6 +3,7 @@
 import { useRef, useState, useCallback } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { isExternalHref, navigateTo } from "@/lib/router";
 
 interface MagneticButtonProps {
   children: React.ReactNode;
@@ -69,9 +70,13 @@ export default function MagneticButton({
           600
         );
       }
+      if (href && !isExternalHref(href)) {
+        e.preventDefault();
+        navigateTo(href);
+      }
       onClick?.();
     },
-    [ripple, reduced, onClick]
+    [ripple, reduced, onClick, href]
   );
 
   const motionProps = reduced

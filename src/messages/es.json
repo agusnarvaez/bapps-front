@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "BApps | Desarrollo de aplicaciones a medida",
-    "description": "Desarrollamos aplicaciones web, móviles y landing pages a medida. Transformamos ideas en experiencias digitales excepcionales."
+    "title": "BApps | Diseño Web y Apps a Medida en Argentina",
+    "description": "Diseño web y aplicaciones a medida para empresas en Argentina. Asesoramiento real, código propio, respuesta en 24hs. Cotizá gratis."
   },
   "nav": {
     "services": "Servicios",
@@ -9,13 +9,14 @@
     "team": "Equipo",
     "contact": "Contacto",
     "quoteProject": "Hablemos",
-    "process": "Cómo trabajamos"
+    "process": "Cómo trabajamos",
+    "blog": "Blog"
   },
   "hero": {
     "title": "Convertimos ideas en software que vende",
     "highlight": "vende",
-    "subtitle": "Software hecho a tu medida. Un equipo comprometido, un proceso claro, resultados reales.",
-    "badge": "Software a medida · Equipo dedicado",
+    "subtitle": "Diseño web y software a medida para empresas en Argentina. Un equipo comprometido, un proceso claro, resultados reales.",
+    "badge": "Diseño web · Apps a medida · Argentina",
     "cta": "Contanos tu idea",
     "ctaSecondary": "Ver proyectos",
     "navServices": "Servicios",

@@ -11,6 +11,9 @@ import ContactPage from "@/pages/ContactPage";
 import HomePage from "@/pages/HomePage";
 import ProjectDetailPage from "@/pages/ProjectDetailPage";
 import ProjectsPage from "@/pages/ProjectsPage";
+import ServicePage from "@/pages/ServicePage";
+import BlogPage from "@/pages/BlogPage";
+import BlogPostPage from "@/pages/BlogPostPage";
 import { NextIntlClientProvider } from "next-intl";
 import {
   getMessagesForLocale,
@@ -26,7 +29,10 @@ type RouteMatch =
   | { type: "home"; locale: Locale }
   | { type: "projects"; locale: Locale }
   | { type: "project-detail"; locale: Locale; slug: string }
-  | { type: "contact"; locale: Locale };
+  | { type: "contact"; locale: Locale }
+  | { type: "service"; locale: Locale; slug: string }
+  | { type: "blog"; locale: Locale }
+  | { type: "blog-post"; locale: Locale; slug: string };
 
 function trimSlashes(pathname: string) {
   return pathname.replace(/^\/+|\/+$/g, "");
@@ -73,6 +79,18 @@ function matchRoute(pathname: string): RouteMatch {
 
   if (restSegments.length === 1 && restSegments[0] === "contact") {
     return { type: "contact", locale };
+  }
+
+  if (restSegments.length === 2 && restSegments[0] === "servicios" && restSegments[1]) {
+    return { type: "service", locale, slug: restSegments[1] };
+  }
+
+  if (restSegments.length === 1 && restSegments[0] === "blog") {
+    return { type: "blog", locale };
+  }
+
+  if (restSegments.length === 2 && restSegments[0] === "blog" && restSegments[1]) {
+    return { type: "blog-post", locale, slug: restSegments[1] };
   }
 
   return { type: "locale-not-found", locale };
@@ -156,6 +174,30 @@ export default function App() {
     return (
       <LocaleShell locale={route.locale}>
         <ContactPage />
+      </LocaleShell>
+    );
+  }
+
+  if (route.type === "service") {
+    return (
+      <LocaleShell locale={route.locale}>
+        <ServicePage slug={route.slug} />
+      </LocaleShell>
+    );
+  }
+
+  if (route.type === "blog") {
+    return (
+      <LocaleShell locale={route.locale}>
+        <BlogPage />
+      </LocaleShell>
+    );
+  }
+
+  if (route.type === "blog-post") {
+    return (
+      <LocaleShell locale={route.locale}>
+        <BlogPostPage slug={route.slug} />
       </LocaleShell>
     );
   }

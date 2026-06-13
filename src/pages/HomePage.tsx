@@ -28,6 +28,16 @@ export default function HomePage({ locale }: { locale: Locale }) {
   }, [t]);
 
   useEffect(() => {
+    const target = sessionStorage.getItem("scrollTarget");
+    if (!target) return;
+    sessionStorage.removeItem("scrollTarget");
+    const el = document.getElementById(target);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
+  useEffect(() => {
     let active = true;
 
     void getFeaturedProjects(locale).then((fetchedProjects) => {

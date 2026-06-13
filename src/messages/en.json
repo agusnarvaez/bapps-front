@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "BApps | Custom Application Development",
-    "description": "We build custom web apps, mobile apps, and landing pages. Turning ideas into exceptional digital experiences."
+    "title": "BApps | Web Design & Custom App Development in Argentina",
+    "description": "Web design and custom applications for businesses in Argentina. Real consulting, in-house code, 24h response. Get a free quote."
   },
   "nav": {
     "services": "Services",
@@ -9,13 +9,14 @@
     "team": "Team",
     "contact": "Contact",
     "quoteProject": "Let's talk",
-    "process": "How we work"
+    "process": "How we work",
+    "blog": "Blog"
   },
   "hero": {
     "title": "We turn ideas into software that sells",
     "highlight": "sells",
-    "subtitle": "Software built for you. A committed team, a clear process, real results.",
-    "badge": "Custom software · Dedicated team",
+    "subtitle": "Web design and custom software for businesses in Argentina. A committed team, a clear process, real results.",
+    "badge": "Web design · Custom apps · Argentina",
     "cta": "Tell us your idea",
     "ctaSecondary": "View projects",
     "navServices": "Our services",

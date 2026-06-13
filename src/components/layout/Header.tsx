@@ -9,11 +9,12 @@ import { cn } from "@/lib/utils/cn";
 import LanguageToggle from "@/components/layout/LanguageToggle";
 
 const navLinks = [
-  { key: "services", hash: "#servicios", page: null },
-  { key: "process", hash: "#proceso", page: null },
-  { key: "projects", hash: "#proyectos", page: "/projects" },
-  { key: "team", hash: "#equipo", page: null },
-  { key: "contact", hash: "#contacto", page: "/contact" },
+  { key: "services", hash: "#servicios", page: null as string | null, pageOnly: false },
+  { key: "process", hash: "#proceso", page: null as string | null, pageOnly: false },
+  { key: "projects", hash: "#proyectos", page: "/projects", pageOnly: false },
+  { key: "blog", hash: "#blog", page: "/blog", pageOnly: true },
+  { key: "team", hash: "#equipo", page: null as string | null, pageOnly: false },
+  { key: "contact", hash: "#contacto", page: "/contact", pageOnly: false },
 ];
 
 export default function Header() {
@@ -71,15 +72,18 @@ export default function Header() {
           {/* Desktop nav */}
           <nav className="hidden items-center gap-1 md:flex" aria-label="Main navigation">
             {navLinks.map((link) => {
-              const href = isHome
-                ? link.hash
-                : link.page
-                ? `/${locale}${link.page}`
-                : `/${locale}/${link.hash}`;
+              const href =
+                link.pageOnly || (!isHome && link.page)
+                  ? `/${locale}${link.page}`
+                  : isHome
+                  ? link.hash
+                  : link.page
+                  ? `/${locale}${link.page}`
+                  : `/${locale}/${link.hash}`;
               return (
                 <a
                   key={link.key}
-                  href={href}
+                  href={href ?? "#"}
                   className="group relative px-4 py-2 text-sm font-medium text-foreground-muted transition-colors hover:text-foreground"
                 >
                   {t(link.key)}
@@ -149,15 +153,18 @@ export default function Header() {
               aria-label="Mobile navigation"
             >
               {navLinks.map((link, i) => {
-                const href = isHome
-                  ? link.hash
-                  : link.page
-                  ? `/${locale}${link.page}`
-                  : `/${locale}/${link.hash}`;
+                const href =
+                  link.pageOnly || (!isHome && link.page)
+                    ? `/${locale}${link.page}`
+                    : isHome
+                    ? link.hash
+                    : link.page
+                    ? `/${locale}${link.page}`
+                    : `/${locale}/${link.hash}`;
                 return (
                   <motion.a
                     key={link.key}
-                    href={href}
+                    href={href ?? "#"}
                     onClick={() => setMobileOpen(false)}
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
