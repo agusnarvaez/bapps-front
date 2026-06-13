@@ -9,6 +9,8 @@ interface MagneticButtonProps {
   children: React.ReactNode;
   className?: string;
   href?: string;
+  target?: string;
+  rel?: string;
   onClick?: () => void;
   type?: "button" | "submit";
   disabled?: boolean;
@@ -22,6 +24,8 @@ export default function MagneticButton({
   children,
   className = "",
   href,
+  target,
+  rel,
   onClick,
   type = "button",
   disabled = false,
@@ -122,6 +126,8 @@ export default function MagneticButton({
       <motion.a
         ref={ref as React.Ref<HTMLAnchorElement>}
         href={href}
+        target={target}
+        rel={rel}
         className={`group relative inline-flex items-center overflow-hidden ${className}`}
         onClick={handleClick}
         {...motionProps}

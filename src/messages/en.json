@@ -9,6 +9,7 @@
     "team": "Team",
     "contact": "Contact",
     "quoteProject": "Let's talk",
+    "scheduleCall": "Book a call",
     "process": "How we work",
     "blog": "Blog"
   },
@@ -18,6 +19,7 @@
     "subtitle": "Web design and custom software for businesses in Argentina. A committed team, a clear process, real results.",
     "badge": "Web design · Custom apps · Argentina",
     "cta": "Tell us your idea",
+    "ctaSchedule": "Book a free call",
     "ctaSecondary": "View projects",
     "navServices": "Our services",
     "navProcess": "How we work"

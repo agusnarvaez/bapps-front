@@ -103,6 +103,23 @@ export default function HeroSection() {
               </span>
             </MagneticButton>
             <MagneticButton
+              href="https://cal.com/bapps/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-bapps-purple/40 bg-bapps-purple/5 px-8 py-3.5 text-base font-medium text-bapps-purple-light transition-all duration-300 hover:bg-bapps-purple/10 hover:border-bapps-purple/60"
+              ripple={false}
+            >
+              <span className="inline-flex items-center gap-2">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                {t("ctaSchedule")}
+              </span>
+            </MagneticButton>
+            <MagneticButton
               href={`/${locale}/projects`}
               className="rounded-full border border-border px-8 py-3.5 text-base font-medium text-foreground-muted transition-all duration-300 hover:border-bapps-purple/50 hover:text-foreground"
               ripple={false}

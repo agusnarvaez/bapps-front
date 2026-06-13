@@ -94,6 +94,14 @@ export default function Header() {
             <div className="mx-3 h-5 w-px bg-border" />
             <LanguageToggle />
             <a
+              href="https://cal.com/bapps/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-2 rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground-muted transition-all duration-300 hover:border-bapps-purple/50 hover:text-foreground"
+            >
+              {t("scheduleCall")}
+            </a>
+            <a
               href={isHome ? "#contacto" : `/${locale}/contact`}
               className="ml-2 rounded-full bg-bapps-purple px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-bapps-purple-dark hover:shadow-lg hover:shadow-bapps-purple/25"
             >
@@ -183,6 +191,15 @@ export default function Header() {
                 className="mt-6 flex flex-col items-center gap-4"
               >
                 <LanguageToggle />
+                <a
+                  href="https://cal.com/bapps/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileOpen(false)}
+                  className="rounded-full border border-border px-10 py-3 text-lg font-medium text-foreground-muted transition-all hover:border-bapps-purple/50 hover:text-foreground"
+                >
+                  {t("scheduleCall")}
+                </a>
                 <a
                   href={isHome ? "#contacto" : `/${locale}/contact`}
                   onClick={() => setMobileOpen(false)}
