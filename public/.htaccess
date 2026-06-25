@@ -4,19 +4,42 @@ DirectoryIndex index.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # Force HTTPS
+  # 1. Force HTTPS
   RewriteCond %{HTTPS} !=on
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # Redirect root to Spanish version
+  # 2. Force non-www
+  RewriteCond %{HTTP_HOST} ^www\.bapps\.com\.ar$ [NC]
+  RewriteRule ^ https://bapps.com.ar%{REQUEST_URI} [R=301,L]
+
+  # 3. Redirect root to Spanish version
   RewriteRule ^$ /es/ [R=301,L]
   RewriteRule ^index\.html$ /es/ [R=301,L]
 
-  # Serve static files and directories as-is
+  # 4. Serve static files and directories as-is
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # SPA fallback — all routes handled by React Router
+  # 5. SPA fallback — all routes handled by React
   RewriteRule ^ /index.html [L]
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-XSS-Protection "1; mode=block"
+
+  # Cache: assets con hash en el nombre → immutable (1 año)
+  <FilesMatch "\.(js|css|woff2?|ttf|eot|webp|png|jpg|jpeg|gif|ico|svg)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Cache: HTML → revalidar siempre
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
 </IfModule>

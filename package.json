@@ -10,7 +10,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "postbuild": "node scripts/post-build-index.mjs",
-    "index-url": "node scripts/index-url.mjs"
+    "index-url": "node scripts/index-url.mjs",
+    "build:prerender": "pnpm build && node scripts/prerender.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -46,6 +47,7 @@
     "eslint-config-next": "15.5.12",
     "google-auth-library": "^10.7.0",
     "jsdom": "^28.1.0",
+    "puppeteer": "^25.2.1",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vite": "^6.3.5",

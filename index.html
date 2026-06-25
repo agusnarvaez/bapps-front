@@ -10,6 +10,72 @@
     />
     <meta name="theme-color" content="#0A0A0F" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="canonical" href="https://bapps.com.ar/es/" />
+
+    <!-- Google Fonts: preconnect para evitar render-blocking del @import en CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bapps.com.ar/es/" />
+    <meta property="og:site_name" content="BApps" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:title" content="BApps | Diseño Web y Apps a Medida en Argentina" />
+    <meta property="og:description" content="Diseño web y aplicaciones a medida para empresas en Argentina. Asesoramiento real, código propio, respuesta en 24hs. Cotizá gratis." />
+    <meta property="og:image" content="https://bapps.com.ar/images/logo-bapps.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BApps | Diseño Web y Apps a Medida en Argentina" />
+    <meta name="twitter:description" content="Diseño web y aplicaciones a medida para empresas en Argentina. Asesoramiento real, código propio, respuesta en 24hs. Cotizá gratis." />
+    <meta name="twitter:image" content="https://bapps.com.ar/images/logo-bapps.png" />
+
+    <!-- Organization + WebSite JSON-LD (hardcoded: visible a todos los crawlers) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["LocalBusiness", "ProfessionalService"],
+          "@id": "https://bapps.com.ar/#organization",
+          "name": "BApps",
+          "url": "https://bapps.com.ar",
+          "logo": "https://bapps.com.ar/images/logo-bapps.png",
+          "description": "Diseño web y aplicaciones a medida para empresas en Argentina. Asesoramiento real, código propio, respuesta en 24hs.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "AR"
+          },
+          "areaServed": {
+            "@type": "Country",
+            "name": "Argentina"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "sales",
+            "availableLanguage": ["Spanish", "English"]
+          },
+          "sameAs": [
+            "https://instagram.com/bapps",
+            "https://linkedin.com/company/bapps",
+            "https://github.com/bapps"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://bapps.com.ar/#website",
+          "url": "https://bapps.com.ar",
+          "name": "BApps",
+          "description": "Diseño web y aplicaciones a medida para empresas en Argentina.",
+          "publisher": {
+            "@id": "https://bapps.com.ar/#organization"
+          },
+          "inLanguage": ["es", "en"]
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
