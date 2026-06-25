@@ -160,4 +160,13 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- Política de Privacidad -->
+  <url>
+    <loc>https://bapps.com.ar/es/privacidad/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/privacidad/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/privacidad/" />
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>

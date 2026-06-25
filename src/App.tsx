@@ -13,6 +13,7 @@ import ProjectsPage from "@/pages/ProjectsPage";
 import ServicePage from "@/pages/ServicePage";
 import BlogPage from "@/pages/BlogPage";
 import BlogPostPage from "@/pages/BlogPostPage";
+import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
 import { NextIntlClientProvider } from "next-intl";
 import {
   getMessagesForLocale,
@@ -31,7 +32,8 @@ type RouteMatch =
   | { type: "contact"; locale: Locale }
   | { type: "service"; locale: Locale; slug: string }
   | { type: "blog"; locale: Locale }
-  | { type: "blog-post"; locale: Locale; slug: string };
+  | { type: "blog-post"; locale: Locale; slug: string }
+  | { type: "privacy"; locale: Locale };
 
 function trimSlashes(pathname: string) {
   return pathname.replace(/^\/+|\/+$/g, "");
@@ -82,6 +84,10 @@ function matchRoute(pathname: string): RouteMatch {
 
   if (restSegments.length === 2 && restSegments[0] === "servicios" && restSegments[1]) {
     return { type: "service", locale, slug: restSegments[1] };
+  }
+
+  if (restSegments.length === 1 && restSegments[0] === "privacidad") {
+    return { type: "privacy", locale };
   }
 
   if (restSegments.length === 1 && restSegments[0] === "blog") {
@@ -188,6 +194,14 @@ export default function App() {
     return (
       <LocaleShell locale={route.locale}>
         <BlogPage />
+      </LocaleShell>
+    );
+  }
+
+  if (route.type === "privacy") {
+    return (
+      <LocaleShell locale={route.locale}>
+        <PrivacyPolicyPage />
       </LocaleShell>
     );
   }
