@@ -5,7 +5,6 @@ import SmoothScroll from "@/components/animations/SmoothScroll";
 import CustomCursor from "@/components/animations/CustomCursor";
 import PageTransition from "@/components/animations/PageTransition";
 import LoadingScreen from "@/components/animations/LoadingScreen";
-import JsonLd from "@/components/seo/JsonLd";
 import NotFoundContent from "@/components/pages/NotFoundContent";
 import ContactPage from "@/pages/ContactPage";
 import HomePage from "@/pages/HomePage";
@@ -112,7 +111,6 @@ function LocaleShell({
       locale={locale}
       messages={getMessagesForLocale(locale)}
     >
-      <JsonLd />
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-bapps-purple focus:px-6 focus:py-3 focus:text-white focus:outline-none"
