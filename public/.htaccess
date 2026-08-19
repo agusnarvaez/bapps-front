@@ -19,18 +19,39 @@ RedirectMatch 404 ^/(images|assets)/?$
   RewriteCond %{HTTP_HOST} ^www\.bapps\.com\.ar$ [NC]
   RewriteRule ^ https://bapps.com.ar%{REQUEST_URI} [R=301,L]
 
-  # 3. Redirect root to Spanish version
+  # 3. Redirect root to Spanish version.
+  # ponytail: REDIRECT_STATUS is only set when Apache re-enters the rewrite
+  # engine internally (e.g. via ErrorDocument below) — excluding that case
+  # stops a 404's internal /index.html lookup from becoming a 301 to /es/.
+  RewriteCond %{REDIRECT_STATUS} ^$
   RewriteRule ^$ /es/ [R=301,L]
+  RewriteCond %{REDIRECT_STATUS} ^$
   RewriteRule ^index\.html$ /es/ [R=301,L]
 
-  # 4. Serve static files and directories as-is
+  # 4. Serve static files and directories as-is (this is how prerendered
+  # pages — dist/es/blog/<slug>/index.html etc. — get served: real files).
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # 5. SPA fallback — all routes handled by React
-  RewriteRule ^ /index.html [L]
+  # 5. SPA fallback — only for routes the React router actually handles,
+  # and only where no prerendered file exists (rule 4 already caught those).
+  # ponytail: whitelist mirrors matchRoute() in src/App.tsx; keep in sync.
+  RewriteRule ^(es|en)/?$ /index.html [L]
+  # Single-page routes: no sub-slugs, so anything after them is a typo/404.
+  RewriteRule ^(es|en)/(contact|privacidad)/?$ /index.html [L]
+  # Blog/servicios hub indexes only — real posts/services are prerendered
+  # static files (rule 4); an unmatched slug here is a genuine 404, not a
+  # blog post someone forgot to whitelist.
+  RewriteRule ^(es|en)/(blog|servicios)/?$ /index.html [L]
+  # Projects: individual pages are Sanity-driven, not prerendered, so the
+  # slug wildcard is genuinely needed here (client resolves valid vs 404).
+  RewriteRule ^(es|en)/projects(/[^/]+)?/?$ /index.html [L]
+
+  # Anything else under a locale (or with no locale) is a real 404, not the homepage.
 </IfModule>
+
+ErrorDocument 404 /index.html
 
 # Security headers
 <IfModule mod_headers.c>
@@ -39,6 +60,14 @@ RedirectMatch 404 ^/(images|assets)/?$
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-XSS-Protection "1; mode=block"
+  <!-- ponytail: script-src has no 'unsafe-inline' — the only inline
+       <script> tags on the site are type="application/ld+json" (JSON-LD),
+       which isn't executable script and CSP's script-src doesn't govern it.
+       style-src keeps 'unsafe-inline': prerendered HTML bakes Framer
+       Motion's initial state as literal style="" attributes, and
+       ProjectImage's fill mode depends on an inline style for layout. -->
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.sanity.io https://mailing-api.fly.dev; frame-ancestors 'none'"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
 
   # Cache: assets con hash en el nombre → immutable (1 año)
   <FilesMatch "\.(js|css|woff2?|ttf|eot|webp|png|jpg|jpeg|gif|ico|svg)$">

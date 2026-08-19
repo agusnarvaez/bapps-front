@@ -177,3 +177,12 @@ build-output.txt
 # Google service account keys — NEVER commit
 *-service-account.json
 bapps-*.json
+
+# Agency lead-gen outputs (PII de negocios — NEVER commit)
+/scripts/agency/leads.json
+/scripts/agency/state.json
+/scripts/agency/out/
+/scripts/agency/queue.html
+
+# Local Search Console exports
+/informes/

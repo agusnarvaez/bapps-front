@@ -61,6 +61,15 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <!-- Services hub -->
+  <url>
+    <loc>https://bapps.com.ar/es/servicios/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/servicios/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/servicios/" />
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
   <!-- Service: Diseño Web -->
   <url>
     <loc>https://bapps.com.ar/es/servicios/diseno-web/</loc>
@@ -133,33 +142,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Blog: Por qué tu negocio pierde clientes mientras dormís -->
-  <url>
-    <loc>https://bapps.com.ar/es/blog/por-que-tu-negocio-pierde-clientes-mientras-dormis/</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/blog/por-que-tu-negocio-pierde-clientes-mientras-dormis/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/blog/por-que-tu-negocio-pierde-clientes-mientras-dormis/" />
-    <lastmod>2026-05-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <!-- Blog: Cómo saber cuánto vendió tu negocio hoy sin estar presente -->
-  <url>
-    <loc>https://bapps.com.ar/es/blog/como-saber-cuanto-vendio-tu-negocio-hoy-sin-estar-presente/</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/blog/como-saber-cuanto-vendio-tu-negocio-hoy-sin-estar-presente/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/blog/como-saber-cuanto-vendio-tu-negocio-hoy-sin-estar-presente/" />
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <!-- Blog: Tu negocio no aparece en Google -->
-  <url>
-    <loc>https://bapps.com.ar/es/blog/negocio-no-aparece-en-google-clientes-perdidos/</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/blog/negocio-no-aparece-en-google-clientes-perdidos/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/blog/negocio-no-aparece-en-google-clientes-perdidos/" />
-    <lastmod>2026-06-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <!-- ponytail: the 10 other blog URLs that used to be here don't exist in
+       Sanity yet — they were prerendering to the 404 page (HTTP 200, wrong
+       content) and Google was indexing 404s as if they were real posts.
+       Add each one back once it's actually published. -->
   <!-- Política de Privacidad -->
   <url>
     <loc>https://bapps.com.ar/es/privacidad/</loc>

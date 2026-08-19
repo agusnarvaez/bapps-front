@@ -27,7 +27,6 @@ describe("Footer", () => {
   it("renders social links with aria-labels", () => {
     expect(screen.getByLabelText("Instagram")).toBeInTheDocument();
     expect(screen.getByLabelText("LinkedIn")).toBeInTheDocument();
-    expect(screen.getByLabelText("GitHub")).toBeInTheDocument();
   });
 
   it("social links open in new tab", () => {
@@ -41,8 +40,7 @@ describe("Footer", () => {
     expect(screen.getByText(new RegExp(`© ${year} BApps`))).toBeInTheDocument();
   });
 
-  it("renders privacy and terms links", () => {
+  it("renders privacy link", () => {
     expect(screen.getByText("footer.links.privacy")).toBeInTheDocument();
-    expect(screen.getByText("footer.links.terms")).toBeInTheDocument();
   });
 });

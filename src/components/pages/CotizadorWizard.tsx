@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -49,6 +49,21 @@ function formatOptionalField(value: string | undefined) {
   return normalizedValue;
 }
 
+/** Read + sanitize ?name= from the URL for the personalized greeting. */
+function readNameParam(): string | null {
+  if (typeof window === "undefined") return null;
+  const raw = new URLSearchParams(window.location.search).get("name");
+  if (!raw) return null;
+  const clean = raw
+    .normalize("NFC")
+    .replace(/[^\p{L}\s'-]/gu, "") // letters, spaces, ' and - only
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 40);
+  if (!clean) return null;
+  return clean.replace(/(^|\s)\p{L}/gu, (c) => c.toUpperCase()); // Title Case
+}
+
 const projectTypeIcons: Record<string, React.ReactNode> = {
   webapp: (
     <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -79,6 +94,7 @@ const projectTypeIcons: Record<string, React.ReactNode> = {
 
 export default function CotizadorWizard() {
   const t = useTranslations("contact");
+  const personalizedName = useMemo(readNameParam, []);
   const [step, setStep] = useState(1);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
@@ -100,7 +116,7 @@ export default function CotizadorWizard() {
       reference: "",
       timeline: "",
       budget: "",
-      name: "",
+      name: personalizedName ?? "",
       email: "",
       phone: "",
       company: "",
@@ -237,9 +253,11 @@ export default function CotizadorWizard() {
           className="text-center"
         >
           <h1 className="font-[family-name:var(--font-display)] text-5xl tracking-tight sm:text-6xl">
-            {t("title")}
+            {personalizedName ? `${t("greetingHi")}, ${personalizedName} 👋` : t("title")}
           </h1>
-          <p className="mt-4 text-lg text-foreground-muted">{t("subtitle")}</p>
+          <p className="mt-4 text-lg text-foreground-muted">
+            {personalizedName ? t("greetingSubtitle") : t("subtitle")}
+          </p>
         </motion.div>
 
         {/* Step indicator */}

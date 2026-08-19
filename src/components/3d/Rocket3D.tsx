@@ -1,10 +1,17 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, MeshDistortMaterial } from "@react-three/drei";
 import * as THREE from "three";
 
+// ponytail: PSI measured 19.5s of blocking time from this scene alone —
+// it was 6 lights x ~10 meshes of PBR shading, plus 30 instanced stars
+// recalculated every frame, forever. Tried frameloop="demand" first but it
+// broke the canvas's auto-resize (stuck at HTML's 300x150 default) — not
+// worth shipping a broken rocket to save CPU. Cutting the actual per-frame
+// cost instead: fewer lights (halves the shading cost) and static stars
+// (removes a 30-instance matrix rebuild every single frame).
 /* ── Bullet / egg-shaped body via LatheGeometry ── */
 function useBodyGeometry() {
   return useMemo(() => {
@@ -227,42 +234,30 @@ function Rocket() {
   );
 }
 
-/* ── Floating star particles ── */
+/* ── Floating star particles ──
+   ponytail: these used to recompute all 30 instance matrices every single
+   frame for a barely-perceptible twinkle. Placed once on mount instead —
+   still scattered and randomly sized, just not re-animated. */
 function Stars() {
   const count = 30;
   const meshRef = useRef<THREE.InstancedMesh>(null);
 
-  const positions = useMemo(() => {
-    const arr: [number, number, number][] = [];
+  useEffect(() => {
+    if (!meshRef.current) return;
+    const dummy = new THREE.Object3D();
     for (let i = 0; i < count; i++) {
-      arr.push([
+      dummy.position.set(
         (Math.random() - 0.5) * 8,
         (Math.random() - 0.5) * 6,
-        (Math.random() - 0.5) * 4 - 2,
-      ]);
-    }
-    return arr;
-  }, []);
-
-  useFrame(({ clock }) => {
-    if (!meshRef.current) return;
-    const t = clock.getElapsedTime();
-    const dummy = new THREE.Object3D();
-
-    for (let i = 0; i < count; i++) {
-      const [bx, by, bz] = positions[i];
-      dummy.position.set(
-        bx + Math.sin(t * 0.3 + i) * 0.2,
-        by + Math.cos(t * 0.4 + i * 0.7) * 0.15,
-        bz
+        (Math.random() - 0.5) * 4 - 2
       );
-      const s = 0.3 + Math.sin(t * 2 + i * 1.5) * 0.15;
+      const s = 0.2 + Math.random() * 0.25;
       dummy.scale.set(s, s, s);
       dummy.updateMatrix();
       meshRef.current.setMatrixAt(i, dummy.matrix);
     }
     meshRef.current.instanceMatrix.needsUpdate = true;
-  });
+  }, []);
 
   return (
     <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
@@ -315,14 +310,12 @@ export default function Rocket3D() {
       dpr={[1, 1.5]}
       gl={{ antialias: true, alpha: true }}
     >
-      {/* Strong lighting for visibility without environment map */}
-      <ambientLight intensity={0.8} />
-      <directionalLight position={[5, 5, 5]} intensity={2.0} color="#ffffff" />
-      <directionalLight position={[-4, 3, 2]} intensity={1.0} color="#AD60E1" />
-      <directionalLight position={[0, -2, 5]} intensity={0.8} color="#E7FB79" />
-      <pointLight position={[-3, 2, 3]} intensity={1.5} color="#AD60E1" distance={10} />
-      <pointLight position={[3, -1, 3]} intensity={1.2} color="#E7FB79" distance={10} />
-      <pointLight position={[0, -3, 3]} intensity={0.8} color="#ff6600" distance={8} />
+      {/* Lighting — cut from 6 to 3 fixtures (still reads the same: one
+          key light, one accent, ambient fill), roughly halving per-frame
+          PBR shading cost across every mesh in the scene. */}
+      <ambientLight intensity={0.9} />
+      <directionalLight position={[5, 5, 5]} intensity={2.2} color="#ffffff" />
+      <pointLight position={[-3, 2, 3]} intensity={1.8} color="#AD60E1" distance={10} />
       <Rocket />
       <Stars />
       <Orbs />

@@ -193,8 +193,8 @@ export const blogPostSchema = {
       name: "excerpt",
       title: "Extracto",
       type: "text",
-      description: "Resumen breve (150-160 chars). Aparece en listados y como meta description si no se define una específica.",
-      validation: (Rule: any) => Rule.required().max(200),
+      description: "Resumen breve (máx 160 chars). Aparece en listados y como meta description si no se define una específica.",
+      validation: (Rule: any) => Rule.required().max(160),
     },
     {
       name: "metaDescription",
@@ -258,6 +258,47 @@ export const blogPostSchema = {
       type: "array",
       of: [{ type: "string" }],
       options: { layout: "tags" },
+    },
+    {
+      name: "linkedinPost",
+      title: "Post LinkedIn",
+      type: "text",
+      validation: (Rule: any) => Rule.max(3000),
+    },
+    {
+      name: "instagramCaption",
+      title: "Caption Instagram",
+      type: "text",
+      validation: (Rule: any) => Rule.max(2200),
+    },
+    {
+      name: "socialImagePrompt",
+      title: "Prompt para infografía (ChatGPT/DALL-E)",
+      type: "text",
+    },
+    {
+      name: "socialImage",
+      title: "Imagen para redes (LinkedIn / Instagram)",
+      type: "image",
+      options: { hotspot: true },
+    },
+    {
+      name: "linkedinPosted",
+      title: "Ya publicado en LinkedIn",
+      type: "boolean",
+      initialValue: false,
+    },
+    {
+      name: "instagramPosted",
+      title: "Ya publicado en Instagram",
+      type: "boolean",
+      initialValue: false,
+    },
+    {
+      name: "facebookPosted",
+      title: "Ya publicado en Facebook",
+      type: "boolean",
+      initialValue: false,
     },
   ],
   preview: {

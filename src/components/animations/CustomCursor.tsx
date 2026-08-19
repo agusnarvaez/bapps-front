@@ -103,9 +103,19 @@ export default function CustomCursor() {
     document.addEventListener("mouseout", onMouseOut);
     document.documentElement.addEventListener("mouseleave", onMouseLeave);
     document.documentElement.addEventListener("mouseenter", onMouseEnter);
-
-    rafRef.current = requestAnimationFrame(animate);
     document.documentElement.style.cursor = "none";
+
+    // Defer starting the perpetual rAF loop so it doesn't compete with the
+    // initial paint — listeners are cheap and can bind immediately.
+    let idleId: number | ReturnType<typeof setTimeout>;
+    const startLoop = () => {
+      rafRef.current = requestAnimationFrame(animate);
+    };
+    if (typeof window.requestIdleCallback === "function") {
+      idleId = window.requestIdleCallback(startLoop, { timeout: 500 });
+    } else {
+      idleId = setTimeout(startLoop, 200);
+    }
 
     return () => {
       document.removeEventListener("mousemove", onMouseMove);
@@ -115,6 +125,11 @@ export default function CustomCursor() {
       document.removeEventListener("mouseout", onMouseOut);
       document.documentElement.removeEventListener("mouseleave", onMouseLeave);
       document.documentElement.removeEventListener("mouseenter", onMouseEnter);
+      if (typeof window.cancelIdleCallback === "function") {
+        window.cancelIdleCallback(idleId as number);
+      } else {
+        clearTimeout(idleId as ReturnType<typeof setTimeout>);
+      }
       cancelAnimationFrame(rafRef.current);
       document.documentElement.style.cursor = "";
     };

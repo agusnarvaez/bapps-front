@@ -11,10 +11,11 @@
     "test:watch": "vitest",
     "postbuild": "node scripts/post-build-index.mjs",
     "index-url": "node scripts/index-url.mjs",
-    "build:prerender": "pnpm build && node scripts/prerender.mjs"
+    "build:prerender": "pnpm build && node scripts/prerender.mjs",
+    "scout": "node scripts/agency/scout.mjs",
+    "agency:queue": "node scripts/agency/build-queue.mjs"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
     "@hookform/resolvers": "^5.2.2",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",

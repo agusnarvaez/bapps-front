@@ -32,5 +32,22 @@ export default function ProjectsPage({ locale }: { locale: Locale }) {
     };
   }, [locale]);
 
-  return <ProjectsGrid projects={projects} locale={locale} />;
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: `https://bapps.com.ar/${locale}/` },
+      { "@type": "ListItem", position: 2, name: "Proyectos", item: `https://bapps.com.ar/${locale}/projects/` },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <ProjectsGrid projects={projects} locale={locale} />
+    </>
+  );
 }

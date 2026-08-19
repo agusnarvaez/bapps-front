@@ -84,12 +84,19 @@ export default function ServicePage({ slug }: { slug: string }) {
     "@type": "Service",
     name: service.h1,
     description: service.metaDescription,
-    provider: {
-      "@type": "Organization",
-      name: "BApps",
-      url: "https://bapps.com.ar",
-    },
-    areaServed: "AR",
+    url: `https://bapps.com.ar/${locale}/servicios/${slug}/`,
+    provider: { "@id": "https://bapps.com.ar/#organization" },
+    areaServed: { "@type": "Country", name: "Argentina" },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: `https://bapps.com.ar/${locale}/` },
+      { "@type": "ListItem", position: 2, name: "Servicios", item: `https://bapps.com.ar/${locale}/servicios/` },
+      { "@type": "ListItem", position: 3, name: service.h1, item: `https://bapps.com.ar/${locale}/servicios/${slug}/` },
+    ],
   };
 
   return (
@@ -101,6 +108,10 @@ export default function ServicePage({ slug }: { slug: string }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* Hero */}

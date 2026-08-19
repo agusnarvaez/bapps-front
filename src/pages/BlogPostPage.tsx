@@ -61,10 +61,14 @@ export default function BlogPostPage({ slug }: { slug: string }) {
     headline: post.title,
     description: post.metaDescription ?? post.excerpt,
     datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
+    ...(post.coverImage ? { image: { "@type": "ImageObject", url: post.coverImage, width: 1200 } } : {}),
     author: {
-      "@type": "Organization",
-      name: "BApps",
-      url: "https://bapps.com.ar",
+      "@type": "Person",
+      name: "Agustín Narvaez",
+      url: "https://bapps.com.ar/es/#equipo",
+      jobTitle: "Co-fundador y desarrollador",
+      worksFor: { "@id": "https://bapps.com.ar/#organization" },
     },
     publisher: {
       "@type": "Organization",
@@ -81,11 +85,25 @@ export default function BlogPostPage({ slug }: { slug: string }) {
     },
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: `https://bapps.com.ar/${locale}/` },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `https://bapps.com.ar/${locale}/blog/` },
+      { "@type": "ListItem", position: 3, name: post.title, item: `https://bapps.com.ar/${locale}/blog/${post.slug}/` },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* Hero */}
@@ -174,7 +192,7 @@ export default function BlogPostPage({ slug }: { slug: string }) {
               </>
             )}
             <span>·</span>
-            <span>Por BApps</span>
+            <span>Por Agustín Narvaez</span>
           </motion.div>
         </div>
       </section>
@@ -189,6 +207,8 @@ export default function BlogPostPage({ slug }: { slug: string }) {
               transition={{ delay: 0.2, duration: 0.6 }}
               src={post.coverImage}
               alt={post.title}
+              loading="lazy"
+              decoding="async"
               className="w-full rounded-2xl border border-border object-cover"
               style={{ maxHeight: "420px" }}
             />

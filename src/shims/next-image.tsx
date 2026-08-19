@@ -49,7 +49,7 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(function Image(
       width={fill ? undefined : width}
       height={fill ? undefined : height}
       style={mergedStyle}
-      loading={priority ? "eager" : loading}
+      loading={priority ? "eager" : (loading ?? "lazy")}
       decoding="async"
       {...props}
     />

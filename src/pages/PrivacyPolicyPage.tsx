@@ -46,10 +46,10 @@ export default function PrivacyPolicyPage() {
             aplicaciones a medida, operada desde Argentina. Podés contactarnos
             en{" "}
             <a
-              href="mailto:hola@bapps.com.ar"
+              href="mailto:contacto@bapps.com.ar"
               className="text-bapps-purple-light hover:underline"
             >
-              hola@bapps.com.ar
+              contacto@bapps.com.ar
             </a>
             .
           </p>
@@ -84,20 +84,12 @@ export default function PrivacyPolicyPage() {
             4. Servicios de terceros
           </h2>
           <p>
-            Para el envío del formulario de contacto utilizamos{" "}
-            <strong className="text-foreground">EmailJS</strong>, un servicio
-            que actúa como intermediario de envío de emails. Los mensajes que
-            enviás pasan por sus servidores para llegar a nuestra bandeja. Podés
-            leer su política de privacidad en{" "}
-            <a
-              href="https://www.emailjs.com/legal/privacy-policy/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-bapps-purple-light hover:underline"
-            >
-              emailjs.com
-            </a>
-            .
+            Para el envío del formulario de contacto usamos una API propia
+            construida sobre{" "}
+            <strong className="text-foreground">Amazon SES (AWS)</strong>.
+            No dependemos de un intermediario externo: los mensajes se
+            procesan en nuestra propia infraestructura y llegan directo a
+            nuestra bandeja.
           </p>
           <p className="mt-3">
             El contenido del sitio (blog, portfolio) se gestiona con{" "}
@@ -119,10 +111,10 @@ export default function PrivacyPolicyPage() {
             personal que hayamos guardado. Para ejercer estos derechos, escribinos
             a{" "}
             <a
-              href="mailto:hola@bapps.com.ar"
+              href="mailto:contacto@bapps.com.ar"
               className="text-bapps-purple-light hover:underline"
             >
-              hola@bapps.com.ar
+              contacto@bapps.com.ar
             </a>{" "}
             y lo resolvemos en menos de 48 horas.
           </p>

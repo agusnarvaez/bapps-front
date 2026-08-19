@@ -11,6 +11,7 @@ import HomePage from "@/pages/HomePage";
 import ProjectDetailPage from "@/pages/ProjectDetailPage";
 import ProjectsPage from "@/pages/ProjectsPage";
 import ServicePage from "@/pages/ServicePage";
+import ServicesIndexPage from "@/pages/ServicesIndexPage";
 import BlogPage from "@/pages/BlogPage";
 import BlogPostPage from "@/pages/BlogPostPage";
 import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
@@ -31,6 +32,7 @@ type RouteMatch =
   | { type: "project-detail"; locale: Locale; slug: string }
   | { type: "contact"; locale: Locale }
   | { type: "service"; locale: Locale; slug: string }
+  | { type: "services-index"; locale: Locale }
   | { type: "blog"; locale: Locale }
   | { type: "blog-post"; locale: Locale; slug: string }
   | { type: "privacy"; locale: Locale };
@@ -80,6 +82,10 @@ function matchRoute(pathname: string): RouteMatch {
 
   if (restSegments.length === 1 && restSegments[0] === "contact") {
     return { type: "contact", locale };
+  }
+
+  if (restSegments.length === 1 && restSegments[0] === "servicios") {
+    return { type: "services-index", locale };
   }
 
   if (restSegments.length === 2 && restSegments[0] === "servicios" && restSegments[1]) {
@@ -178,6 +184,14 @@ export default function App() {
     return (
       <LocaleShell locale={route.locale}>
         <ContactPage />
+      </LocaleShell>
+    );
+  }
+
+  if (route.type === "services-index") {
+    return (
+      <LocaleShell locale={route.locale}>
+        <ServicesIndexPage />
       </LocaleShell>
     );
   }

@@ -176,6 +176,8 @@
   "contact": {
     "title": "Get a quote",
     "subtitle": "Tell us about your idea and we'll get back to you within 24h.",
+    "greetingHi": "Hi",
+    "greetingSubtitle": "Tell us about your business and we'll send a proposal within 24h.",
     "steps": {
       "projectType": "Project type",
       "details": "Details",
@@ -223,8 +225,7 @@
     "tagline": "Turning ideas into digital experiences.",
     "rights": "All rights reserved.",
     "links": {
-      "privacy": "Privacy",
-      "terms": "Terms"
+      "privacy": "Privacy"
     }
   },
   "notFound": {

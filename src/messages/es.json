@@ -176,6 +176,8 @@
   "contact": {
     "title": "Cotizá tu proyecto",
     "subtitle": "Contanos sobre tu idea y te respondemos en menos de 24hs.",
+    "greetingHi": "Hola",
+    "greetingSubtitle": "Contanos sobre tu negocio y te armamos la propuesta en menos de 24hs.",
     "steps": {
       "projectType": "Tipo de proyecto",
       "details": "Detalles",
@@ -223,8 +225,7 @@
     "tagline": "Transformamos ideas en experiencias digitales.",
     "rights": "Todos los derechos reservados.",
     "links": {
-      "privacy": "Privacidad",
-      "terms": "Términos"
+      "privacy": "Privacidad"
     }
   },
   "notFound": {

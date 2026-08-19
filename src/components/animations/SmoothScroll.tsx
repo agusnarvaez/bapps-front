@@ -29,9 +29,23 @@ export default function SmoothScroll({
       requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    // Defer starting the perpetual rAF loop past first paint — native
+    // scroll works fine for the ~200-500ms until this kicks in.
+    let idleId: number | ReturnType<typeof setTimeout>;
+    if (typeof window.requestIdleCallback === "function") {
+      idleId = window.requestIdleCallback(() => requestAnimationFrame(raf), {
+        timeout: 500,
+      });
+    } else {
+      idleId = setTimeout(() => requestAnimationFrame(raf), 200);
+    }
 
     return () => {
+      if (typeof window.cancelIdleCallback === "function") {
+        window.cancelIdleCallback(idleId as number);
+      } else {
+        clearTimeout(idleId as ReturnType<typeof setTimeout>);
+      }
       lenis.destroy();
     };
   }, [reduced]);

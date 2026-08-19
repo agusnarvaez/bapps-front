@@ -7,6 +7,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils/cn";
 import LanguageToggle from "@/components/layout/LanguageToggle";
+import { handlePageNav, handleSectionNav } from "@/lib/navClick";
 
 const navLinks = [
   { key: "services", hash: "#servicios", page: null as string | null, pageOnly: false },
@@ -38,9 +39,12 @@ export default function Header() {
     setMobileOpen(false);
   }, [pathname]);
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll when mobile menu is open. Bail when closed instead of
+  // clearing overflow unconditionally — this runs on mount with
+  // mobileOpen=false too, and clearing there stomps LoadingScreen's lock.
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    if (!mobileOpen) return;
+    document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";
     };
@@ -58,7 +62,11 @@ export default function Header() {
       >
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
           {/* Logo */}
-          <a href={`/${locale}`} className="relative z-50 shrink-0">
+          <a
+            href={`/${locale}`}
+            onClick={(e) => handlePageNav(e, `/${locale}`)}
+            className="relative z-50 shrink-0"
+          >
             <Image
               src="/images/logo-bapps.png"
               alt="BApps"
@@ -84,6 +92,11 @@ export default function Header() {
                 <a
                   key={link.key}
                   href={href ?? "#"}
+                  onClick={(e) =>
+                    link.page
+                      ? handlePageNav(e, href ?? "#")
+                      : handleSectionNav(e, locale, link.hash, isHome)
+                  }
                   className="group relative px-4 py-2 text-sm font-medium text-foreground-muted transition-colors hover:text-foreground"
                 >
                   {t(link.key)}
@@ -102,7 +115,8 @@ export default function Header() {
               {t("scheduleCall")}
             </a>
             <a
-              href={isHome ? "#contacto" : `/${locale}/contact`}
+              href={`/${locale}/contact`}
+              onClick={(e) => handlePageNav(e, `/${locale}/contact`)}
               className="ml-2 rounded-full bg-bapps-purple px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-bapps-purple-dark hover:shadow-lg hover:shadow-bapps-purple/25"
             >
               {t("quoteProject")}
@@ -173,7 +187,14 @@ export default function Header() {
                   <motion.a
                     key={link.key}
                     href={href ?? "#"}
-                    onClick={() => setMobileOpen(false)}
+                    onClick={(e) => {
+                      if (link.page) {
+                        handlePageNav(e, href ?? "#");
+                      } else {
+                        handleSectionNav(e, locale, link.hash, isHome);
+                      }
+                      setMobileOpen(false);
+                    }}
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.15 + i * 0.08, duration: 0.4, ease: "easeOut" }}
@@ -201,8 +222,11 @@ export default function Header() {
                   {t("scheduleCall")}
                 </a>
                 <a
-                  href={isHome ? "#contacto" : `/${locale}/contact`}
-                  onClick={() => setMobileOpen(false)}
+                  href={`/${locale}/contact`}
+                  onClick={(e) => {
+                    handlePageNav(e, `/${locale}/contact`);
+                    setMobileOpen(false);
+                  }}
                   className="rounded-full bg-bapps-purple px-10 py-3 text-lg font-semibold text-white transition-all hover:bg-bapps-purple-dark"
                 >
                   {t("quoteProject")}

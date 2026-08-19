@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import ParticlesBackground from "@/components/animations/ParticlesBackground";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useDeferredMount } from "@/hooks/useDeferredMount";
 import MagneticButton from "@/components/ui/MagneticButton";
 
 const Rocket3D = dynamic(() => import("@/components/3d/Rocket3D"), {
@@ -16,6 +17,9 @@ export default function HeroSection() {
   const t = useTranslations("hero");
   const locale = useLocale();
   const reduced = useReducedMotion();
+  // The 3D rocket is an 895KB chunk — deferring its mount keeps it off
+  // the critical path so it doesn't compete with LCP text/fonts.
+  const rocketReady = useDeferredMount(1200);
 
   const titleParts = t("title").split(t("highlight"));
 
@@ -32,7 +36,7 @@ export default function HeroSection() {
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-[1] h-32 bg-gradient-to-t from-background to-transparent" />
 
       {/* 3D Rocket - desktop only, skip when reduced motion */}
-      {!reduced && (
+      {!reduced && rocketReady && (
         <div className="pointer-events-none absolute right-0 top-0 z-[2] hidden h-full w-1/2 lg:block">
           <Rocket3D />
         </div>
@@ -54,11 +58,13 @@ export default function HeroSection() {
             </span>
           </motion.div>
 
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.7 }}
+          {/* Headline — ponytail: this is the LCP element. It used to be a
+              motion.h1 fading in from opacity:0, which meant the browser
+              couldn't count it as "painted" until JS hydrated and the
+              0.4s+0.7s animation ran — a huge, avoidable chunk of LCP.
+              Render it plain and instant; keep the decorative underline
+              animated since that's not the LCP candidate. */}
+          <h1
             className="font-[family-name:var(--font-display)] text-5xl leading-[1.1] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
           >
             {titleParts[0]}
@@ -67,12 +73,12 @@ export default function HeroSection() {
               <motion.span
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ delay: 1.2, duration: 0.6, ease: "easeOut" }}
+                transition={{ delay: 0.8, duration: 0.6, ease: "easeOut" }}
                 className="absolute -bottom-1 left-0 h-1 w-full origin-left rounded-full bg-bapps-yellow"
               />
             </span>
             {titleParts[1]}
-          </motion.h1>
+          </h1>
 
           {/* Subtitle */}
           <motion.p

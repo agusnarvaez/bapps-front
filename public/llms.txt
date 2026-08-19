@@ -4,6 +4,7 @@
 
 ## Servicios
 
+- [Todos los servicios](https://bapps.com.ar/es/servicios/)
 - [Diseño Web](https://bapps.com.ar/es/servicios/diseno-web/)
 - [Landing Pages](https://bapps.com.ar/es/servicios/landing-pages/)
 - [Aplicaciones a Medida](https://bapps.com.ar/es/servicios/aplicaciones-a-medida/)
@@ -14,9 +15,6 @@
 ## Blog
 
 - [Cuánto cuesta una página web en Argentina 2026](https://bapps.com.ar/es/blog/cuanto-cuesta-pagina-web-argentina-2026/)
-- [Por qué tu negocio pierde clientes mientras dormís](https://bapps.com.ar/es/blog/por-que-tu-negocio-pierde-clientes-mientras-dormis/)
-- [Cómo saber cuánto vendió tu negocio hoy sin estar presente](https://bapps.com.ar/es/blog/como-saber-cuanto-vendio-tu-negocio-hoy-sin-estar-presente/)
-- [Tu negocio no aparece en Google: clientes que perdés sin saberlo](https://bapps.com.ar/es/blog/negocio-no-aparece-en-google-clientes-perdidos/)
 
 ## Más
 

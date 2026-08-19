@@ -11,12 +11,18 @@
     />
     <meta name="theme-color" content="#0A0A0F" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/images/logo-bapps-250x250.png" />
     <link rel="canonical" href="https://bapps.com.ar/es/" />
     <meta name="msvalidate.01" content="4f8a3c1e9b2d4e6f8a1bc5d7e2f3a4b5" />
 
-    <!-- Google Fonts: preconnect para evitar render-blocking del @import en CSS -->
+    <!-- Google Fonts: link directo (no @import) para que el preload scanner
+         lo descubra en paralelo en vez de esperar a que se parsee el CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&display=swap"
+    />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -46,9 +52,14 @@
           "name": "BApps",
           "url": "https://bapps.com.ar",
           "logo": "https://bapps.com.ar/images/logo-bapps.png",
+          "image": "https://bapps.com.ar/images/logo-bapps.png",
+          "priceRange": "$$",
           "description": "Diseño web y aplicaciones a medida para empresas en Argentina. Asesoramiento real, código propio, respuesta en 24hs.",
+          "foundingDate": "2022",
           "address": {
             "@type": "PostalAddress",
+            "addressLocality": "Ciudad Autónoma de Buenos Aires",
+            "addressRegion": "Buenos Aires",
             "addressCountry": "AR"
           },
           "areaServed": {
@@ -57,13 +68,14 @@
           },
           "contactPoint": {
             "@type": "ContactPoint",
-            "contactType": "sales",
+            "telephone": "+54 11 6103-7090",
+            "email": "contacto@bapps.com.ar",
+            "contactType": "customer service",
             "availableLanguage": ["Spanish", "English"]
           },
           "sameAs": [
-            "https://instagram.com/bapps",
-            "https://linkedin.com/company/bapps",
-            "https://github.com/bapps"
+            "https://instagram.com/bapps.ar",
+            "https://www.linkedin.com/company/bappsargentina"
           ]
         },
         {
