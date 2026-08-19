@@ -1,27 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import ProjectDetailContent from "@/components/pages/ProjectDetailContent";
 import NotFoundContent from "@/components/pages/NotFoundContent";
 import { getNextProject, getProjectBySlug } from "@/lib/sanity/queries";
-import { projects as fallbackProjects } from "@/lib/data";
 import type { Locale } from "@/lib/i18n/config";
 import type { Project } from "@/lib/data/types";
 import { updateDocumentMetadata } from "@/lib/seo/metadata";
-
-function getFallbackProject(slug: string) {
-  return fallbackProjects.find((project) => project.slug === slug) ?? null;
-}
-
-function getFallbackNextProject(slug: string) {
-  const projectIndex = fallbackProjects.findIndex(
-    (project) => project.slug === slug
-  );
-
-  if (projectIndex < 0) {
-    return undefined;
-  }
-
-  return fallbackProjects[(projectIndex + 1) % fallbackProjects.length];
-}
 
 export default function ProjectDetailPage({
   locale,
@@ -30,11 +13,13 @@ export default function ProjectDetailPage({
   locale: Locale;
   slug: string;
 }) {
-  const initialProject = useMemo(() => getFallbackProject(slug), [slug]);
-  const [project, setProject] = useState<Project | null>(initialProject);
-  const [nextProject, setNextProject] = useState<Project | undefined>(
-    () => getFallbackNextProject(slug)
-  );
+  // ponytail: undefined = still loading, null = confirmed not found after
+  // the fetch resolves. Collapsing these (as this used to, via a synchronous
+  // local-fallback lookup) made every project not in that fallback list
+  // render "not found" on first paint — prerender.mjs has no spinner to wait
+  // out here, so it snapshotted that transient state as if it were real.
+  const [project, setProject] = useState<Project | null | undefined>(undefined);
+  const [nextProject, setNextProject] = useState<Project | undefined>(undefined);
 
   useEffect(() => {
     let active = true;
@@ -56,6 +41,10 @@ export default function ProjectDetailPage({
   }, [locale, slug]);
 
   useEffect(() => {
+    if (project === undefined) {
+      return;
+    }
+
     if (!project) {
       updateDocumentMetadata({
         title: "Proyecto no encontrado | BApps",
@@ -69,6 +58,14 @@ export default function ProjectDetailPage({
       description: project.shortDescription,
     });
   }, [project]);
+
+  if (project === undefined) {
+    return (
+      <div className="flex min-h-screen items-center justify-center pt-24">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-bapps-purple border-t-transparent" />
+      </div>
+    );
+  }
 
   if (!project) {
     return <NotFoundContent />;

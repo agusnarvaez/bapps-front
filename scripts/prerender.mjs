@@ -9,6 +9,8 @@
  */
 
 import puppeteer from "puppeteer";
+import { createClient } from "@sanity/client";
+import { loadEnv } from "vite";
 import { spawn, execSync } from "child_process";
 import { readFileSync, mkdirSync, writeFileSync, existsSync } from "fs";
 import { resolve, dirname } from "path";
@@ -28,15 +30,37 @@ if (!existsSync(DIST)) {
 
 // Extract unique pathnames from sitemap
 const sitemap = readFileSync(resolve(ROOT, "public/sitemap.xml"), "utf-8");
-const routes = [
-  ...new Set(
-    [...sitemap.matchAll(/<loc>https?:\/\/bapps\.com\.ar(\/[^<]+)<\/loc>/g)].map(
-      (m) => m[1]
-    )
-  ),
-];
+const routes = new Set(
+  [...sitemap.matchAll(/<loc>https?:\/\/bapps\.com\.ar(\/[^<]+)<\/loc>/g)].map(
+    (m) => m[1]
+  )
+);
 
-console.log(`Prerendering ${routes.length} routes...\n`);
+// ponytail: project detail pages are Sanity-driven and never in the
+// hand-maintained sitemap, so they were never prerendered — Google only
+// ever saw the empty SPA shell for them (Soft 404 / "crawled, not
+// indexed" for all 8). Pull the slugs straight from Sanity instead.
+const env = loadEnv("production", ROOT, "");
+const projectId = env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+if (projectId) {
+  const sanity = createClient({
+    projectId,
+    dataset: env.NEXT_PUBLIC_SANITY_DATASET || "production",
+    apiVersion: env.NEXT_PUBLIC_SANITY_API_VERSION || "2024-01-01",
+    useCdn: false,
+  });
+  const projects = await sanity.fetch(
+    `*[_type == "project" && defined(publishedAt)]{ "slug": slug.current }`
+  );
+  for (const { slug } of projects) {
+    if (slug) routes.add(`/es/projects/${slug}`);
+  }
+  console.log(`  + ${projects.length} project page(s) from Sanity`);
+} else {
+  console.warn("  ! NEXT_PUBLIC_SANITY_PROJECT_ID not set — skipping project pages");
+}
+
+console.log(`Prerendering ${routes.size} routes...\n`);
 
 function startServer() {
   // Single string avoids Node.js deprecation warning about args + shell:true
