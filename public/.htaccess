@@ -1,6 +1,13 @@
 Options -Indexes -MultiViews
 DirectoryIndex index.html
 
+# ponytail: asset dirs (images/, assets/) have no index.html, so with
+# -Indexes above Apache returns 403 for the bare directory — Search Console
+# flags that as "blocked, access not permitted". Force a plain 404 instead;
+# files inside (e.g. /images/logo.png) are untouched since this only
+# matches the bare directory path.
+RedirectMatch 404 ^/(images|assets)/?$
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
