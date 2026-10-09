@@ -3,82 +3,71 @@
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { useInView } from "@/hooks/useInView";
-import MagneticButton from "@/components/ui/MagneticButton";
+import { navigateTo } from "@/lib/router";
+import RegistrationMarks from "@/components/plano/RegistrationMarks";
+import Stamp from "@/components/plano/Stamp";
 
 export default function CTASection() {
   const t = useTranslations("cta");
   const locale = useLocale();
-  const { ref, inView } = useInView({ threshold: 0.2 });
+  const { ref, inView } = useInView({ threshold: 0.3 });
 
   return (
-    <section className="relative py-32">
-      <div ref={ref} className="relative mx-auto max-w-7xl px-6">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={inView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.7 }}
-          className="relative overflow-hidden rounded-3xl"
+    <section className="relative px-6 py-32">
+      <div
+        ref={ref}
+        className="plano-world plano-grid-blue relative mx-auto max-w-6xl overflow-hidden border border-plano-line px-8 py-20 text-center text-plano-paper md:px-16 md:py-28"
+      >
+        <RegistrationMarks tone="light" />
+
+        {/* Faint seal ring behind the headline — traces in like every other
+            ruled line in this world, never just faded */}
+        <svg
+          viewBox="0 0 400 400"
+          className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 opacity-[0.1]"
+          aria-hidden="true"
         >
-          {/* Animated gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-bapps-purple via-bapps-purple-dark to-background-tertiary" />
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute -left-20 -top-20 h-80 w-80 rounded-full bg-bapps-yellow/20 blur-[80px] animate-pulse" />
-            <div className="absolute -bottom-20 -right-20 h-80 w-80 rounded-full bg-bapps-purple-light/30 blur-[80px] animate-pulse [animation-delay:1s]" />
-          </div>
-
-          {/* Grid pattern overlay */}
-          <div
-            className="absolute inset-0 opacity-[0.05]"
-            style={{
-              backgroundImage: `linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)`,
-              backgroundSize: "40px 40px",
-            }}
+          <motion.circle
+            cx="200" cy="200" r="180" fill="none" stroke="var(--plano-paper)" strokeWidth="1.5"
+            initial={{ pathLength: 0 }}
+            animate={inView ? { pathLength: 1 } : { pathLength: 0 }}
+            transition={{ duration: 1.4, ease: [0.2, 0.8, 0.3, 1] }}
           />
+          <motion.circle
+            cx="200" cy="200" r="160" fill="none" stroke="var(--plano-paper)" strokeWidth="1" strokeDasharray="3 6"
+            initial={{ pathLength: 0 }}
+            animate={inView ? { pathLength: 1 } : { pathLength: 0 }}
+            transition={{ duration: 1.4, delay: 0.2, ease: [0.2, 0.8, 0.3, 1] }}
+          />
+        </svg>
 
-          {/* Content */}
-          <div className="relative px-8 py-20 text-center md:px-16 md:py-28">
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="font-[family-name:var(--font-display)] text-4xl tracking-tight text-white sm:text-5xl md:text-7xl"
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="relative font-[family-name:var(--font-plano-display)] text-4xl tracking-tight sm:text-5xl md:text-6xl"
+        >
+          {t("title")}
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.15, duration: 0.5 }}
+          className="relative mx-auto mt-4 max-w-md font-[family-name:var(--font-plano-body)] text-lg text-plano-paper/80"
+        >
+          {t("subtitle")}
+        </motion.p>
+
+        <div className="relative mt-10 flex justify-center">
+          <Stamp inView={inView} rotate={-3}>
+            <button
+              onClick={() => navigateTo(`/${locale}/contact`)}
+              className="rounded-full border-2 border-plano-paper/35 bg-plano-stamp px-10 py-4 font-[family-name:var(--font-plano-mono)] text-base font-bold uppercase tracking-wider text-plano-paper transition-transform duration-200 hover:scale-[1.03]"
             >
-              {t("title")}
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.4, duration: 0.5 }}
-              className="mx-auto mt-4 max-w-md text-xl text-white/70"
-            >
-              {t("subtitle")}
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.6, duration: 0.5 }}
-              className="mt-10"
-            >
-              <MagneticButton
-                href={`/${locale}/contact`}
-                className="btn-shimmer inline-flex items-center gap-3 rounded-full bg-bapps-yellow px-10 py-4 text-lg font-bold text-background transition-all duration-300 hover:shadow-2xl hover:shadow-bapps-yellow/30"
-                strength={16}
-              >
-                {t("button")}
-                <svg
-                  className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2.5}
-                  aria-hidden="true"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </MagneticButton>
-            </motion.div>
-          </div>
-        </motion.div>
+              {t("button")}
+            </button>
+          </Stamp>
+        </div>
       </div>
     </section>
   );

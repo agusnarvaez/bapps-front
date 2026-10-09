@@ -1,198 +1,181 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
-import ParticlesBackground from "@/components/animations/ParticlesBackground";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-import { useDeferredMount } from "@/hooks/useDeferredMount";
-import MagneticButton from "@/components/ui/MagneticButton";
-
-const Rocket3D = dynamic(() => import("@/components/3d/Rocket3D"), {
-  ssr: false,
-  loading: () => <div className="h-full w-full" />,
-});
+import RegistrationMarks from "@/components/plano/RegistrationMarks";
+import PlanoSchematic from "@/components/plano/PlanoSchematic";
+import DrawLine from "@/components/plano/DrawLine";
+import Stamp from "@/components/plano/Stamp";
+import { navigateTo, isExternalHref } from "@/lib/router";
 
 export default function HeroSection() {
   const t = useTranslations("hero");
   const locale = useLocale();
   const reduced = useReducedMotion();
-  // The 3D rocket is an 895KB chunk — deferring its mount keeps it off
-  // the critical path so it doesn't compete with LCP text/fonts.
-  const rocketReady = useDeferredMount(1200);
 
   const titleParts = t("title").split(t("highlight"));
 
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden"
+      className="plano-world plano-grid-blue relative flex min-h-screen scroll-mt-20 items-center overflow-hidden text-plano-paper"
     >
-      {/* Particles */}
-      <ParticlesBackground />
+      <RegistrationMarks tone="light" />
 
-      {/* Gradient overlays */}
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-background via-transparent to-background" />
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-[1] h-32 bg-gradient-to-t from-background to-transparent" />
+      {/* Schematic — desktop only, the hero's signature drawn moment */}
+      <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[42%] items-center justify-center lg:flex">
+        <PlanoSchematic className="h-auto w-full max-w-md opacity-90" />
+      </div>
 
-      {/* 3D Rocket - desktop only, skip when reduced motion */}
-      {!reduced && rocketReady && (
-        <div className="pointer-events-none absolute right-0 top-0 z-[2] hidden h-full w-1/2 lg:block">
-          <Rocket3D />
-        </div>
-      )}
+      {/* Vignette so the grid recedes behind content on small screens */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-plano-blue via-plano-blue/95 to-transparent lg:via-plano-blue/70" />
 
-      {/* Content */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 py-32">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-32">
         <div className="max-w-3xl">
-          {/* Tag */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-bapps-purple/30 bg-bapps-purple/10 px-4 py-1.5"
-          >
-            <span className="h-2 w-2 rounded-full bg-bapps-yellow animate-pulse" />
-            <span className="text-sm font-medium text-bapps-purple-light">
-              {t("badge")}
-            </span>
-          </motion.div>
-
-          {/* Headline — ponytail: this is the LCP element. It used to be a
-              motion.h1 fading in from opacity:0, which meant the browser
-              couldn't count it as "painted" until JS hydrated and the
-              0.4s+0.7s animation ran — a huge, avoidable chunk of LCP.
-              Render it plain and instant; keep the decorative underline
-              animated since that's not the LCP candidate. */}
-          <h1
-            className="font-[family-name:var(--font-display)] text-5xl leading-[1.1] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
-          >
+          <h1 className="font-[family-name:var(--font-plano-display)] text-4xl leading-[1.15] sm:text-5xl md:text-6xl lg:text-7xl">
             {titleParts[0]}
-            <span className="relative inline-block text-bapps-purple">
+            <span className="relative inline-block text-plano-stamp">
               {t("highlight")}
-              <motion.span
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.8, duration: 0.6, ease: "easeOut" }}
-                className="absolute -bottom-1 left-0 h-1 w-full origin-left rounded-full bg-bapps-yellow"
+              <DrawLine
+                d="M2 8 Q 40 2, 80 7 T 158 6"
+                viewBox="0 0 160 12"
+                className="absolute -bottom-2 left-0 h-3 w-full text-plano-stamp"
+                strokeWidth={2.5}
+                delay={0.5}
+                duration={0.7}
               />
             </span>
             {titleParts[1]}
           </h1>
 
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
-            className="mt-6 max-w-xl text-lg leading-relaxed text-foreground-muted md:text-xl"
-          >
-            {t("subtitle")}
-          </motion.p>
-
-          {/* CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.6 }}
-            className="mt-10 flex flex-wrap gap-4"
+            initial={reduced ? undefined : { opacity: 0, y: 16 }}
+            animate={reduced ? undefined : { opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="relative mt-6 max-w-xl pl-5"
           >
-            <MagneticButton
-              href={`/${locale}/contact`}
-              className="btn-shimmer rounded-full bg-bapps-purple px-8 py-3.5 text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-bapps-purple/30"
-            >
-              <span className="inline-flex items-center gap-2.5">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
-                  <path d="M9 18h6M10 22h4M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0018 8 6 6 0 006 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 018.91 14" />
-                </svg>
+            {/* Margin callouts — leader-lines annotating the subtitle,
+                like a marked-up drawing (angled marks, not text-anchored:
+                the two languages don't share phrase positions) */}
+            <DrawLine
+              d="M0 8 L18 1"
+              viewBox="0 0 18 9"
+              className="absolute -left-1 top-[0.5em] h-2.5 w-4.5 text-plano-stamp"
+              strokeWidth={1.5}
+              delay={1}
+              duration={0.35}
+            />
+            <DrawLine
+              d="M0 8 L18 1"
+              viewBox="0 0 18 9"
+              className="absolute -left-1 top-[2.4em] h-2.5 w-4.5 text-plano-stamp"
+              strokeWidth={1.5}
+              delay={1.15}
+              duration={0.35}
+            />
+            <p className="font-[family-name:var(--font-plano-body)] text-lg leading-relaxed text-plano-paper/80 md:text-xl">
+              {t("subtitle")}
+            </p>
+          </motion.div>
+
+          {/* CTAs — the row slides in; the stamp gets its own thunk so
+              nesting it inside a fading parent never hides the animation */}
+          <motion.div
+            initial={reduced ? undefined : { y: 16 }}
+            animate={reduced ? undefined : { y: 0 }}
+            transition={{ delay: 0.75, duration: 0.6 }}
+            className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4"
+          >
+            <Stamp rotate={-4} delay={0.75}>
+              <a
+                href={`/${locale}/contact`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigateTo(`/${locale}/contact`);
+                }}
+                className="group inline-flex items-center gap-2 rounded-full border-2 border-plano-paper/35 bg-plano-stamp px-7 py-3 font-[family-name:var(--font-plano-mono)] text-sm font-semibold uppercase tracking-wider text-plano-paper transition-transform duration-200 hover:scale-[1.03]"
+              >
                 {t("cta")}
-              </span>
-            </MagneticButton>
-            <MagneticButton
+              </a>
+            </Stamp>
+
+            <a
               href="https://cal.com/bapps/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-bapps-purple/40 bg-bapps-purple/5 px-8 py-3.5 text-base font-medium text-bapps-purple-light transition-all duration-300 hover:bg-bapps-purple/10 hover:border-bapps-purple/60"
-              ripple={false}
+              className="inline-flex items-center gap-2 border-b border-dashed border-plano-paper/40 pb-0.5 font-[family-name:var(--font-plano-mono)] text-sm tracking-wide text-plano-paper/85 transition-colors hover:border-plano-paper hover:text-plano-paper"
             >
-              <span className="inline-flex items-center gap-2">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                  <line x1="16" y1="2" x2="16" y2="6" />
-                  <line x1="8" y1="2" x2="8" y2="6" />
-                  <line x1="3" y1="10" x2="21" y2="10" />
-                </svg>
-                {t("ctaSchedule")}
-              </span>
-            </MagneticButton>
-            <MagneticButton
+              {t("ctaSchedule")}
+            </a>
+
+            <a
               href={`/${locale}/projects`}
-              className="rounded-full border border-border px-8 py-3.5 text-base font-medium text-foreground-muted transition-all duration-300 hover:border-bapps-purple/50 hover:text-foreground"
-              ripple={false}
+              onClick={(e) => {
+                if (!isExternalHref(`/${locale}/projects`)) {
+                  e.preventDefault();
+                  navigateTo(`/${locale}/projects`);
+                }
+              }}
+              className="inline-flex items-center gap-1.5 font-[family-name:var(--font-plano-mono)] text-sm tracking-wide text-plano-paper/60 transition-colors hover:text-plano-paper"
             >
-              <span className="inline-flex items-center gap-2">
-                {t("ctaSecondary")}
-                <svg
-                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  aria-hidden="true"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </span>
-            </MagneticButton>
+              {t("ctaSecondary")}
+              <svg viewBox="0 0 16 16" fill="none" className="h-3 w-3">
+                <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
           </motion.div>
 
-          {/* Section nav pills */}
+          {/* Section links — plain technical annotations, not pills */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.1, duration: 0.5 }}
-            className="mt-6 flex flex-wrap gap-3"
+            initial={reduced ? undefined : { opacity: 0 }}
+            animate={reduced ? undefined : { opacity: 1 }}
+            transition={{ delay: 1, duration: 0.5 }}
+            className="mt-16 flex flex-wrap gap-6 font-[family-name:var(--font-plano-mono)] text-xs uppercase tracking-widest text-plano-paper/45"
           >
-            {([
-              { key: "navServices", hash: "#servicios" },
-              { key: "navProcess", hash: "#proceso" },
-            ] as const).map(({ key, hash }) => (
-              <a
-                key={key}
-                href={hash}
-                className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-sm font-medium text-foreground-muted transition-all duration-200 hover:border-bapps-purple/50 hover:text-foreground"
-              >
-                {t(key)}
-                <svg viewBox="0 0 16 16" fill="none" className="h-3 w-3 text-foreground-subtle">
-                  <path d="M8 3l5 5-5 5M3 8h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
-            ))}
+            <a href="#servicios" className="transition-colors hover:text-plano-paper">
+              → {t("navServices")}
+            </a>
+            <a href="#proceso" className="transition-colors hover:text-plano-paper">
+              → {t("navProcess")}
+            </a>
           </motion.div>
+        </div>
+      </div>
+
+      {/* Title block — bottom-left, the drawing sheet's identifying strip:
+          firm, discipline, scale, sheet — the fields a real dwg carries */}
+      <div className="absolute bottom-6 left-6 z-10 hidden flex-col gap-1 border-t border-plano-paper/25 pt-2 font-[family-name:var(--font-plano-mono)] text-[11px] uppercase tracking-widest text-plano-paper/50 sm:flex">
+        <div className="flex items-center gap-3">
+          <span className="font-semibold text-plano-paper/75">BAPPS</span>
+          <span aria-hidden="true">·</span>
+          <span>{t("badge")}</span>
+        </div>
+        <div className="flex items-center gap-3 text-plano-paper/35">
+          <span>1:1</span>
+          <span aria-hidden="true">·</span>
+          <span>2022</span>
+          <span aria-hidden="true">·</span>
+          <span>01/01</span>
         </div>
       </div>
 
       {/* Scroll indicator */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
+        initial={reduced ? undefined : { opacity: 0 }}
+        animate={reduced ? undefined : { opacity: 1 }}
+        transition={{ delay: 1.3 }}
+        className="absolute bottom-6 right-6 z-10 hidden flex-col items-center gap-1 sm:flex"
         aria-hidden="true"
       >
         <motion.div
-          animate={{ y: [0, 8, 0] }}
+          animate={reduced ? undefined : { y: [0, 6, 0] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-2"
-        >
-          <div className="h-10 w-6 rounded-full border-2 border-foreground-subtle p-1">
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              className="h-2 w-2 rounded-full bg-bapps-purple"
-            />
-          </div>
-        </motion.div>
+          className="h-8 w-px bg-plano-paper/40"
+        />
+        <svg viewBox="0 0 12 8" className="h-2 w-3" fill="none">
+          <path d="M1 1l5 5 5-5" stroke="currentColor" className="text-plano-paper/40" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
       </motion.div>
     </section>
   );

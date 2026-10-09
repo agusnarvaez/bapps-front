@@ -1,0 +1,21 @@
+{
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font",
+        "value": "delta gothic one",
+        "createdAt": "2026-09-17T13:04:37.831Z",
+        "reason": "Pre-existing BApps brand display font, used by Header/Footer/LoadingScreen and every non-Home page. This redesign's DESIGN.md documents only the new Home-only 'El Plano' world by deliberate scope (see DESIGN.md Overview + Don'ts); the prior BApps purple/yellow system, including this font, remains authoritative outside Home until it gets its own redesign pass."
+      },
+      {
+        "rule": "design-system-font",
+        "value": "commissioner",
+        "createdAt": "2026-09-17T13:04:42.247Z",
+        "reason": "Pre-existing BApps brand body font, used site-wide outside Home (Header/Footer/LoadingScreen and every non-Home page). Same deliberate Home-only DESIGN.md scope boundary as Delta Gothic One — documented in DESIGN.md Overview + Don'ts."
+      }
+    ]
+  }
+}

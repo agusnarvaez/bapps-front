@@ -13,120 +13,78 @@ const reasonKeys = [
   "partnership",
 ] as const;
 
-const reasonIcons: Record<(typeof reasonKeys)[number], React.ReactNode> = {
-  dedicated: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-6 w-6">
-      <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-      <circle cx="9" cy="7" r="4" />
-      <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
-    </svg>
-  ),
-  ownCode: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-6 w-6">
-      <polyline points="16 18 22 12 16 6" />
-      <polyline points="8 6 2 12 8 18" />
-    </svg>
-  ),
-  response: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-6 w-6">
-      <circle cx="12" cy="12" r="10" />
-      <polyline points="12 6 12 12 16 14" />
-    </svg>
-  ),
-  transparent: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-6 w-6">
-      <rect x="2" y="3" width="20" height="14" rx="2" />
-      <path d="M8 21h8M12 17v4" />
-    </svg>
-  ),
-  selective: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-6 w-6">
-      <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
-      <polyline points="22 4 12 14.01 9 11.01" />
-    </svg>
-  ),
-  partnership: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-6 w-6">
-      <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-    </svg>
-  ),
-};
-
 export default function WhyUsSection() {
   const t = useTranslations("whyUs");
   const { ref, inView } = useInView({ threshold: 0.1 });
 
   return (
-    <section id="por-que-nosotros" className="relative py-32">
-      {/* Background accent */}
-      <div className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-bapps-yellow/3 blur-[140px]" />
-
-      <div ref={ref} className="relative mx-auto max-w-7xl px-6">
-        {/* Header */}
+    <section
+      id="por-que-nosotros"
+      className="plano-world plano-grid-paper relative scroll-mt-20 py-32 text-plano-ink"
+    >
+      <div ref={ref} className="relative mx-auto max-w-5xl px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-16 max-w-2xl"
+          className="mb-14 max-w-2xl"
         >
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-bapps-purple/30 bg-bapps-purple/10 px-4 py-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-bapps-yellow" />
-            <span className="text-sm font-medium text-bapps-purple-light">{t("badge")}</span>
-          </div>
-          <h2 className="font-[family-name:var(--font-display)] text-4xl tracking-tight sm:text-5xl md:text-6xl">
+          <h2 className="font-[family-name:var(--font-plano-display)] text-4xl tracking-tight sm:text-5xl">
             {t("title")}
           </h2>
-          <p className="mt-4 text-xl text-foreground-muted">
+          <p className="mt-4 font-[family-name:var(--font-plano-body)] text-xl text-plano-ink-muted">
             {t("subtitle")}
           </p>
         </motion.div>
 
-        {/* Reasons grid */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Inspection checklist — signed off item by item */}
+        <div className="border-t border-plano-paper-line sm:grid sm:grid-cols-2 sm:border-t-0">
           {reasonKeys.map((key, i) => (
             <motion.div
               key={key}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1 + i * 0.08, duration: 0.5 }}
-              className="group rounded-2xl border border-border bg-background-secondary p-7 transition-all duration-300 hover:border-bapps-purple/35 hover:bg-background-tertiary hover:shadow-lg hover:shadow-bapps-purple/5"
+              transition={{ delay: 0.08 + i * 0.06, duration: 0.5 }}
+              className="flex gap-4 border-b border-plano-paper-line py-6 sm:border-t sm:py-7 sm:odd:pr-8 sm:even:border-l sm:even:pl-8"
             >
-              {/* Icon */}
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-bapps-purple/10 text-bapps-purple transition-all duration-300 group-hover:bg-bapps-purple/20 group-hover:shadow-md group-hover:shadow-bapps-purple/10">
-                {reasonIcons[key]}
-              </div>
-
-              {/* Check mark + title */}
-              <div className="mb-2 flex items-center gap-2">
-                <svg viewBox="0 0 16 16" fill="none" className="h-4 w-4 flex-shrink-0 text-bapps-yellow">
-                  <path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <h3 className="font-semibold text-foreground transition-colors group-hover:text-bapps-purple-light">
+              <svg viewBox="0 0 16 16" fill="none" className="mt-1 h-4 w-4 flex-shrink-0 text-plano-blue" aria-hidden="true">
+                <rect x="1" y="1" width="14" height="14" rx="1.5" stroke="currentColor" strokeWidth="1.3" />
+                <motion.path
+                  d="M4 8.2l2.6 2.6L12 5.5"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  initial={{ pathLength: 0 }}
+                  animate={inView ? { pathLength: 1 } : { pathLength: 0 }}
+                  transition={{ delay: 0.3 + i * 0.06, duration: 0.3 }}
+                />
+              </svg>
+              <div>
+                <h3 className="font-[family-name:var(--font-plano-body)] font-semibold text-plano-ink">
                   {t(`reasons.${key}.title`)}
                 </h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-plano-ink-muted">
+                  {t(`reasons.${key}.description`)}
+                </p>
               </div>
-
-              <p className="text-sm leading-relaxed text-foreground-muted">
-                {t(`reasons.${key}.description`)}
-              </p>
             </motion.div>
           ))}
         </div>
 
-        {/* Pratfall disclaimer — "what we DON'T do" */}
+        {/* Margin note — a hand-pinned annotation, not a banner alert */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.65, duration: 0.5 }}
-          className="mt-8 flex items-start gap-4 rounded-2xl border border-bapps-yellow/20 bg-bapps-yellow/5 px-7 py-5"
+          initial={{ opacity: 0, rotate: -3, y: 16 }}
+          animate={inView ? { opacity: 1, rotate: -1.5, y: 0 } : {}}
+          transition={{ delay: 0.6, duration: 0.5 }}
+          className="relative mt-12 max-w-md border border-dashed border-plano-ink-muted/40 bg-plano-paper px-6 py-5"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="mt-0.5 h-5 w-5 flex-shrink-0 text-bapps-yellow">
-            <circle cx="12" cy="12" r="10" />
-            <line x1="12" y1="8" x2="12" y2="12" />
-            <line x1="12" y1="16" x2="12.01" y2="16" />
-          </svg>
-          <p className="text-sm leading-relaxed text-foreground-muted">
-            <span className="font-semibold text-foreground">{t("disclaimer")}</span>
+          <span
+            className="absolute -top-1.5 left-6 h-3 w-3 rounded-full border border-plano-stamp bg-plano-stamp/20"
+            aria-hidden="true"
+          />
+          <p className="font-[family-name:var(--font-plano-body)] text-sm italic leading-relaxed text-plano-ink">
+            {t("disclaimer")}
           </p>
         </motion.div>
       </div>

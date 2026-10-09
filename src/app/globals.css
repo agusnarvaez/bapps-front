@@ -25,6 +25,22 @@
   /* Borders */
   --border: rgba(255, 255, 255, 0.08);
   --border-hover: rgba(255, 255, 255, 0.15);
+
+  /* ===== "El Plano" world — Home page only ===== */
+  --plano-blue: #0e2f5a;
+  --plano-blue-deep: #081d3c;
+  --plano-blue-light: #1e4c86;
+  --plano-line: rgba(210, 227, 250, 0.35);
+  --plano-line-strong: rgba(210, 227, 250, 0.6);
+  --plano-paper: #f2ecdc;
+  --plano-paper-line: rgba(14, 47, 90, 0.14);
+  --plano-ink: #1c2126;
+  --plano-ink-muted: #4a5568;
+  --plano-stamp: #b5432e;
+  --plano-stamp-dark: #8c3120;
+  --font-plano-display: "Architects Daughter", cursive;
+  --font-plano-body: "Archivo", sans-serif;
+  --font-plano-mono: "JetBrains Mono", monospace;
 }
 
 @theme inline {
@@ -43,6 +59,19 @@
   --color-border-hover: var(--border-hover);
   --font-body: var(--font-commissioner);
   --font-display: "Delta Gothic One", sans-serif;
+
+  /* "El Plano" world (Home page) */
+  --color-plano-blue: var(--plano-blue);
+  --color-plano-blue-deep: var(--plano-blue-deep);
+  --color-plano-blue-light: var(--plano-blue-light);
+  --color-plano-line: var(--plano-line);
+  --color-plano-line-strong: var(--plano-line-strong);
+  --color-plano-paper: var(--plano-paper);
+  --color-plano-paper-line: var(--plano-paper-line);
+  --color-plano-ink: var(--plano-ink);
+  --color-plano-ink-muted: var(--plano-ink-muted);
+  --color-plano-stamp: var(--plano-stamp);
+  --color-plano-stamp-dark: var(--plano-stamp-dark);
 }
 
 /* Delta Gothic One - loaded via Google Fonts link */
@@ -179,4 +208,55 @@ html.lenis, html.lenis body {
   outline: 2px solid var(--bapps-purple);
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+/* ===== "El Plano" world (Home page only) ===== */
+.plano-world {
+  font-family: var(--font-plano-body), system-ui, sans-serif;
+}
+
+.plano-world ::selection {
+  background: rgba(181, 67, 46, 0.32);
+  color: var(--plano-paper);
+}
+
+.plano-world :focus-visible {
+  outline: 2px solid var(--plano-stamp);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Ruled drafting grid — blue ground variant (light lines on blue) */
+.plano-grid-blue {
+  background-image:
+    repeating-linear-gradient(0deg, var(--plano-line) 0, var(--plano-line) 1px, transparent 1px, transparent 40px),
+    repeating-linear-gradient(90deg, var(--plano-line) 0, var(--plano-line) 1px, transparent 1px, transparent 40px);
+  background-color: var(--plano-blue);
+}
+
+/* Ruled drafting grid — paper ground variant (ink lines on vellum) */
+.plano-grid-paper {
+  background-image:
+    repeating-linear-gradient(0deg, var(--plano-paper-line) 0, var(--plano-paper-line) 1px, transparent 1px, transparent 32px),
+    repeating-linear-gradient(90deg, var(--plano-paper-line) 0, var(--plano-paper-line) 1px, transparent 1px, transparent 32px);
+  background-color: var(--plano-paper);
+}
+
+@keyframes plano-stamp-hit {
+  0% {
+    transform: scale(1.35) rotate(var(--stamp-rotate, -4deg));
+    opacity: 0;
+  }
+  60% {
+    transform: scale(0.94) rotate(var(--stamp-rotate, -4deg));
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(var(--stamp-rotate, -4deg));
+    opacity: 1;
+  }
+}
+
+.plano-stamp-in {
+  animation: plano-stamp-hit 0.5s cubic-bezier(0.2, 0.8, 0.3, 1) both;
 }

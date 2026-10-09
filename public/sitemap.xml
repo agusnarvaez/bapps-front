@@ -155,4 +155,31 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+
+  <!-- Blog: Instagram no es tuyo: por qué tu negocio necesita una página web propia -->
+  <url>
+    <loc>https://bapps.com.ar/es/blog/instagram-no-es-tuyo-necesitas-pagina-web-propia/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/blog/instagram-no-es-tuyo-necesitas-pagina-web-propia/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/blog/instagram-no-es-tuyo-necesitas-pagina-web-propia/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog: Son las 11 de la noche y seguís cargando planillas: cuándo tu negocio necesita un sistema de gestión -->
+  <url>
+    <loc>https://bapps.com.ar/es/blog/cargando-planillas-a-la-noche-sistema-de-gestion/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/blog/cargando-planillas-a-la-noche-sistema-de-gestion/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/blog/cargando-planillas-a-la-noche-sistema-de-gestion/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog: Por qué tus clientes no vuelven (y vos ni siquiera tenés su número) -->
+  <url>
+    <loc>https://bapps.com.ar/es/blog/por-que-tus-clientes-no-vuelven/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bapps.com.ar/es/blog/por-que-tus-clientes-no-vuelven/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://bapps.com.ar/es/blog/por-que-tus-clientes-no-vuelven/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

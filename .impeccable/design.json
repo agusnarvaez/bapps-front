@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-17T00:00:00.000Z",
+  "title": "Design System: BApps — El Plano (Home)",
+  "extensions": {
+    "colorMeta": {
+      "cyanotype-blue": { "role": "primary", "displayName": "Cyanotype Blue", "canonical": "#0e2f5a", "tonalRamp": ["#081d3c", "#0b2650", "#0e2f5a", "#123a6c", "#1e4c86", "#3a6aa8", "#7ba1cc", "#c7d9ee"] },
+      "cyanotype-blue-deep": { "role": "primary", "displayName": "Cyanotype Blue Deep", "canonical": "#081d3c", "tonalRamp": ["#04101f", "#061529", "#081d3c", "#0b2650", "#0e2f5a", "#1e4c86", "#5c85b8", "#a9c4e0"] },
+      "blueline": { "role": "tertiary", "displayName": "Blueline", "canonical": "#1e4c86", "tonalRamp": ["#081d3c", "#0e2f5a", "#123a6c", "#1e4c86", "#3a6aa8", "#5c85b8", "#8fa9cf", "#c7d9ee"] },
+      "vellum-paper": { "role": "neutral", "displayName": "Vellum Paper", "canonical": "#f2ecdc", "tonalRamp": ["#3a3626", "#5c563d", "#847b56", "#b0a680", "#d4caab", "#e6dfc7", "#f2ecdc", "#faf7ee"] },
+      "drafting-ink": { "role": "neutral", "displayName": "Drafting Ink", "canonical": "#1c2126", "tonalRamp": ["#0a0c0e", "#1c2126", "#2e353c", "#4a5568", "#6b7684", "#9aa3ad", "#c6ccd2", "#e8eaec"] },
+      "graphite-muted": { "role": "neutral", "displayName": "Graphite Muted", "canonical": "#4a5568", "tonalRamp": ["#1c2126", "#2e353c", "#4a5568", "#5f6b7d", "#7c879a", "#a3adbb", "#ccd2da", "#e8eaee"] },
+      "stamp-red": { "role": "secondary", "displayName": "Stamp Red", "canonical": "#b5432e", "tonalRamp": ["#4a1c13", "#6f2a1c", "#8c3120", "#b5432e", "#c95e49", "#dd8a79", "#eeb8ac", "#f7ded6"] },
+      "stamp-red-dark": { "role": "secondary", "displayName": "Stamp Red Dark", "canonical": "#8c3120", "tonalRamp": ["#3a150e", "#5a2117", "#8c3120", "#a83b28", "#c25a44", "#da8873", "#eebbac", "#f7ded6"] },
+      "workshop-black": { "role": "neutral", "displayName": "Workshop Black", "canonical": "#0A0A0F", "tonalRamp": ["#0A0A0F", "#111118", "#1A1A24", "#2A2A38", "#45455A", "#6E6E88", "#A3A3BC", "#D6D6E4"] },
+      "sheet-foreground": { "role": "neutral", "displayName": "Sheet Foreground", "canonical": "#EDEDED", "tonalRamp": ["#0A0A0F", "#6A6A7A", "#A0A0B0", "#C4C4CC", "#DADADD", "#EDEDED", "#F5F5F5", "#FFFFFF"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Architects Daughter Display", "purpose": "Hero headline and every section H2 only; never body or labels." },
+      "body": { "displayName": "Archivo Body", "purpose": "Subtitles and all descriptive copy across Home sections." },
+      "label": { "displayName": "JetBrains Mono Label", "purpose": "CTA labels, mark tags (S-01/P-01), category tags, dimension brackets, title-block fields." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "draw-line", "value": "cubic-bezier(0.2, 0.8, 0.3, 1)", "purpose": "Self-drawing pathLength animation for underlines, leader-lines, dimension lines, connectors — the system's one signature motion." },
+      { "name": "stamp-hit", "value": "cubic-bezier(0.2, 0.8, 0.3, 1), 0.5s", "purpose": "Scale+rotate entrance for the Stamp badge (plano-stamp-hit keyframes) — a single 'thunk', not a fade." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Stamp CTA Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary CTA — pill button wrapped in the Stamp ring/ink-grain badge, e.g. hero 'Contanos tu idea' or closing CTA 'Hablemos'.",
+      "html": "<div class=\"ds-stamp-wrap\"><span class=\"ds-stamp-ring\" aria-hidden=\"true\"></span><button class=\"ds-btn-primary\">HABLEMOS</button></div>",
+      "css": ".ds-stamp-wrap { position: relative; display: inline-flex; transform: rotate(-3deg); } .ds-stamp-ring { position: absolute; inset: -8px; border-radius: 9999px; border: 1px solid rgba(181,67,46,0.45); } .ds-btn-primary { background: #b5432e; color: #f2ecdc; border: 2px solid rgba(242,236,220,0.35); border-radius: 9999px; padding: 16px 40px; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; transition: transform 0.2s; } .ds-btn-primary:hover { transform: scale(1.03); } .ds-btn-primary:focus-visible { outline: 2px solid #b5432e; outline-offset: 2px; }"
+    },
+    {
+      "name": "Mark Tag",
+      "kind": "chip",
+      "refersTo": "mark-tag",
+      "description": "Drawing-sheet code tag (S-01, P-01) labeling a service row or project card.",
+      "html": "<span class=\"ds-mark-tag\">S-01</span>",
+      "css": ".ds-mark-tag { display: inline-flex; align-items: center; justify-content: center; height: 32px; width: 48px; border: 1px solid #1e4c86; color: #1e4c86; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.04em; border-radius: 0; }"
+    },
+    {
+      "name": "Service Schedule Row",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Services list row — accordion item styled as a technical spec-sheet line, not a card: mark tag, title, description, plus-to-cross toggle, bordered top/bottom.",
+      "html": "<div class=\"ds-schedule-row\"><span class=\"ds-mark-tag\">S-01</span><div class=\"ds-schedule-body\"><h3 class=\"ds-schedule-title\">Tu sistema a medida</h3><p class=\"ds-schedule-desc\">Tu competencia usa las mismas herramientas genéricas. Vos podés tener algo hecho exactamente para vos.</p></div></div>",
+      "css": ".ds-schedule-row { display: flex; align-items: flex-start; gap: 20px; padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,0.08); } .ds-schedule-title { font-family: Archivo, sans-serif; font-size: 1.25rem; font-weight: 600; color: #EDEDED; } .ds-schedule-desc { margin-top: 4px; font-family: Archivo, sans-serif; font-size: 0.875rem; line-height: 1.6; color: #A0A0B0; max-width: 42rem; }"
+    },
+    {
+      "name": "Project Title-Block Card",
+      "kind": "card",
+      "refersTo": null,
+      "description": "Featured project card — square-cornered, title-block strip (mark tag + category) instead of an overlay caption.",
+      "html": "<article class=\"ds-project-card\"><div class=\"ds-project-titleblock\"><span class=\"ds-mark-tag\" style=\"height:24px;width:40px;\">P-01</span><span class=\"ds-project-category\">Web Apps</span></div><div class=\"ds-project-body\"><h3 class=\"ds-project-title\">LevelUp Academy</h3><p class=\"ds-project-desc\">Plataforma de capacitación en ventas.</p></div></article>",
+      "css": ".ds-project-card { display: flex; flex-direction: column; width: 340px; border: 1px solid rgba(255,255,255,0.08); background: #111118; border-radius: 0; transition: border-color 0.3s; } .ds-project-card:hover { border-color: rgba(30,76,134,0.5); } .ds-project-titleblock { display: flex; align-items: center; gap: 12px; padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); } .ds-project-category { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #6A6A7A; } .ds-project-title { font-family: Archivo, sans-serif; font-size: 1.25rem; font-weight: 600; color: #EDEDED; padding: 0 20px; margin-top: 12px; } .ds-project-desc { font-family: Archivo, sans-serif; font-size: 0.875rem; color: #A0A0B0; padding: 0 20px 20px; }"
+    },
+    {
+      "name": "Inspection Checklist Item",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "WhyUs reason row on the vellum-paper ground — a hand-drawn checkbox that draws its own check mark, standing in for a benefits card.",
+      "html": "<div class=\"ds-checklist-item\"><svg class=\"ds-checkbox\" viewBox=\"0 0 16 16\" fill=\"none\"><rect x=\"1\" y=\"1\" width=\"14\" height=\"14\" rx=\"1.5\" stroke=\"#0e2f5a\" stroke-width=\"1.3\"/><path d=\"M4 8.2l2.6 2.6L12 5.5\" stroke=\"#0e2f5a\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg><div><h3 class=\"ds-checklist-title\">Un equipo, no un freelancer</h3><p class=\"ds-checklist-desc\">Siempre hay alguien respondiendo.</p></div></div>",
+      "css": ".ds-checklist-item { display: flex; gap: 16px; padding: 24px 0; border-bottom: 1px solid rgba(14,47,90,0.14); } .ds-checkbox { width: 16px; height: 16px; margin-top: 4px; flex-shrink: 0; } .ds-checklist-title { font-family: Archivo, sans-serif; font-weight: 600; color: #1c2126; } .ds-checklist-desc { margin-top: 6px; font-family: Archivo, sans-serif; font-size: 0.875rem; line-height: 1.6; color: #4a5568; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Approved Set",
+    "overview": "This DESIGN.md documents \"El Plano,\" the blueprint/technical-drafting world built for the Home page's own section components only (HeroSection, ServicesSection, ProcessSection, WhyUsSection, ProjectsSection, TeamSection, CTASection, and the shared primitives in src/components/plano/). The shared site chrome (Header, Footer, LoadingScreen) and every other page (Services, Projects, Contact, Blog, etc.) still run on the prior BApps purple/yellow system (Delta Gothic One + Commissioner) — that system remains authoritative everywhere outside Home until it gets its own redesign pass. El Plano reads Home as a set of drawing sheets rather than marketing cards: a hero drawn like a cyanotype cover sheet, a services \"schedule\" instead of icon cards, a process phasing strip with dimension brackets, an inspection checklist standing in for a benefits grid, and project cards carrying their own title block. It refuses the gradient-hero-and-blob agency default on purpose. Two sheet materials carry the built page: the deep cyanotype-blue ground (hero and the closing CTA) and warm vellum paper (WhyUs). The middle content sections (Services, Process, Projects, Team) actually run on the site's existing dark neutral tokens, not the cyanotype blue — a deliberate divergence from the original direction contract's language, documented here as shipped.",
+    "keyCharacteristics": [
+      "Hand-drafted display lettering (Architects Daughter) paired with a plain, legible body face (Archivo) and a mono register (JetBrains Mono) reserved for labels, codes, and measurements.",
+      "Flat at rest — no box-shadows anywhere in the built system; depth comes from ruled lines, ink-grain texture, and layered stroke rings.",
+      "Square-cornered by default; the one exception is anything 'certified' — stamps, seals, registration marks — which is always fully round.",
+      "A single reused signature motion (the self-drawing ink line) instead of scattered fade/slide entrances."
+    ],
+    "rules": [
+      { "name": "The Rare Stamp Rule", "body": "Stamp Red appears only on primary CTAs, the hero's highlighted word, and status/seal marks — never as a background fill or body text color.", "section": "colors" },
+      { "name": "The One Voice, Three Registers Rule", "body": "Architects Daughter is reserved for headlines only; Archivo carries every sentence of body copy; JetBrains Mono is the exclusive register for labels, marks, codes, and annotations.", "section": "typography" },
+      { "name": "The Flat Sheet Rule", "body": "No box-shadow, anywhere. Depth is a ruled line, a stroke ring, or ink-grain texture — never a shadow.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do reserve Architects Daughter for headlines only; Archivo for body; JetBrains Mono for labels/marks/measurements — never mix registers.",
+      "Do use the DrawLine self-drawing stroke for underlines, leader-lines, and progress indicators instead of a generic fade/slide entrance.",
+      "Do keep Stamp Red rare — CTAs and seals only, never a background or body-text color.",
+      "Do keep drafted elements square-cornered and reserve rounded-full for anything meant to read as certified/sealed (stamps, seals, registration marks, avatars)."
+    ],
+    "donts": [
+      "Don't carry --plano-* tokens, Architects Daughter, or the stamp/mark-tag components into Header, Footer, LoadingScreen, or any non-Home page without a deliberate follow-on redesign of that surface — they still run on the BApps purple/yellow system and mixing the two palettes on one surface is not a supported state.",
+      "Don't add a box-shadow anywhere in El Plano; depth is ruled lines, ink-grain, and stroke rings only.",
+      "Don't use a colored border-left/border-right above 1px on cards, list items, callouts, or alerts — a craft-floor default this system avoids; dividers and nesting read through plain border (1px, neutral) instead."
+    ]
+  }
+}
