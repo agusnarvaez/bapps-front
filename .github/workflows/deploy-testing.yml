@@ -1,0 +1,15 @@
+name: deploy-testing
+on:
+  push: { branches: [main] }
+permissions:
+  contents: read
+jobs:
+  qa:
+    uses: agusnarvaez/bapps-workflows/.github/workflows/qa.yml@v1
+  security:
+    uses: agusnarvaez/bapps-workflows/.github/workflows/security.yml@v1
+  deploy:
+    needs: qa
+    uses: agusnarvaez/bapps-workflows/.github/workflows/deploy-vps.yml@v1
+    with: { app: bapps-front, env: testing, health-url: 'https://bapps-front-testing.bapps.com.ar/version.json', build-dir: dist }
+    secrets: inherit
