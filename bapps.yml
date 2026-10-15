@@ -1,0 +1,9 @@
+version: 1
+id: bapps-front
+kind: site
+stack: [react@19, vite@6]
+environments:
+  testing: { url: https://bapps-front-testing.bapps.com.ar, host: vps, health: /version.json, workflow: deploy-testing.yml }
+  prod: { url: https://bapps.com.ar, host: vps, health: /version.json, workflow: deploy-prod.yml }
+domains: [bapps.com.ar]
+checks: { security: weekly }
