@@ -3,13 +3,9 @@ on:
   push: { branches: [main] }
 permissions:
   contents: read
+# Sin qa/security en GitHub (sin minutos pagos): los corre el pre-push local. Volver a sumarlos: ver bapps-console docs/setup/rollout-fase-2.md.
 jobs:
-  qa:
-    uses: agusnarvaez/bapps-workflows/.github/workflows/qa.yml@v1
-  security:
-    uses: agusnarvaez/bapps-workflows/.github/workflows/security.yml@v1
   deploy:
-    needs: qa
     uses: agusnarvaez/bapps-workflows/.github/workflows/deploy-vps.yml@v1
     with: { app: bapps-front, env: testing, health-url: 'https://bapps-front-testing.bapps.com.ar/version.json', build-dir: dist }
     secrets: inherit
