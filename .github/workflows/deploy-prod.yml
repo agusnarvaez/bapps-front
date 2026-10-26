@@ -7,5 +7,5 @@ permissions:
 jobs:
   deploy:
     uses: agusnarvaez/bapps-workflows/.github/workflows/deploy-vps.yml@v1
-    with: { app: bapps-front, env: prod, health-url: 'https://bapps.com.ar/version.json', build-dir: dist }
+    with: { app: bapps-front, env: prod, health-url: 'https://bapps.com.ar/version.json', build-dir: dist, build-command: 'pnpm build:prerender' }
     secrets: inherit
