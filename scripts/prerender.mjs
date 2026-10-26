@@ -2,7 +2,7 @@
 /**
  * Prerenders all routes from public/sitemap.xml into dist/.
  * Runs AFTER pnpm build. Each route gets its own dist/{route}/index.html
- * so Apache serves it as a static file — visible to all crawlers.
+ * so nginx serves it as a static file — visible to all crawlers.
  *
  * Usage:  node scripts/prerender.mjs
  *         (called automatically by pnpm build:prerender)
@@ -166,7 +166,7 @@ async function prerender() {
   }
 
   console.log(`\n${ok} rendered, ${fail} failed.`);
-  console.log("Upload dist/ to Hostinger via FTP as usual.\n");
+  console.log("CI (deploy-vps) publishes dist/ to the VPS.\n");
 }
 
 prerender().catch((err) => {
