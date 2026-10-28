@@ -67,7 +67,9 @@ function startServer() {
   const proc = spawn(
     `pnpm preview --port ${PORT} --strictPort`,
     [],
-    { cwd: ROOT, shell: true, stdio: "pipe" }
+    // detached on POSIX: own process group, so killServer can take down
+    // sh → pnpm → vite together (see below).
+    { cwd: ROOT, shell: true, stdio: "pipe", detached: process.platform !== "win32" }
   );
 
   return new Promise((ok, fail) => {
@@ -93,7 +95,12 @@ function killServer(proc) {
       execSync(`taskkill /pid ${proc.pid} /T /F`, { stdio: "ignore" });
     } catch {}
   } else {
-    proc.kill("SIGTERM");
+    // Negative pid = whole process group. proc.kill() only hit the sh
+    // wrapper: vite kept the pipes open and node never exited (CI hung
+    // until the 20-min job timeout).
+    try {
+      process.kill(-proc.pid, "SIGTERM");
+    } catch {}
   }
 }
 
