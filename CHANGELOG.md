@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.1](https://github.com/agusnarvaez/bapps-front/compare/v0.2.0...v0.2.1) (2026-10-28)
+
+
+### Bug Fixes
+
+* **ci:** deployar con build:prerender ([#17](https://github.com/agusnarvaez/bapps-front/issues/17)) ([72a37fd](https://github.com/agusnarvaez/bapps-front/commit/72a37fd8786e80837d7820b69ad8b2dba290f58f))
+* **prerender:** matar el server de preview completo en Linux ([#20](https://github.com/agusnarvaez/bapps-front/issues/20)) ([0deedfd](https://github.com/agusnarvaez/bapps-front/commit/0deedfd767eb5c2434ded619d9a62619e5a5b963))
+
 ## [0.2.0](https://github.com/agusnarvaez/bapps-front/compare/v0.1.0...v0.2.0) (2026-10-21)
 
 
