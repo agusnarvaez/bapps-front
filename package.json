@@ -41,7 +41,7 @@
     "@types/react-dom": "^19.3.0",
     "@types/three": "^0.186.0",
     "@vitejs/plugin-react": "^5.2.0",
-    "eslint": "^9.39.5",
+    "eslint": "^10.13.0",
     "google-auth-library": "^10.9.1",
     "jsdom": "^28.1.0",
     "puppeteer": "^25.13.0",
