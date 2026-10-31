@@ -25,21 +25,6 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 const TOTAL_STEPS = 4;
-const CONTACT_EMAIL_FROM = "no_reply@bapps.com.ar";
-const CONTACT_EMAIL_TO = "agus.narvaez@outlook.com";
-
-const HTML_ESCAPE_MAP: Record<string, string> = {
-  "&": "&amp;",
-  "<": "&lt;",
-  ">": "&gt;",
-  "\"": "&quot;",
-  "'": "&#39;",
-};
-
-function escapeHtml(value: string) {
-  return value.replace(/[&<>"']/g, (character) => HTML_ESCAPE_MAP[character]);
-}
-
 function formatOptionalField(value: string | undefined) {
   const normalizedValue = value?.trim();
   if (!normalizedValue) {
@@ -171,47 +156,27 @@ export default function CotizadorWizard() {
       const normalizedPhone = formatOptionalField(data.phone);
       const normalizedCompany = formatOptionalField(data.company);
 
-      const message = [
-        "Nuevo contacto desde bapps-front",
-        `Nombre: ${normalizedName}`,
-        `Email: ${normalizedEmail}`,
-        `Telefono: ${normalizedPhone}`,
-        `Empresa: ${normalizedCompany}`,
-        `Tipo de proyecto: ${projectTypeLabel}`,
-        `Descripcion: ${normalizedDescription}`,
-        `Funcionalidades deseadas: ${normalizedFeatures}`,
-        `Referencia: ${normalizedReference}`,
-        `Timeline: ${timelineLabel}`,
-        `Presupuesto: ${budgetLabel}`,
-      ].join("\n");
-
-      const html = `
-        <p><strong>Nuevo contacto desde bapps-front</strong></p>
-        <ul>
-          <li><strong>Nombre:</strong> ${escapeHtml(normalizedName)}</li>
-          <li><strong>Email:</strong> ${escapeHtml(normalizedEmail)}</li>
-          <li><strong>Telefono:</strong> ${escapeHtml(normalizedPhone)}</li>
-          <li><strong>Empresa:</strong> ${escapeHtml(normalizedCompany)}</li>
-          <li><strong>Tipo de proyecto:</strong> ${escapeHtml(projectTypeLabel)}</li>
-          <li><strong>Descripcion:</strong> ${escapeHtml(normalizedDescription)}</li>
-          <li><strong>Funcionalidades deseadas:</strong> ${escapeHtml(normalizedFeatures)}</li>
-          <li><strong>Referencia:</strong> ${escapeHtml(normalizedReference)}</li>
-          <li><strong>Timeline:</strong> ${escapeHtml(timelineLabel)}</li>
-          <li><strong>Presupuesto:</strong> ${escapeHtml(budgetLabel)}</li>
-        </ul>
-      `;
-
-      const response = await fetch(`${mailingApiBaseUrl}/mail/send`, {
+      // mailing-api arma el mail (remitente, destinatario y HTML) a partir de estos datos.
+      const response = await fetch(`${mailingApiBaseUrl}/mail/form`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          from: CONTACT_EMAIL_FROM,
-          to: CONTACT_EMAIL_TO,
-          subject: `Nuevo contacto web - ${normalizedName}`,
-          message,
-          html,
+          site: "bapps",
+          subject: "Nuevo contacto web",
+          name: normalizedName,
+          email: normalizedEmail,
+          phone: normalizedPhone,
+          message: normalizedDescription,
+          fields: [
+            { label: "Empresa", value: normalizedCompany },
+            { label: "Tipo de proyecto", value: projectTypeLabel },
+            { label: "Funcionalidades deseadas", value: normalizedFeatures },
+            { label: "Referencia", value: normalizedReference },
+            { label: "Timeline", value: timelineLabel },
+            { label: "Presupuesto", value: budgetLabel },
+          ],
         }),
       });
 
