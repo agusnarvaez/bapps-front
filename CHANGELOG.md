@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/agusnarvaez/bapps-front/compare/v0.2.1...v0.3.0) (2026-10-31)
+
+
+### Features
+
+* **cotizador:** manda sólo datos a mailing-api (/mail/form) ([#24](https://github.com/agusnarvaez/bapps-front/issues/24)) ([98772fb](https://github.com/agusnarvaez/bapps-front/commit/98772fbbcba8f3941902fc7904126efbeda77976))
+
 ## [0.2.1](https://github.com/agusnarvaez/bapps-front/compare/v0.2.0...v0.2.1) (2026-10-28)
 
 
