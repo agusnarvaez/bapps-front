@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0](https://github.com/agusnarvaez/bapps-front/compare/v0.3.0...v0.4.0) (2026-11-10)
+
+
+### Features
+
+* **seo:** fichas de proyecto en el sitemap publicado ([#31](https://github.com/agusnarvaez/bapps-front/issues/31)) ([4935f25](https://github.com/agusnarvaez/bapps-front/commit/4935f258dbb939d703bdfc94b90a296b225a34ce))
+
+
+### Bug Fixes
+
+* **seo:** 404 real para slugs de proyecto inexistentes ([#28](https://github.com/agusnarvaez/bapps-front/issues/28)) ([4706fa9](https://github.com/agusnarvaez/bapps-front/commit/4706fa9c8023113ab847023bd3cf604c7c71c81d))
+
 ## [0.3.0](https://github.com/agusnarvaez/bapps-front/compare/v0.2.1...v0.3.0) (2026-10-31)
 
 
