@@ -50,12 +50,26 @@ if (projectId) {
     useCdn: false,
   });
   const projects = await sanity.fetch(
-    `*[_type == "project" && defined(publishedAt)]{ "slug": slug.current }`
+    `*[_type == "project" && defined(publishedAt)]{ "slug": slug.current, _updatedAt }`
   );
-  for (const { slug } of projects) {
-    if (slug) routes.add(`/es/projects/${slug}`);
+  const entries = [];
+  for (const { slug, _updatedAt } of projects) {
+    if (!slug) continue;
+    routes.add(`/es/projects/${slug}`);
+    // Sin barra final: es la canónica que emite la página de proyecto.
+    entries.push(
+      `  <url>\n    <loc>${SITE}/es/projects/${slug}</loc>\n` +
+        `    <lastmod>${_updatedAt.slice(0, 10)}</lastmod>\n` +
+        `    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`
+    );
   }
-  console.log(`  + ${projects.length} project page(s) from Sanity`);
+  // ponytail: las fichas también van al sitemap publicado (dist/), no al de
+  // public/: así entran solas al cargar un proyecto en Sanity, sin tocar el repo.
+  writeFileSync(
+    resolve(DIST, "sitemap.xml"),
+    sitemap.replace("</urlset>", `${entries.join("\n")}\n</urlset>`)
+  );
+  console.log(`  + ${projects.length} project page(s) from Sanity (prerender + sitemap)`);
 } else {
   console.warn("  ! NEXT_PUBLIC_SANITY_PROJECT_ID not set — skipping project pages");
 }
