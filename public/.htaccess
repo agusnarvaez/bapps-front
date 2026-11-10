@@ -44,9 +44,10 @@ RedirectMatch 404 ^/(images|assets)/?$
   # static files (rule 4); an unmatched slug here is a genuine 404, not a
   # blog post someone forgot to whitelist.
   RewriteRule ^(es|en)/(blog|servicios)/?$ /index.html [L]
-  # Projects: individual pages are Sanity-driven, not prerendered, so the
-  # slug wildcard is genuinely needed here (client resolves valid vs 404).
-  RewriteRule ^(es|en)/projects(/[^/]+)?/?$ /index.html [L]
+  # Projects index only — detail pages are prerendered from Sanity
+  # (scripts/prerender.mjs) and served by rule 4. A slug wildcard here made
+  # unknown slugs return 200 with the homepage: Search Console "soft 404".
+  RewriteRule ^(es|en)/projects/?$ /index.html [L]
 
   # Anything else under a locale (or with no locale) is a real 404, not the homepage.
 </IfModule>
