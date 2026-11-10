@@ -18,9 +18,9 @@ pnpm preview    # previsualizar el build de dist/
 ```
 
 ## Deploy
-- Hosting compartido en **Hostinger** — deploy manual por **FTP**
-- Subir contenido de `dist/` al directorio raíz del hosting
-- El `.htaccess` en `public/` se copia al `dist/` automáticamente en el build
+- VPS con **nginx** (ya no Hostinger). Deploy por GitHub Actions: ver "Deploy y operación" en el README.
+- Redirects, 404 y fallback SPA viven en `bapps-console/infra/vps/sites/bapps-front.conf`, no en este repo.
+  Al agregar una ruta, actualizar ese archivo (mantener en sync con `matchRoute()`) y aplicarlo con `setup-site.sh`.
 
 ## Reglas obligatorias antes de cada cambio
 
@@ -36,6 +36,7 @@ Para agregar una ruta nueva:
 2. Agregar caso en `matchRoute()` (App.tsx)
 3. Agregar render en `App()` (App.tsx)
 4. Agregar URL en `public/sitemap.xml`
+5. Si no se prerenderiza, sumarla a `bapps-console/infra/vps/sites/bapps-front.conf` (si no, nginx da 404)
 
 ## Estructura clave
 ```
@@ -56,7 +57,6 @@ src/
 public/
   sitemap.xml     # Actualizar al agregar rutas
   robots.txt
-  .htaccess       # Reglas Apache (HTTPS, SPA fallback, redirect /)
 ```
 
 ## SEO — siempre al agregar páginas nuevas
