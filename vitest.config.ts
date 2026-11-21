@@ -21,5 +21,8 @@ export default defineConfig({
     environment: "jsdom",
     include: ["src/__tests__/**/*.test.{ts,tsx}"],
     setupFiles: ["src/__tests__/setup.ts"],
+    // ponytail: the self-hosted runner (zenbook, Docker) is slow on jsdom +
+    // framer-motion tests; the 5s default timed out three unrelated tests.
+    testTimeout: 15000,
   },
 });
