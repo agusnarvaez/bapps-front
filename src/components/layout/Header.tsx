@@ -93,7 +93,7 @@ export default function Header() {
                   key={link.key}
                   href={href ?? "#"}
                   onClick={(e) =>
-                    link.page
+                    link.pageOnly || (link.page && !isHome)
                       ? handlePageNav(e, href ?? "#")
                       : handleSectionNav(e, locale, link.hash, isHome)
                   }
@@ -188,7 +188,7 @@ export default function Header() {
                     key={link.key}
                     href={href ?? "#"}
                     onClick={(e) => {
-                      if (link.page) {
+                      if (link.pageOnly || (link.page && !isHome)) {
                         handlePageNav(e, href ?? "#");
                       } else {
                         handleSectionNav(e, locale, link.hash, isHome);
