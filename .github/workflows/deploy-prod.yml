@@ -1,11 +1,26 @@
 name: deploy-prod
-# Solo lo dispara release.yml sobre el tag del release (spec 4.4). Sin push: prod sale únicamente del release PR.
+# Cada push a main publica directo en bapps.com.ar (sin testing ni release PR).
+# deploy-vps.yml (compartido) exige un tag v* para prod: el push crea el tag y
+# se re-dispara sobre él. Un tag con GITHUB_TOKEN no dispara workflows;
+# workflow_dispatch sí. Volver atrás: gh workflow run deploy-prod.yml --ref v<anterior>
 on:
+  push: { branches: [main] }
   workflow_dispatch: {}
+concurrency: { group: deploy-prod, cancel-in-progress: false }
 permissions:
   contents: read
 jobs:
+  tag:
+    if: github.event_name == 'push'
+    runs-on: ${{ vars.BAPPS_RUNNER || 'ubuntu-latest' }}
+    permissions: { contents: write, actions: write }
+    steps:
+      - env: { GH_TOKEN: '${{ github.token }}', TAG: 'v0.5.${{ github.run_number }}' }
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/git/refs" -f ref="refs/tags/$TAG" -f sha="$GITHUB_SHA"
+          gh workflow run deploy-prod.yml --repo "$GITHUB_REPOSITORY" --ref "$TAG"
   deploy:
+    if: github.event_name == 'workflow_dispatch'
     uses: agusnarvaez/bapps-workflows/.github/workflows/deploy-vps.yml@v1
     with: { app: bapps-front, env: prod, health-url: 'https://bapps.com.ar/version.json', build-dir: dist, build-command: 'pnpm build:prerender' }
     secrets: inherit
