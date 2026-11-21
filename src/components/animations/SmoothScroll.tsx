@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Lenis from "lenis";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { setLenis } from "@/lib/navClick";
 
 export default function SmoothScroll({
   children,
@@ -23,6 +24,7 @@ export default function SmoothScroll({
     });
 
     lenisRef.current = lenis;
+    setLenis(lenis);
 
     function raf(time: number) {
       lenis.raf(time);
@@ -46,6 +48,7 @@ export default function SmoothScroll({
       } else {
         clearTimeout(idleId as ReturnType<typeof setTimeout>);
       }
+      setLenis(null);
       lenis.destroy();
     };
   }, [reduced]);

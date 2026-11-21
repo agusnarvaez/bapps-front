@@ -15,7 +15,7 @@ const navLinks = [
   { key: "projects", hash: "#proyectos", page: "/projects", pageOnly: false },
   { key: "blog", hash: "#blog", page: "/blog", pageOnly: true },
   { key: "team", hash: "#equipo", page: null as string | null, pageOnly: false },
-  { key: "contact", hash: "#contacto", page: "/contact", pageOnly: false },
+  { key: "contact", hash: "#contacto", page: "/contact", pageOnly: true },
 ];
 
 export default function Header() {
