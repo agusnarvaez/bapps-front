@@ -19,6 +19,8 @@ pnpm preview    # previsualizar el build de dist/
 
 ## Deploy
 - VPS con **nginx** (ya no Hostinger). Deploy por GitHub Actions: ver "Deploy y operación" en el README.
+- Merge a `main` → testing (`bapps-front-testing.bapps.com.ar`). Producción sale solo al mergear el release PR
+  de release-please (tag `v*` → `deploy-prod.yml`). Sólo `feat`/`fix` generan release.
 - Redirects, 404 y fallback SPA viven en `bapps-console/infra/vps/sites/bapps-front.conf`, no en este repo.
   Al agregar una ruta, actualizar ese archivo (mantener en sync con `matchRoute()`) y aplicarlo con `setup-site.sh`.
 
