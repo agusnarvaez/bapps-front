@@ -56,6 +56,8 @@ if (projectId) {
   for (const { slug, _updatedAt } of projects) {
     if (!slug) continue;
     routes.add(`/es/projects/${slug}`);
+    // /en/projects/ enlaza acá: sin archivo prerenderizado nginx da 404.
+    routes.add(`/en/projects/${slug}`);
     // Sin barra final: es la canónica que emite la página de proyecto.
     entries.push(
       `  <url>\n    <loc>${SITE}/es/projects/${slug}</loc>\n` +
