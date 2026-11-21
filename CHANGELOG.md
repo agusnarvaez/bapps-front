@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.2](https://github.com/agusnarvaez/bapps-front/compare/v0.4.1...v0.4.2) (2026-11-21)
+
+
+### Bug Fixes
+
+* **header:** Proyectos y Contacto hacen scroll a su sección en el home ([#35](https://github.com/agusnarvaez/bapps-front/issues/35)) ([a1f9143](https://github.com/agusnarvaez/bapps-front/commit/a1f9143cbf8c1ee0f2e51aee60fb5b82d3afa0de))
+* **nav:** el scroll a secciones pasa por Lenis ([#37](https://github.com/agusnarvaez/bapps-front/issues/37)) ([68db454](https://github.com/agusnarvaez/bapps-front/commit/68db454a1fd5390a3184fd12e843472e4036ac42))
+
 ## [0.4.1](https://github.com/agusnarvaez/bapps-front/compare/v0.4.0...v0.4.1) (2026-11-21)
 
 
