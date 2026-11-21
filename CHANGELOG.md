@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/agusnarvaez/bapps-front/compare/v0.4.0...v0.4.1) (2026-11-21)
+
+
+### Bug Fixes
+
+* **seo:** /projects/ sin proyectos de ejemplo y fichas EN prerenderizadas ([#33](https://github.com/agusnarvaez/bapps-front/issues/33)) ([6d8f445](https://github.com/agusnarvaez/bapps-front/commit/6d8f445941f51915f67df68d3b3c61b4f50ec1c6))
+
 ## [0.4.0](https://github.com/agusnarvaez/bapps-front/compare/v0.3.0...v0.4.0) (2026-11-10)
 
 
