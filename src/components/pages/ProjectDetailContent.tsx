@@ -107,7 +107,7 @@ export default function ProjectDetailContent({
                 playsInline
                 preload="metadata"
                 aria-label={currentProject.title}
-                className="h-full w-full bg-black object-contain"
+                className="h-full w-full bg-black object-cover"
               />
             ) : (
               <ProjectImage
