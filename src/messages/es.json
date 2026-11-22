@@ -6,7 +6,6 @@
   "nav": {
     "services": "Servicios",
     "projects": "Proyectos",
-    "team": "Equipo",
     "contact": "Contacto",
     "quoteProject": "Hablemos",
     "scheduleCall": "Agendar llamada",
@@ -91,11 +90,12 @@
     "clientTestimonial": "Lo que dice el cliente",
     "nextProject": "Siguiente proyecto",
     "ctaTitle": "¿Te gustaría algo similar?",
-    "ctaButton": "Cotizar proyecto"
-  },
-  "team": {
-    "title": "Nuestro equipo",
-    "subtitle": "Las personas detrás de cada proyecto."
+    "ctaButton": "Cotizar proyecto",
+    "caseStudy": {
+      "problem": "El problema",
+      "solution": "Lo que construimos",
+      "result": "El resultado"
+    }
   },
   "testimonials": {
     "title": "Lo que dicen nuestros clientes",

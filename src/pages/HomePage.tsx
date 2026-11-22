@@ -5,7 +5,6 @@ import ProcessSection from "@/components/sections/ProcessSection";
 import WhyUsSection from "@/components/sections/WhyUsSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 /* import TestimonialsSection from "@/components/sections/TestimonialsSection"; */
-import TeamSection from "@/components/sections/TeamSection";
 import CTASection from "@/components/sections/CTASection";
 import { useTranslations } from "next-intl";
 import { updateDocumentMetadata } from "@/lib/seo/metadata";
@@ -57,7 +56,6 @@ export default function HomePage({ locale }: { locale: Locale }) {
       <WhyUsSection />
       <ProjectsSection featuredProjects={featuredProjects} locale={locale} />
       {/* <TestimonialsSection /> */}
-      <TeamSection />
       <CTASection />
     </>
   );

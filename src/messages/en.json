@@ -6,7 +6,6 @@
   "nav": {
     "services": "Services",
     "projects": "Projects",
-    "team": "Team",
     "contact": "Contact",
     "quoteProject": "Let's talk",
     "scheduleCall": "Book a call",
@@ -91,11 +90,12 @@
     "clientTestimonial": "What the client says",
     "nextProject": "Next project",
     "ctaTitle": "Want something similar?",
-    "ctaButton": "Get a quote"
-  },
-  "team": {
-    "title": "Our team",
-    "subtitle": "The people behind every project."
+    "ctaButton": "Get a quote",
+    "caseStudy": {
+      "problem": "The problem",
+      "solution": "What we built",
+      "result": "The result"
+    }
   },
   "testimonials": {
     "title": "What our clients say",

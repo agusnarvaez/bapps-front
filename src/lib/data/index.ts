@@ -1,4 +1,4 @@
-import type { Project, TeamMember, Testimonial, Service } from "./types";
+import type { Project, Testimonial, Service } from "./types";
 
 export const projects: Project[] = [
   {
@@ -55,27 +55,6 @@ export const projects: Project[] = [
     technologies: ["React", "Express", "MongoDB", "Mapbox"],
     category: "webapp",
     featured: false,
-  },
-];
-
-export const team: TeamMember[] = [
-  {
-    name: "Agustín Narvaez",
-    role: "Full Stack Developer",
-    image: "/images/team/member-1.jpg",
-    linkedin: "https://www.linkedin.com/in/narvaezagustin",
-  },
-  {
-    name: "Julián Gibelli",
-    role: "Backend Developer",
-    image: "/images/team/member-2.jpg",
-    linkedin: "https://www.linkedin.com/in/jgibelli/",
-  },
-  {
-    name: "Franco Nicotra",
-    role: "Backend Developer",
-    image: "/images/team/member-3.jpg",
-    linkedin: "https://www.linkedin.com/in/franco-nicotra-a83a84156/",
   },
 ];
 

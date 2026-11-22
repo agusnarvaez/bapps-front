@@ -8,7 +8,6 @@ import { handlePageNav, handleSectionNav } from "@/lib/navClick";
 const sectionLinks = [
   { key: "servicios" as const, label: "Servicios" },
   { key: "proyectos" as const, label: "Proyectos" },
-  { key: "equipo" as const, label: "Equipo" },
 ];
 
 const socialLinks = [

@@ -12,8 +12,16 @@ export interface Project {
     author: string;
     role: string;
   };
+  video?: string; // URL del video demo; reemplaza la portada en el detalle
+  caseStudy?: CaseStudy;
   featured: boolean;
   order?: number; // Para ordenamiento editorial
+}
+
+export interface CaseStudy {
+  problem?: string;
+  solution?: string;
+  result?: string;
 }
 
 /**
@@ -47,16 +55,11 @@ export interface SanityProjectDocument {
     author: string;
     role: string;
   }>;
+  videoUrl?: string; // proyección GROQ: video.asset->url
+  caseStudy?: Partial<Record<keyof CaseStudy, Record<"es" | "en", string>>>;
   featured?: boolean;
   order?: number;
   publishedAt?: string; // Para filtrar solo publicados
-}
-
-export interface TeamMember {
-  name: string;
-  role: string;
-  image: string;
-  linkedin?: string;
 }
 
 export interface Testimonial {

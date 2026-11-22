@@ -20,7 +20,6 @@ describe("Footer", () => {
   it("renders footer links section", () => {
     expect(screen.getByText("Servicios")).toBeInTheDocument();
     expect(screen.getByText("Proyectos")).toBeInTheDocument();
-    expect(screen.getByText("Equipo")).toBeInTheDocument();
     expect(screen.getByText("Contacto")).toBeInTheDocument();
   });
 

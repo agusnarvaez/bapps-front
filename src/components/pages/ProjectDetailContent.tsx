@@ -99,14 +99,26 @@ export default function ProjectDetailContent({
           className="mt-10 overflow-hidden rounded-2xl border border-border"
         >
           <div className="relative aspect-video">
-            <ProjectImage
-              src={currentProject.image}
-              alt={currentProject.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 1024px"
-              priority
-            />
+            {currentProject.video ? (
+              <video
+                src={currentProject.video}
+                poster={currentProject.image}
+                controls
+                playsInline
+                preload="metadata"
+                aria-label={currentProject.title}
+                className="h-full w-full bg-black object-contain"
+              />
+            ) : (
+              <ProjectImage
+                src={currentProject.image}
+                alt={currentProject.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 1024px"
+                priority
+              />
+            )}
           </div>
         </motion.div>
 
@@ -123,6 +135,20 @@ export default function ProjectDetailContent({
             <p className="text-lg leading-relaxed text-foreground-muted">
               {currentProject.description}
             </p>
+
+            {(["problem", "solution", "result"] as const).map((key) => {
+              const text = currentProject.caseStudy?.[key];
+              return text ? (
+                <section key={key} className="mt-10">
+                  <h2 className="mb-3 text-xl font-semibold text-foreground">
+                    {t(`caseStudy.${key}`)}
+                  </h2>
+                  <p className="whitespace-pre-line text-lg leading-relaxed text-foreground-muted">
+                    {text}
+                  </p>
+                </section>
+              ) : null;
+            })}
 
             {currentProject.testimonial && (
               <div className="mt-12">

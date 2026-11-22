@@ -16,7 +16,6 @@ describe("Header", () => {
   it("renders all 4 nav links", () => {
     expect(screen.getByText("nav.services")).toBeInTheDocument();
     expect(screen.getByText("nav.projects")).toBeInTheDocument();
-    expect(screen.getByText("nav.team")).toBeInTheDocument();
     expect(screen.getByText("nav.contact")).toBeInTheDocument();
   });
 
