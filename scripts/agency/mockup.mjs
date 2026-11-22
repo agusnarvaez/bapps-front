@@ -1,53 +1,56 @@
 #!/usr/bin/env node
 /**
- * Mockup: render template.html with a lead's data → PNG screenshot.
- * Same Puppeteer pattern as scripts/prerender.mjs, but renders inline HTML
- * (no server needed) via page.setContent.
+ * Mockup: página de muestra del negocio según su rubro → PNG de 1080x1350
+ * (el formato que mejor se ve en el chat de WhatsApp).
  *
- * Usage: node scripts/agency/mockup.mjs <leadId>
+ * Uso:  node scripts/agency/mockup.mjs <leadId>
+ *       node scripts/agency/mockup.mjs --all     todos los leads con mensaje
  */
 
 import puppeteer from "puppeteer";
-import { readFileSync, mkdirSync, existsSync } from "fs";
+import { readFileSync, mkdirSync, existsSync, writeFileSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
+import { mockupHtml } from "./lib.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const LEADS = resolve(__dirname, "leads.json");
-const TEMPLATE = resolve(__dirname, "template.html");
 const OUT_DIR = resolve(__dirname, "out/mockups");
+const SIZE = { width: 1080, height: 1350 };
 
-const id = process.argv[2];
-if (!id) {
-  console.error("Usage: node scripts/agency/mockup.mjs <leadId>");
+const arg = process.argv[2];
+if (!arg) {
+  console.error("Uso: node scripts/agency/mockup.mjs <leadId> | --all");
   process.exit(1);
 }
 
 const leads = existsSync(LEADS) ? JSON.parse(readFileSync(LEADS, "utf-8")) : [];
-const lead = leads.find((l) => l.id === id);
-if (!lead) {
-  console.error(`Lead ${id} no está en leads.json`);
+const targets = arg === "--all" ? leads.filter((lead) => lead.pitch) : leads.filter((lead) => lead.id === arg);
+if (!targets.length) {
+  console.error(arg === "--all" ? "No hay leads con mensaje en leads.json" : `Lead ${arg} no está en leads.json`);
   process.exit(1);
 }
 
-// {{key}} → lead[key], escaping < to keep injected text from breaking the HTML.
-const html = readFileSync(TEMPLATE, "utf-8").replace(/\{\{(\w+)\}\}/g, (_, k) =>
-  String(lead[k] ?? "").replace(/</g, "&lt;")
-);
-
 mkdirSync(OUT_DIR, { recursive: true });
-const out = resolve(OUT_DIR, `${id}.png`);
-
-const browser = await puppeteer.launch({
-  headless: true,
-  args: ["--no-sandbox", "--disable-setuid-sandbox"],
-});
+const browser = await puppeteer.launch({ headless: true, args: ["--no-sandbox", "--disable-setuid-sandbox"] });
+const cut = [];
 try {
   const page = await browser.newPage();
-  await page.setViewport({ width: 1280, height: 900 });
-  await page.setContent(html, { waitUntil: "load" });
-  await page.screenshot({ path: out, fullPage: true });
-  console.log(`mockup → ${out}`);
+  await page.setViewport(SIZE);
+  for (const lead of targets) {
+    await page.setContent(mockupHtml(lead), { waitUntil: "load" });
+    await page.evaluate(() => document.fonts.ready);
+    // Un mockup con el contenido cortado no se manda: se avisa cuál revisar.
+    const overflows = await page.evaluate(() => document.body.scrollHeight > window.innerHeight + 1);
+    if (overflows) cut.push(lead.name);
+    writeFileSync(resolve(OUT_DIR, `${lead.id}.png`), await page.screenshot({ type: "png" }));
+  }
 } finally {
   await browser.close();
+}
+
+console.log(`${targets.length} mockup(s) → ${OUT_DIR}`);
+if (cut.length) {
+  console.error(`No entran en 1080x1350 (revisar el nombre o los textos del rubro): ${cut.join(", ")}`);
+  process.exit(1);
 }

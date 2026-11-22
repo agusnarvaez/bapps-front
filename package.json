@@ -13,7 +13,9 @@
     "index-url": "node scripts/index-url.mjs",
     "build:prerender": "pnpm build && node scripts/prerender.mjs",
     "scout": "node scripts/agency/scout.mjs",
-    "agency:queue": "node scripts/agency/build-queue.mjs"
+    "agency:queue": "node scripts/agency/build-queue.mjs",
+    "agency:mockups": "node scripts/agency/mockup.mjs --all",
+    "agency:mark": "node scripts/agency/mark.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.2",

@@ -13,20 +13,36 @@ personalizado + 1 mockup, y los deja en una cola para enviarlos a mano.
 node scripts/agency/scout.mjs --demo                              # self-check sin API
 pnpm scout --city "La Plata" --category "estudio contable" --limit 20
 # (Claude escribe el pitch de cada lead 'new' en leads.json y lo pasa a 'pitched')
-node scripts/agency/mockup.mjs <leadId>                           # 1 PNG por lead
+pnpm agency:mockups                                               # 1 PNG por lead, según su rubro
 pnpm agency:queue                                                 # genera queue.html
 ```
-Abrí `queue.html`, revisá, y clic en "Enviar" → WhatsApp con el mensaje precargado.
+Abrí `queue.html`. Por cada prospecto: **Abrir WhatsApp** (el texto ya viene escrito),
+arrastrá el mockup al chat y enviá. Los celulares van primero; los fijos, al final y marcados.
+
+Al terminar la tanda, el botón de arriba copia el comando que registra lo enviado:
+```bash
+pnpm agency:mark sent <id> <id>…     # se le escribió
+pnpm agency:mark replied <id>        # contestó
+pnpm agency:mark optout <id>         # pidió la baja: no se lo vuelve a contactar
+pnpm agency:mark skip <id>           # no corresponde (institución, otra ciudad, ya tiene web)
+pnpm agency:mark                     # conteo por estado
+```
+
+## Mockup por rubro
+`lib.mjs` define, para cada rubro de Google Places, qué promete la página, cuatro servicios
+típicos, el llamado a la acción y los colores. Lo único real del negocio es nombre, dirección
+y teléfono; el pie del mockup aclara que los textos son de ejemplo. Un rubro nuevo se agrega
+en `RUBROS`; si falta, se usa una plantilla genérica.
 
 ## Como routine (/loop)
 ```
-/loop pnpm scout --city "La Plata" --category "estudio contable"; luego leé scripts/agency/leads.json, por cada lead status:"new" escribí un pitch de WhatsApp en español argentino (personalizado por nombre/rubro, breve, con una línea de opt-out tipo "si no te interesa, avisame y no escribo más"), marcá status:"pitched", corré node scripts/agency/mockup.mjs <id> por cada uno, y al final pnpm agency:queue. Reportá cuántos leads nuevos.
+/loop pnpm scout --city "La Plata" --category "estudio contable"; luego leé scripts/agency/leads.json, por cada lead status:"new" escribí un pitch de WhatsApp en español argentino (personalizado por nombre/rubro, breve, con una línea de opt-out tipo "si no te interesa, avisame y no escribo más"), marcá status:"pitched", corré pnpm agency:mockups y al final pnpm agency:queue. Reportá cuántos leads nuevos.
 ```
 Estado compartido por filesystem → cada tick sigue donde quedó. `/loop` necesita tu compu
 abierta; si querés que corra solo, migralo a un cloud agent (skill `schedule`).
 
 ## Estado (filesystem, gitignored — PII)
-- `leads.json` — leads y su estado (`new` → `pitched`)
+- `leads.json` — leads y su estado (`new` → `pitched` → `sent` → `replied` / `optout`; `skip` si no corresponde)
 - `state.json` — cursor de paginación (ciudad/rubro/nextPageToken)
 - `out/mockups/*.png`, `queue.html`
 
