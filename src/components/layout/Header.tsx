@@ -28,11 +28,29 @@ export default function Header() {
   // Check if we're on the home page
   const isHome = pathname === `/${locale}` || pathname === `/${locale}/`;
 
+  // Home: the active link is the section crossing the top third of the viewport.
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 50);
+      if (!isHome) return;
+      const line = window.innerHeight / 3;
+      const current = navLinks.find((link) => {
+        const rect = document.getElementById(link.hash.slice(1))?.getBoundingClientRect();
+        return rect && rect.top <= line && rect.bottom > line;
+      });
+      setActiveSection(current?.key ?? null);
+    };
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isHome]);
+
+  const isActive = (link: (typeof navLinks)[number]) =>
+    isHome
+      ? activeSection === link.key
+      : !!link.page && pathname.startsWith(`/${locale}${link.page}`);
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -97,10 +115,19 @@ export default function Header() {
                       ? handlePageNav(e, href ?? "#")
                       : handleSectionNav(e, locale, link.hash, isHome)
                   }
-                  className="group relative px-4 py-2 text-sm font-medium text-foreground-muted transition-colors hover:text-foreground"
+                  aria-current={isActive(link) ? (isHome ? "location" : "page") : undefined}
+                  className={cn(
+                    "group relative px-4 py-2 text-sm font-medium transition-colors hover:text-foreground",
+                    isActive(link) ? "text-foreground" : "text-foreground-muted"
+                  )}
                 >
                   {t(link.key)}
-                  <span className="absolute bottom-0 left-1/2 h-px w-0 -translate-x-1/2 bg-bapps-purple transition-all duration-300 group-hover:w-3/4" />
+                  <span
+                    className={cn(
+                      "absolute bottom-0 left-1/2 h-px -translate-x-1/2 bg-bapps-purple transition-all duration-300 group-hover:w-3/4",
+                      isActive(link) ? "w-3/4" : "w-0"
+                    )}
+                  />
                 </a>
               );
             })}
@@ -198,7 +225,11 @@ export default function Header() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.15 + i * 0.08, duration: 0.4, ease: "easeOut" }}
-                    className="font-[family-name:var(--font-display)] text-4xl tracking-tight text-foreground transition-colors hover:text-bapps-purple"
+                    aria-current={isActive(link) ? (isHome ? "location" : "page") : undefined}
+                    className={cn(
+                      "font-[family-name:var(--font-display)] text-4xl tracking-tight transition-colors hover:text-bapps-purple",
+                      isActive(link) ? "text-bapps-purple" : "text-foreground"
+                    )}
                   >
                     {t(link.key)}
                   </motion.a>
