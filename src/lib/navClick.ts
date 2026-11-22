@@ -1,12 +1,13 @@
 import type { MouseEvent } from "react";
 import type Lenis from "lenis";
-import { navigateTo } from "@/lib/router";
+import { navigateTo, setScrollReset } from "@/lib/router";
 
 // Lenis (SmoothScroll.tsx) drives the scroll position on every frame, so a
 // native scrollIntoView gets overwritten. Route section scrolls through it.
 let lenis: Lenis | null = null;
 export function setLenis(instance: Lenis | null) {
   lenis = instance;
+  setScrollReset(instance ? () => instance.scrollTo(0, { immediate: true, force: true }) : null);
 }
 
 export function scrollToSection(id: string) {

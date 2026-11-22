@@ -18,6 +18,16 @@ export function getCurrentPathname() {
   return window.location.pathname || "/";
 }
 
+// Una navegación nueva arranca arriba de todo, como una carga de página. Con
+// Lenis activo window.scrollTo no alcanza (pisa la posición en cada frame):
+// SmoothScroll registra acá cómo resetear. El botón "atrás" (popstate) no pasa
+// por navigateTo, así que el navegador sigue restaurando la posición anterior.
+const nativeScrollReset = () => window.scrollTo(0, 0);
+let scrollReset = nativeScrollReset;
+export function setScrollReset(reset: (() => void) | null) {
+  scrollReset = reset ?? nativeScrollReset;
+}
+
 export function navigateTo(
   href: string,
   options: { replace?: boolean } = {}
@@ -32,6 +42,7 @@ export function navigateTo(
 
   const method = options.replace ? "replaceState" : "pushState";
   window.history[method](null, "", href);
+  scrollReset();
   window.dispatchEvent(new Event(NAVIGATION_EVENT));
 }
 
