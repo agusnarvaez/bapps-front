@@ -186,3 +186,5 @@ bapps-*.json
 
 # Local Search Console exports
 /informes/
+# piezas de redes generadas (pnpm social)
+/social-out

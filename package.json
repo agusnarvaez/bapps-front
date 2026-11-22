@@ -12,6 +12,8 @@
     "postbuild": "node scripts/post-build-index.mjs",
     "index-url": "node scripts/index-url.mjs",
     "build:prerender": "pnpm build && node scripts/prerender.mjs",
+    "social": "node scripts/social/generate.mjs",
+    "social:buffer": "node scripts/social/buffer.mjs",
     "scout": "node scripts/agency/scout.mjs",
     "agency:queue": "node scripts/agency/build-queue.mjs"
   },
