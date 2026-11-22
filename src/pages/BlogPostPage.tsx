@@ -66,7 +66,7 @@ export default function BlogPostPage({ slug }: { slug: string }) {
     author: {
       "@type": "Person",
       name: "Agustín Narvaez",
-      url: "https://bapps.com.ar/es/#equipo",
+      url: "https://www.linkedin.com/in/narvaezagustin",
       jobTitle: "Co-fundador y desarrollador",
       worksFor: { "@id": "https://bapps.com.ar/#organization" },
     },

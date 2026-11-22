@@ -1,8 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { projects, team, testimonials, services, stats } from "@/lib/data";
+import { projects, testimonials, services, stats } from "@/lib/data";
 import type {
   Project,
-  TeamMember,
   Testimonial,
   Service,
 } from "@/lib/data/types";
@@ -35,20 +34,6 @@ describe("Data integrity", () => {
 
     it("has at least one featured project", () => {
       expect(projects.some((p) => p.featured)).toBe(true);
-    });
-  });
-
-  describe("team", () => {
-    it("has at least one member", () => {
-      expect(team.length).toBeGreaterThan(0);
-    });
-
-    it("every member has name, role, image", () => {
-      team.forEach((m: TeamMember) => {
-        expect(m.name.trim()).toBeTruthy();
-        expect(m.role.trim()).toBeTruthy();
-        expect(m.image).toBeTruthy();
-      });
     });
   });
 

@@ -52,6 +52,34 @@ describe("mapSanityProjectToProject", () => {
     expect(builder.auto).toHaveBeenCalledWith("format");
   });
 
+  it("maps video and localized case study, dropping empty blocks", () => {
+    const base = {
+      _id: "project-3",
+      _createdAt: "2026-03-23T00:00:00.000Z",
+      _updatedAt: "2026-03-23T00:00:00.000Z",
+      _rev: "rev-1",
+      slug: { current: "fer-net" },
+      title: { es: "Fer-Net", en: "Fer-Net" },
+    };
+
+    const project = mapSanityProjectToProject(
+      {
+        ...base,
+        videoUrl: "https://cdn.sanity.io/files/demo/tour.mp4",
+        caseStudy: {
+          problem: { es: "Problema", en: "Problem" },
+          result: { es: "", en: "" },
+        },
+      },
+      "en"
+    );
+
+    expect(project.video).toBe("https://cdn.sanity.io/files/demo/tour.mp4");
+    expect(project.caseStudy).toEqual({ problem: "Problem", solution: undefined, result: undefined });
+    expect(mapSanityProjectToProject(base, "es").caseStudy).toBeUndefined();
+    expect(mapSanityProjectToProject(base, "es").video).toBeUndefined();
+  });
+
   it("uses the fallback image when the document has no image", () => {
     const project = mapSanityProjectToProject(
       {

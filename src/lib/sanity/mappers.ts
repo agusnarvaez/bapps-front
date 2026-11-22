@@ -41,7 +41,16 @@ export function mapSanityProjectToProject(
   const shortDescription = getLocalizedField(doc.shortDescription, "");
   const image = resolveProjectImage(doc.image);
 
+  const caseStudy = {
+    problem: getLocalizedField(doc.caseStudy?.problem, "") || undefined,
+    solution: getLocalizedField(doc.caseStudy?.solution, "") || undefined,
+    result: getLocalizedField(doc.caseStudy?.result, "") || undefined,
+  };
+  const hasCaseStudy = Object.values(caseStudy).some(Boolean);
+
   return {
+    video: doc.videoUrl || undefined,
+    caseStudy: hasCaseStudy ? caseStudy : undefined,
     slug: doc.slug.current,
     title,
     description: description || title, // Fallback to title if description empty

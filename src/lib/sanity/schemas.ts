@@ -115,6 +115,28 @@ export const projectSchema = {
       description: "Optional testimonial from client. Include both ES and EN or leave empty.",
     },
     {
+      name: "video",
+      title: "Demo Video",
+      type: "file",
+      options: { accept: "video/mp4,video/webm" },
+      description: "Recorrido de 30-60 s por la app. Reemplaza la portada en el detalle (la portada queda de poster).",
+    },
+    {
+      name: "caseStudy",
+      title: "Case Study",
+      type: "object",
+      description: "Opcional. Cada bloque se muestra sólo si tiene texto.",
+      fields: ["problem", "solution", "result"].map((name) => ({
+        name,
+        title: name,
+        type: "object",
+        fields: [
+          { name: "es", title: "Español", type: "text" },
+          { name: "en", title: "English", type: "text" },
+        ],
+      })),
+    },
+    {
       name: "featured",
       title: "Featured on Home",
       type: "boolean",
