@@ -126,10 +126,11 @@ function ProjectCard({
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.35 }}
+      className="h-full"
     >
       <Link
         href={`/${locale}/projects/${project.slug}`}
-        className="group relative block overflow-hidden rounded-2xl border border-border bg-background-secondary transition-all duration-500 hover:border-bapps-purple/30"
+        className="group relative block h-full overflow-hidden rounded-2xl border border-border bg-background-secondary transition-all duration-500 hover:border-bapps-purple/30"
       >
         {/* Image */}
         <div className="relative aspect-[16/10] overflow-hidden">
