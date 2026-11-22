@@ -42,20 +42,22 @@
   --color-border: var(--border);
   --color-border-hover: var(--border-hover);
   --font-body: var(--font-commissioner);
-  --font-display: "Delta Gothic One", sans-serif;
+  --font-display: "Commissioner", system-ui, sans-serif;
 }
 
-/* Delta Gothic One - loaded via Google Fonts link */
-@font-face {
-  font-family: "Delta Gothic One";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("https://fonts.gstatic.com/s/deltagothicone/v2/H4cjBXyAlmHe0CMFGCV8CYsS_dGrb1R0tHk.woff2")
-    format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
-    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+/*
+ * Títulos en Commissioner 800 (la misma familia del texto, ya cargada en index.html).
+ * Antes apuntaban a "Delta Gothic One", una fuente que no existe: su URL daba 404
+ * y los títulos caían en Arial.
+ * ponytail: selector por atributo para no tocar los 30 lugares que usan
+ * font-[family-name:var(--font-display)]. En @layer base, así una clase de peso
+ * explícita (font-bold, font-semibold) sigue ganando.
+ */
+@layer base {
+  [class*="var(--font-display)"] {
+    font-weight: 800;
+    letter-spacing: -0.025em;
+  }
 }
 
 body {
