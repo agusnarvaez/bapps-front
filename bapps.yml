@@ -1,6 +1,8 @@
 version: 1
 id: bapps-front
 kind: site
+# Cliente dueño del sitio: el panel (bapps-console) arma su ficha y su portal con este nombre.
+client: Bapps
 stack: [react@19, vite@6]
 environments:
   prod: { url: https://bapps.com.ar, host: vps, health: /version.json, workflow: deploy-prod.yml }
