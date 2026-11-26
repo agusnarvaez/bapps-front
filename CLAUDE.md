@@ -15,6 +15,8 @@ pnpm dev        # desarrollo local — SIEMPRE testear acá antes de build
 pnpm build      # genera dist/ para deploy
 pnpm test       # correr tests unitarios
 pnpm preview    # previsualizar el build de dist/
+pnpm social <slug>         # carrusel (JPG + PDF) y textos de una nota del blog → social-out/ (--latest, --list)
+pnpm social:buffer <slug>  # manda esas piezas a Buffer como BORRADORES (ver scripts/social/buffer.mjs)
 ```
 
 ## Deploy
